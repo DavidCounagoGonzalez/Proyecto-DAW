@@ -11,7 +11,7 @@ class InicioController extends \Com\Daw2\Core\BaseController {
         );        
 
         
-        $this->view->showViews(array('templates/header.view.php', 'inicio.view.php', 'templates/footer.view.php'), $data);
+        $this->view->showViews(array('inicio.view.php'), $data);
     }
 
 }
