@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Controllers/InicioController.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Controllers/AnimesModel.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/admin/admin-inicio.view.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/admin/templates/scripts.view.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Controllers/AdminInicioController.php</file>
         </group>
     </open-files>
 </project-private>

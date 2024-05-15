@@ -2,7 +2,7 @@
 
 namespace Com\Daw2\Controllers;
 
-class InicioController extends \Com\Daw2\Core\BaseController {
+class AdminInicioController extends \Com\Daw2\Core\BaseController {
 
     public function index() {
         $data = array(
@@ -11,7 +11,7 @@ class InicioController extends \Com\Daw2\Core\BaseController {
         );        
 
         
-        $this->view->showViews(array('user/inicio.view.php'), $data);
+        $this->view->showViews(array('admin/admin-inicio.view.php'), $data);
     }
 
 }

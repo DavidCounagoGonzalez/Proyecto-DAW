@@ -15,6 +15,13 @@ class FrontController {
             }
             , 'get');   
             
+        Route::add('/admin',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\AdminInicioController();
+                $controlador->index();
+            }
+            , 'get');  
+            
         Route::add('/actualiza',
             function () {
                 $controlador = new \Com\Daw2\Controllers\AnimesModel();
