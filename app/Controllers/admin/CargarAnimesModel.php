@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Com\Daw2\Controllers;
+namespace Com\Daw2\Controllers\admin;
 //Obtener datos de la API
-class AnimesModel extends \Com\Daw2\Core\BaseModel{
+class CargarAnimesModel extends \Com\Daw2\Core\BaseModel{
     
     function apiAnimes(){
         for ($p = 5; $p <=9; $p++){

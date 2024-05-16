@@ -1,6 +1,6 @@
 <?php
 
-namespace Com\Daw2\Controllers;
+namespace Com\Daw2\Controllers\user;
 
 class InicioController extends \Com\Daw2\Core\BaseController {
 

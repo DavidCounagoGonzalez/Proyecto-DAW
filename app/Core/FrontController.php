@@ -10,200 +10,47 @@ class FrontController {
             
         Route::add('/',
             function () {
-                $controlador = new \Com\Daw2\Controllers\InicioController();
+                $controlador = new \Com\Daw2\Controllers\user\InicioController();
                 $controlador->index();
             }
             , 'get');   
             
         Route::add('/admin',
             function () {
-                $controlador = new \Com\Daw2\Controllers\AdminInicioController();
+                $controlador = new \Com\Daw2\Controllers\admin\AdminInicioController();
                 $controlador->index();
             }
-            , 'get');  
+            , 'get');
+        
+        Route::add('/admin/animes',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\AnimesController();
+                $controlador->mostrarTodos();
+            }
+            , 'get');
+            
+        Route::add('/admin/generos',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\GenerosController();
+                $controlador->mostrarTodos();
+            }
+            , 'get');
+            
+            
+        Route::add('/admin/usuarios',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();
+                $controlador->mostrarTodos();
+            }
+            , 'get');
             
         Route::add('/actualiza',
             function () {
-                $controlador = new \Com\Daw2\Controllers\AnimesModel();
+                $controlador = new \Com\Daw2\Controllers\admin\CargarAnimesModel();
                 $controlador->apiAnimes();
             }
             , 'get'); 
                                               
-        # Gestion de categorías           
-        Route::add('/categorias',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                    $controlador->mostrarTodos();
-                }
-                , 'get');
-
-        Route::add('/categorias/view/([A-Za-z0-9]+)',
-                function ($id) {
-                    $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                    $controlador->view($id);
-                }
-                , 'get');
-
-        Route::add('/categorias/delete/([A-Za-z0-9]+)',
-            function ($id) {
-                $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                $controlador->delete($id);
-            }
-        , 'get');
-
-        Route::add('/categorias/edit/([A-Za-z0-9]+)',
-                function ($id) {
-                    $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                    $controlador->mostrarEdit($id);
-                }
-                , 'get');
-
-        Route::add('/categorias/edit/([A-Za-z0-9]+)',
-                function ($id) {
-                    $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                    $controlador->edit($id);
-                }
-                , 'post');
-
-        Route::add('/categorias/add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                    $controlador->mostrarAdd();
-                }
-                , 'get');
-
-        Route::add('/categorias/add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                    $controlador->add();
-                }
-                , 'post');
-
-        Route::add('/categorias/cant_add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\CategoriaController();
-                    $controlador->cant_add();
-                }
-                , 'get');
-                
-        # Gestion de productos
-        Route::add('/productos',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProductoController();
-                    $controlador->mostrarTodos();
-                }
-                , 'get');
-        Route::add('/productos/view/([A-Za-z0-9]+)',
-                function ($codigo) {
-                    $controlador = new \Com\Daw2\Controllers\ProductoController();
-                    $controlador->view($codigo);
-                }
-                , 'get');
-
-
-        Route::add('/productos/delete/([A-Za-z0-9]+)',
-                function ($codigo) {
-                    $controlador = new \Com\Daw2\Controllers\ProductoController();
-                    $controlador->delete($codigo);
-                }
-                , 'get');
-
-
-        Route::add('/productos/edit/([A-Za-z0-9]+)',
-                function ($codigo) {
-                    $controlador = new \Com\Daw2\Controllers\ProductoController();
-                    $controlador->mostrarEdit($codigo);
-                }
-                , 'get');
-
-        Route::add('/productos/edit',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProductoController();
-                    $controlador->processEdit();
-                }
-                , 'post');
-
-        Route::add('/productos/add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProductoController();
-                    $controlador->mostrarAdd();
-                }
-                , 'get');
-
-        Route::add('/productos/add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProductoController();
-                    $controlador->processAdd();
-                }
-                , 'post');
-
-        # Gestion de proveedores
-
-        Route::add('/proveedores',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->mostrarTodos();
-                }
-                , 'get');
-
-        Route::add('/proveedores/view/([A-Za-z0-9]+)',
-                function ($cif) {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->view($cif);
-                }
-                , 'get');
-
-        Route::add('/proveedores/delete/([A-Za-z0-9]+)',
-                function ($cif) {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->delete($cif);
-                }
-                , 'get');
-
-
-        Route::add('/proveedores/edit/([A-Za-z0-9]+)',
-                function ($cif) {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->mostrarEdit($cif);
-                }
-                , 'get');
-
-        Route::add('/proveedores/edit/([A-Za-z0-9]+)',
-                function ($cif) {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->edit($cif);
-                }
-                , 'post');
-
-        Route::add('/proveedores/add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->mostrarAdd();
-                }
-                , 'get');
-
-        Route::add('/proveedores/add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->add();
-                }
-                , 'post');
-
-        Route::add('/proveedores/cant_add',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\ProveedorController();
-                    $controlador->cant_add();
-                }
-                , 'get');
-                
-        Route::add('/usuarios-sistema',
-                function () {
-                    $controlador = new \Com\Daw2\Controllers\UsuarioSistemaController();
-                    $controlador->mostrarTodos();
-                }
-                , 'get');
-
-
         Route::pathNotFound(
             function () {
                 $controller = new \Com\Daw2\Controllers\ErroresController();
