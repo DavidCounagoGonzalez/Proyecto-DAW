@@ -17,5 +17,16 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         
         $this->view->showViews(array('admin/animes.view.php'), $data);
     }
+    
+   public function addAnime() {
+       
+       $data = array(
+           'título' => 'Añadir Anime',
+           'seccion' => '/animes'
+       );
+       
+       $this->view->showViews(array('admin/add.animes.view.php'), $data);
+       
+   }
 
 }

@@ -11,62 +11,69 @@
                     <div class="col-md-12">
                         <div class="card ">
                             <div class="card-header">
-                                <h2 class="card-title">Animes</h2>
+                                <div class="row">
+                                    <div class="col-sm-6 text-left">
+                                        <h2 class="card-title">Animes</h2>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <a href="./animes/add"><button class="btn btn-fill btn-primary">Añadir</button></a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <?php 
-                                        if(count($animes)>0){
-                                    ?>
-                                    <table class="table tablesorter " id="tabla">
-                                        <thead class=" text-primary">
-                                            <tr>
-                                                <th>
-                                                    Título
-                                                </th>
-                                                <th>
-                                                    En emision
-                                                </th>
-                                                <th>
-                                                    Calificacion
-                                                </th>
-                                                <th>
-                                                    Puntuacion
-                                                </th>
-                                                <th class="text-center">
-                                                    Opciones
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
-                                            <?php
-                                                foreach($animes as $anime){
-                                            ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $anime['titulo'] ?? '' ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $anime['en_emision']? 'Si' : 'No' ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $anime['calificacion'] ?? '' ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $anime['puntuacion'] ?? '' ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <i class="tim-icons icon-app"></i>
-                                                </td>
-                                            </tr>
-                                            <?php
+                                    <?php
+                                    if (count($animes) > 0) {
+                                        ?>
+                                        <table class="table tablesorter " id="tabla">
+                                            <thead class=" text-primary">
+                                                <tr>
+                                                    <th>
+                                                        Título
+                                                    </th>
+                                                    <th>
+                                                        En emision
+                                                    </th>
+                                                    <th>
+                                                        Calificacion
+                                                    </th>
+                                                    <th>
+                                                        Puntuacion
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Opciones
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+                                                foreach ($animes as $anime) {
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $anime['titulo'] ?? '' ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $anime['en_emision'] ? 'Si' : 'No' ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $anime['calificacion'] ?? '' ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $anime['puntuacion'] ?? '' ?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <i class="tim-icons icon-app"></i>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
                                                 }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                    <?php 
-                                        }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                        <?php
+                                    }
                                     ?>
                                 </div>
                             </div>

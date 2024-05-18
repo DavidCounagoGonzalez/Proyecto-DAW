@@ -29,6 +29,13 @@ class FrontController {
             }
             , 'get');
             
+        Route::add('/admin/animes/add',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\AnimesController();
+                $controlador->addAnime();
+            }
+            , 'get');
+            
         Route::add('/admin/generos',
             function () {
                 $controlador = new \Com\Daw2\Controllers\admin\GenerosController();
