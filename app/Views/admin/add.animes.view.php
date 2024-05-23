@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="title">Añadir Anime</h3>
+                                <h2 class="title">Añadir Anime</h2>
                             </div>
                             <div class="card-body">
                                 <form method="post" enctype="multipart/form-data">
@@ -89,8 +89,14 @@
                                         </div>
                                         <div class="col-md-4 pl-md-1">
                                             <div class="form-group">
-                                                <label for="subirImagen">Subir imagen:</label>
-                                                <input type="file" class="form-control" id="subirImagen" name="file" accept="image/*" multiple>
+                                                <div class="input-group row justify-content-center text-center">
+                                                    <label for="banner" class="col-12" >
+                                                        <p id="fileName">Ningún archivo seleccionado</p>
+                                                    </label>
+                                                    <button class="btn btn-primary btn-file animation-on-hover">
+                                                        Subir Archivo<input accept=".jpg,.png,.jpeg,.gif" class="hidden" name="fileImg" type="file" id="fileImg">
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-md-1">
@@ -111,7 +117,7 @@
                                 </form>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                                <button type="submit" class="btn btn-fill btn-primary">Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -122,6 +128,19 @@
     </div>
     <!--   Core JS Files   -->
     <?php include 'templates/scripts.view.php' ?>
+    <script>
+        $(document).ready(function () {
+            $('#fileImg').on('change', function (event) {
+                var input = $(this);
+                var numFiles = input.get(0).files ? input.get(0).files.length : 1;
+                var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                var log = numFiles > 1 ? numFiles + ' archivos seleccionados' : label;
+
+                $('#fileName').text(log);
+            });
+        });
+    </script>
 </body>
+
 
 </html>

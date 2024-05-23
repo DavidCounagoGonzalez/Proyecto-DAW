@@ -32,7 +32,14 @@ class FrontController {
         Route::add('/admin/animes/add',
             function () {
                 $controlador = new \Com\Daw2\Controllers\admin\AnimesController();
-                $controlador->addAnime();
+                $controlador->mostrarAdd();
+            }
+            , 'get');
+            
+        Route::add('/admin/animes/edit/([0-9]+',
+            function ($id) {
+                $controlador = new \Com\Daw2\Controllers\admin\AnimesController();
+                $controlador->mostrarEdit();
             }
             , 'get');
             

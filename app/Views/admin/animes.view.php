@@ -13,7 +13,7 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-6 text-left">
-                                        <h2 class="card-title">Animes</h2>
+                                        <h2 class="title">Animes</h2>
                                     </div>
                                     <div class="col-sm-6 text-right">
                                         <a href="./animes/add"><button class="btn btn-fill btn-primary">Añadir</button></a>
@@ -28,7 +28,7 @@
                                         <table class="table tablesorter " id="tabla">
                                             <thead class=" text-primary">
                                                 <tr>
-                                                    <th>
+                                                    <th class="display-2">
                                                         Título
                                                     </th>
                                                     <th>
@@ -64,7 +64,7 @@
                                                             <?php echo $anime['puntuacion'] ?? '' ?>
                                                         </td>
                                                         <td class="text-center">
-                                                            <i class="tim-icons icon-app"></i>
+                                                             <a href="/admin/animes/edit/<?php echo $anime['id']; ?>" class="btn btn-success ml-1"><i class="fas fa-edit"></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php

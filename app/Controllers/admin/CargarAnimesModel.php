@@ -8,7 +8,6 @@ class CargarAnimesModel extends \Com\Daw2\Core\BaseModel{
     function apiAnimes(){
         for ($p = 5; $p <=9; $p++){
             $url = "https://api.jikan.moe/v4/anime?sfw=true&page={$p}";
-            var_dump($url);
             $datos = file_get_contents($url);
             $datos = json_decode($datos, true);
             
