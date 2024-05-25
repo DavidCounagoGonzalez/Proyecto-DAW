@@ -33,7 +33,7 @@ class CargarAnimesModel extends \Com\Daw2\Core\BaseModel{
                     'puntuacion' => $dato['score'],
                     'descripcion' => $dato['synopsis'],
                     'transmision' => $dato['broadcast']['string'],
-                    'imagenes' => $dato['images']['jpg']['image_url'] . ", " . $dato['images']['webp']['image_url'],
+                    'imagenes' => $dato['images']['jpg']['image_url'],
                     'trailer' => $dato['trailer']['url']
                 ];
                 

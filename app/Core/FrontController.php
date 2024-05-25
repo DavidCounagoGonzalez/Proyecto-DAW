@@ -36,10 +36,10 @@ class FrontController {
             }
             , 'get');
             
-        Route::add('/admin/animes/edit/([0-9]+',
+        Route::add('/admin/animes/edit/([0-9]+)',
             function ($id) {
                 $controlador = new \Com\Daw2\Controllers\admin\AnimesController();
-                $controlador->mostrarEdit();
+                $controlador->mostrarEdit($id);
             }
             , 'get');
             

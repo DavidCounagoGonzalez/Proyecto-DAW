@@ -19,21 +19,29 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
     }
     
     public function mostrarAdd() {
-
+        
+        $modelGeneros = new \Com\Daw2\Models\GenerosModel();
+        
         $data = array(
             'título' => 'Añadir Anime',
-            'seccion' => '/animes'
+            'seccion' => '/animes',
+            'generos' => $modelGeneros->getAll()
         );
+        
 
         $this->view->showViews(array('admin/add.animes.view.php'), $data);
 
+    }
+    
+    public function processAdd(){
+        
     }
     
     public function mostrarEdit(int $id) {
         
         $modelo = new \Com\Daw2\Models\AnimesModel();
         $input = $modelo->loadById($id);
-        
+  
         if(is_null($input)){
             header('location: /admin/animes');
         }else{

@@ -18,20 +18,20 @@
                                     <div class="row">
                                         <div class="col-md-5 pr-md-1">
                                             <div class="form-group">
-                                                <label>Título</label>
-                                                <input type="text" class="form-control" placeholder="Título del Anime" value="">
+                                                <label for="titulo">Título</label>
+                                                <input id="titulo" name='titulo' type="text" class="form-control" placeholder="Título del Anime" value="<?php echo $input['titulo'] ?? '' ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-4 px-md-1">
                                             <div class="form-group">
-                                                <label>Episodios</label>
-                                                <input type="number" class="form-control" placeholder="Número de episodios" value="">
+                                                <label for="episodios">Episodios</label>
+                                                <input id='episodios' name="episodios" type="number" class="form-control" placeholder="Número de episodios" value="<?php echo $input['episodios'] ?? '' ?>">
                                             </div>
                                         </div>
                                         <div class="d-flex col-md-2 pl-md-20 align-items-center">
                                             <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                <label for="en_emision" class="form-check-label">
+                                                    <input id="en_emision" name='en_emision' class="form-check-input" type="checkbox" <?php echo (isset($input['en_emision']) && $input['en_emision'] == 1) ? 'checked' : '' ?>>
                                                     En emisión
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -41,16 +41,16 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 pr-md-1">
+                                        <div class="col-md-4 pr-md-1">
                                             <div class="form-group">
-                                                <label>Fecha de emisión</label>
-                                                <input type="text" class="form-control" placeholder="Desde - Hasta">
+                                                <label for="fecha_emision">Fecha de emisión</label>
+                                                <input id='fecha_emision' name="fecha_emision" type="text" class="form-control" placeholder="Desde - Hasta" value="<?php echo $input['fecha_emision'] ?? '' ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-3 pr-md-1">
                                             <div class="form-group">
                                                 <label for="calificacion">Calificación</label>
-                                                <select class="form-control custom-select" id="calificacion">
+                                                <select class="form-control custom-select" id="calificacion" name="calificacion">
                                                     <option>Todos los públicos</option>
                                                     <option>+12</option>
                                                     <option>+16</option>
@@ -58,19 +58,25 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Puntuación</label>
-                                                <input type="number" class="form-control" placeholder="Home Address" value="0.00" step=".01">
+                                                <label for="selectGeneros">Géneros</label>
+                                                <select class="form-control custom-select select2" id="selectGeneros" name="generos[]" multiple>
+                                                    <?php 
+                                                    foreach ($generos as $genero){  
+                                                     ?>
+                                                    <option value="<?php echo $genero['id'] ?>"><?php echo $genero['genero'] ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-2 pr-md-1">
+                                        <div class="col-md-3 pr-md-1">
                                             <div class="form-group">
-                                                <label for="selectDay">Día de la semana:</label>
-                                                <select class="form-control custom-select" id="selectDay" name="day">
-                                                    <option value="" selected disabled>Selecciona un día</option>
+                                                <label for="selectDia">Día trasmisión</label>
+                                                <select class="form-control custom-select" id="selectDia" name="dia">
+                                                    <option value="" selected>--------</option>
                                                     <option value="lunes">Lunes</option>
                                                     <option value="martes">Martes</option>
                                                     <option value="miércoles">Miércoles</option>
@@ -81,36 +87,46 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-2 px-md-1">
+                                        <div class="col-md-3 px-md-1">
                                             <div class="form-group">
-                                                <label for="selectTime">Hora:</label>
-                                                <input type="time" class="form-control" id="selectTime" name="time">
+                                                <label for="selectHora">Hora</label>
+                                                <input type="time" class="form-control" id="selectHora" name="hora">
                                             </div>
                                         </div>
-                                        <div class="col-md-4 pl-md-1">
+                                        <div class="col-md-2">
                                             <div class="form-group">
-                                                <div class="input-group row justify-content-center text-center">
-                                                    <label for="banner" class="col-12" >
-                                                        <p id="fileName">Ningún archivo seleccionado</p>
-                                                    </label>
-                                                    <button class="btn btn-primary btn-file animation-on-hover">
-                                                        Subir Archivo<input accept=".jpg,.png,.jpeg,.gif" class="hidden" name="fileImg" type="file" id="fileImg">
-                                                    </button>
-                                                </div>
+                                                <label for="puntuacion">Puntuación</label>
+                                                <input id="puntuacion" name='puntuacion' type="number" class="form-control" placeholder="Home Address" value="<?php echo $input['puntuacion'] ?? '0.00' ?>" step=".01">
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-md-1">
                                             <div class="form-group">
                                                 <label for="trailer">Enlace al trailer:</label>
-                                                <input type="text" class="form-control" id="trailer" name="trailer">
+                                                <input type="text" class="form-control" id="trailer" name="trailer" value='<?php echo $input['trailer'] ?? '' ?>'>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label>Sinopsis</label>
-                                                <textarea rows="4" cols="80" class="form-control" placeholder="Sinopsis del anime"></textarea>
+                                                <label for="sinopsis">Sinopsis</label>
+                                                <textarea id="sinopsis" name="sinopsis" rows="10" cols="80" class="form-control" placeholder="Sinopsis del anime"><?php echo $input['descripcion'] ?? '' ?></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-md-1">
+                                            <div class="form-group">
+                                                <div class="input-group row justify-content-center text-center">
+                                                    <label for="fileImg" class="col-12" >
+                                                    <?php if(!isset($input['imagenes']) || is_null($input['imagenes'])){ ?>
+                                                        <p id="fileName">Ningún archivo seleccionado</p>
+                                                    <?php }else{ ?>
+                                                        <img src="<?php echo $input['imagenes'] ?>" alt='imagen'>
+                                                    <?php } ?>
+                                                    </label>
+                                                    <button class="btn btn-primary btn-file animation-on-hover">
+                                                        Subir Archivo<input accept=".jpg,.png,.jpeg" class="hidden" name="fileImg" type="file" id="fileImg">
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
