@@ -20443,4 +20443,75 @@ Copyright (c) 2015 Daniel Eden
     padding-right: 0;
 }
 
+.select2-selection{
+    background-color: transparent !important;
+    border-color: #2b3553 !important;
+    height: calc(3rem + 2px) !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    align-content: center !important;
+    color: whitesmoke !important;
+    padding: 0.5rem 0.7rem !important;
+    width: 100% !important;
+    min-width: 0%;
+}
+
+select:not([multiple]) + .select2-container .select2-search {
+    display: none;
+}
+
+.select2-dropdown{
+    background-color: #23252b !important;
+    border: none !important;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #e14eca !important;
+    color: white;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: inherit !important;
+}
+
+.select2-selection__rendered{
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+input[type='time']{
+
+}
+
+.time-picker-container {
+    position: relative;
+    display: inline-block;
+}
+
+.time-picker {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.time-picker-dropdown {
+    display: none;
+    position: absolute;
+    background-color: red; /* Cambia el color de fondo aquí */
+    border: 1px solid #ccc;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.time-picker-dropdown div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.time-picker-dropdown div:hover {
+    background-color: #ddd;
+}
+
 /*# sourceMappingURL=dashboard-free.css.map */

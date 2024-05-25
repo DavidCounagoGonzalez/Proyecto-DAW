@@ -50,7 +50,7 @@
                                         <div class="col-md-3 pr-md-1">
                                             <div class="form-group">
                                                 <label for="calificacion">Calificación</label>
-                                                <select class="form-control custom-select" id="calificacion" name="calificacion">
+                                                <select class="form-control selectCustom" id="calificacion" name="calificacion">
                                                     <option>Todos los públicos</option>
                                                     <option>+12</option>
                                                     <option>+16</option>
@@ -61,11 +61,11 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label for="selectGeneros">Géneros</label>
-                                                <select class="form-control custom-select select2" id="selectGeneros" name="generos[]" multiple>
-                                                    <?php 
-                                                    foreach ($generos as $genero){  
-                                                     ?>
-                                                    <option value="<?php echo $genero['id'] ?>"><?php echo $genero['genero'] ?></option>
+                                                <select class="form-control selectGeneros custom-select" id="selectGeneros" name="generos[]" multiple>
+                                                    <?php
+                                                    foreach ($generos as $genero) {
+                                                        ?>
+                                                        <option value="<?php echo $genero['id'] ?>"><?php echo $genero['genero'] ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -75,7 +75,7 @@
                                         <div class="col-md-3 pr-md-1">
                                             <div class="form-group">
                                                 <label for="selectDia">Día trasmisión</label>
-                                                <select class="form-control custom-select" id="selectDia" name="dia">
+                                                <select class="form-control selectCustom" id="selectDia" name="dia">
                                                     <option value="" selected>--------</option>
                                                     <option value="lunes">Lunes</option>
                                                     <option value="martes">Martes</option>
@@ -89,8 +89,13 @@
                                         </div>
                                         <div class="col-md-3 px-md-1">
                                             <div class="form-group">
-                                                <label for="selectHora">Hora</label>
-                                                <input type="time" class="form-control" id="selectHora" name="hora">
+                                                <div class="time-picker-container">
+                                                    <label for="selectHora">Hora</label>
+                                                    <input type="time" class="time-picker form-control" id="selectHora" name="hora">
+                                                    <div class="time-picker-dropdown" id='timeDropdown'>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -117,11 +122,11 @@
                                             <div class="form-group">
                                                 <div class="input-group row justify-content-center text-center">
                                                     <label for="fileImg" class="col-12" >
-                                                    <?php if(!isset($input['imagenes']) || is_null($input['imagenes'])){ ?>
-                                                        <p id="fileName">Ningún archivo seleccionado</p>
-                                                    <?php }else{ ?>
-                                                        <img src="<?php echo $input['imagenes'] ?>" alt='imagen'>
-                                                    <?php } ?>
+                                                        <?php if (!isset($input['imagenes']) || is_null($input['imagenes'])) { ?>
+                                                            <p id="fileName">Ningún archivo seleccionado</p>
+                                                        <?php } else { ?>
+                                                            <img src="<?php echo $input['imagenes'] ?>" alt='imagen'>
+                                                        <?php } ?>
                                                     </label>
                                                     <button class="btn btn-primary btn-file animation-on-hover">
                                                         Subir Archivo<input accept=".jpg,.png,.jpeg" class="hidden" name="fileImg" type="file" id="fileImg">
