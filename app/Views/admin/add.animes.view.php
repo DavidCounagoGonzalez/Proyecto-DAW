@@ -89,13 +89,8 @@
                                         </div>
                                         <div class="col-md-3 px-md-1">
                                             <div class="form-group">
-                                                <div class="time-picker-container">
-                                                    <label for="selectHora">Hora</label>
-                                                    <input type="time" class="time-picker form-control" id="selectHora" name="hora">
-                                                    <div class="time-picker-dropdown" id='timeDropdown'>
-
-                                                    </div>
-                                                </div>
+                                                <label for="selectHora">Hora</label>
+                                                <input type="time" class="form-control" id="timePicker" name="hora">
                                             </div>
                                         </div>
                                         <div class="col-md-2">

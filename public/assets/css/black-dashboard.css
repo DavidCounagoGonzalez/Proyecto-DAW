@@ -20478,40 +20478,36 @@ select:not([multiple]) + .select2-container .select2-search {
     color: rgba(255, 255, 255, 0.8) !important;
 }
 
-input[type='time']{
-
+.select2-search__field{
+    background-color: transparent !important;
+    color: white !important
 }
 
-.time-picker-container {
-    position: relative;
-    display: inline-block;
+.flatpickr-calendar {
+    background-color: transparent !important; /* Cambia el color de fondo aquí */
+    border: 1px solid #444; /* Cambia el color del borde aquí */
 }
 
-.time-picker {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.flatpickr-time input{
+    color: white !important;
 }
 
-.time-picker-dropdown {
-    display: none;
-    position: absolute;
-    background-color: red; /* Cambia el color de fondo aquí */
-    border: 1px solid #ccc;
-    z-index: 1000;
-    max-height: 200px;
-    overflow-y: auto;
+.flatpickr-time {
+    background-color: transparent; /* Cambia el color de fondo del tiempo */
+    color: white; /* Cambia el color del texto del tiempo */
 }
 
-.time-picker-dropdown div {
-    padding: 10px;
-    cursor: pointer;
+.flatpickr-time input:hover, .flatpickr-time .flatpickr-am-pm:hover, .flatpickr-time input:focus, .flatpickr-time .flatpickr-am-pm:focus{
+    background: transparent !important;
+    color: white !important;
 }
 
-.time-picker-dropdown div:hover {
-    background-color: #ddd;
+.flatpickr-time .flatpickr-time-separator {
+    color: white !important; /* Cambia el color del separador del tiempo */
 }
 
-/*# sourceMappingURL=dashboard-free.css.map */
+.flatpickr-time .numInputWrapper span.arrowUp,
+.flatpickr-time .numInputWrapper span.arrowDown {
+    border-color: #fff transparent transparent transparent; /* Cambia el color de las flechas */
+    background: #e14eca;
+}

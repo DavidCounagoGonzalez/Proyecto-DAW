@@ -25,6 +25,8 @@
                     application: "black-dashboard-free"
             });</script>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
     $(document).ready(function() {
     $('.selectGeneros').select2({
@@ -39,55 +41,23 @@
     $('.selectCustom').on('select2:open', function() {
     $(this).next('.select2-container').next('.select2-dropdown').find('.select2-search').hide();
     });
-    });</script>
+    });
+</script>
 
-<!--<script>
-    $(document).ready(function() {
-    $('.selectGeneros').select2({
-    placeholder: 'Selecciona Géneros',
-            allowClear: true,
-            width: '100%'  // Ajusta el ancho para que se adapte al contenedor
-    });
-    // Forzar recalculación del ancho en eventos específicos
-    $(window).on('resize', function() {
-    $('.selectGeneros').select2('destroy').select2({
-    placeholder: 'Selecciona Géneros',
-            allowClear: true,
-            width: '100%',
-    });
-    });
-    });</script>-->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Espera a que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializa flatpickr en el input
+            flatpickr("input[type=time]", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+                time_24hr: true,
+                onReady: function(selectedDates, dateStr, instance) {
+                    instance.input.removeAttribute("readonly");
+                } 
+            });
+        });
+    </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const timePicker = document.querySelector('.time-picker');
-    const timeDropdown = document.getElementById('timeDropdown');
-    const times = [];
-    for (let hour = 0; hour < 24; hour++) {
-    for (let minute = 0; minute < 60; minute += 30) {
-    let h = hour < 10 ? '0' + hour : hour;
-    let m = minute < 10 ? '0' + minute : minute;
-    times.push(${h}:${m});
-    }
-    }
-
-    times.forEach(time => {
-    const timeOption = document.createElement('div');
-    timeOption.textContent = time;
-    timeOption.addEventListener('click', function() {
-    timePicker.value = time;
-    timeDropdown.style.display = 'none';
-    });
-    timeDropdown.appendChild(timeOption);
-    });
-    timePicker.addEventListener('focus', function() {
-    timeDropdown.style.display = 'block';
-    });
-    document.addEventListener('click', function(event) {
-    if (!event.target.closest('.time-picker-container')) {
-    timeDropdown.style.display = 'none';
-    }
-    });
-    });</script>
-
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
