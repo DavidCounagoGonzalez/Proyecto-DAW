@@ -23,28 +23,29 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
             return null;
         }
     }
-    
-    function insertAnime(array $datos){
+
+    function insertAnime(int $id, array $datos, array $imagen){
         $query = "INSERT INTO `Animes`(`id`, `titulo`, `episodios`, `en_emision`, `fecha_emision`, `calificacion`, `puntuacion`, `descripcion`, `transmision`, `imagenes`, `trailer`)"
                 . " VALUES (:id, :titulo, :episodios, :en_emision, :fecha_emision, :calificacion, :puntuacion, :descripcion, :transmision, :imagenes, :trailer)";
         
         $stmt = $this->pdo->prepare($query);
         
         $data = array(
-            'id' => $datos['id'],
+            'id' => $id,
             'titulo' => $datos['titulo'],
-            'episodios' => $datos['episodios'],
+            'episodios' => intval($datos['episodios']),
             'en_emision' => $datos['en_emision'],
             'fecha_emision' => $datos['fecha_emision'],
             'calificacion' => $datos['calificacion'],
             'puntuacion' => $datos['puntuacion'],
+            'descripcion' => $datos['sinopsis'],
             'transmision' => $datos['dia'] . ' a las ' . $datos['hora'],
-            'imagenes' => '/assets/img/' . $datos['fileImg'],
+            'imagenes' => '/assets/img/' . $imagen['name'],
             'trailer' => $datos['trailer']
         );
         
         if($stmt->execute($data)){
-            return $this->pdo->lastInsertId();
+            return 1;
         }else{
             return 0;
         }

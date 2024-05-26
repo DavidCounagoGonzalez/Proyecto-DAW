@@ -124,17 +124,18 @@
                                                         <?php } ?>
                                                     </label>
                                                     <button class="btn btn-primary btn-file animation-on-hover">
-                                                        Subir Archivo<input accept=".jpg,.png,.jpeg" class="hidden" name="fileImg" type="file" id="fileImg">
+                                                        Subir Archivo<input accept=".jpg,.png,.jpeg" class="hidden" name="imagenAnime" type="file" id="fileImg">
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-fill btn-primary">Guardar</button>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-fill btn-primary">Guardar</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
