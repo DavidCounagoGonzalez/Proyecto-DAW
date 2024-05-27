@@ -97,6 +97,9 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
     public function mostrarEdit(int $id) {
 
         $modelo = new \Com\Daw2\Models\AnimesModel();
+        $modelGeneros = new \Com\Daw2\Models\GenerosModel();
+        $modelAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
+        
         $input = $modelo->loadById($id);
 
         if (is_null($input)) {
@@ -105,7 +108,9 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             $data = array(
                 'titulo' => 'Editar Anime',
                 'seccion' => '/animes',
-                'input' => $input
+                'generos' => $modelGeneros->getAll(),
+                'input' => $input,
+                'animeGeneros' => $modelAnimeGeneros->getByAnime($id)
             );
 
             $this->view->showViews(array('admin/add.animes.view.php'), $data);

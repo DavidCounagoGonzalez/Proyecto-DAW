@@ -64,9 +64,13 @@
                                                 <select class="form-control selectGeneros custom-select" id="selectGeneros" name="generos[]" multiple>
                                                     <?php
                                                     foreach ($generos as $genero) {
+                                                        foreach ($animeGeneros as $ag) {
+                                                            
                                                         ?>
-                                                        <option value="<?php echo $genero['id'] ?>"><?php echo $genero['genero'] ?></option>
-                                                    <?php } ?>
+                                                        <option value="<?php echo $genero['id'] ?>" <?php echo (isset($ag['genero_id']) && $ag['genero_id'] == $genero['id'])? 'selected' : '' ?>  ><?php echo $genero['genero'] ?></option>
+                                                    <?php 
+                                                        }
+                                                        } ?>
                                                 </select>
                                             </div>
                                         </div>
