@@ -40,7 +40,7 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
             'puntuacion' => $datos['puntuacion'],
             'descripcion' => $datos['sinopsis'],
             'transmision' => $datos['dia'] . ' a las ' . $datos['hora'],
-            'imagenes' => '/assets/img/animeImgs/' . $imagen['name'],
+            'imagenes' => $imagen['name'],
             'trailer' => $datos['trailer']
         );
         
@@ -49,6 +49,29 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
         }else{
             return 0;
         }
+    }
+    
+    function updateAnime(int $id, array $datos, array $imagen){
+        $query = "UPDATE `Animes` SET `titulo`=:titulo,`episodios`=:episodios,`en_emision`=:en_emision,`fecha_emision`=:fecha_emision,"
+                . " `calificacion`=:calificacion,`puntuacion`=:puntuacion,`descripcion`=:descripcion,`transmision`=:transmision,`imagenes`=:imagenes,`trailer`=:trailer WHERE id = :id";
+        
+        $stmt = $this->pdo->prepare($query);
+        
+        $vars = array(
+            'titulo' => $datos['titulo'],
+            'episodios' => intval($datos['episodios']),
+            'en_emision' => $datos['en_emision'],
+            'fecha_emision' => $datos['fecha_emision'],
+            'calificacion' => $datos['calificacion'],
+            'puntuacion' => $datos['puntuacion'],
+            'descripcion' => $datos['sinopsis'],
+            'transmision' => $datos['dia'] . ' a las ' . $datos['hora'],
+            'imagenes' => '/assets/img/animeImgs/' . $imagen['name'],
+            'trailer' => $datos['trailer'],
+            'id' => $id
+        );
+        
+        return $stmt->execute($vars);
     }
     
 }

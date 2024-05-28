@@ -33,6 +33,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
     public function processAdd() {
         $modelo = new \Com\Daw2\Models\AnimesModel();
         $modeloGeneros = new \Com\Daw2\Models\GenerosModel();
+        $modeloAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
         
         $errores = $this->checkForm($_POST);
         if(count($errores) > 0) {
@@ -56,7 +57,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             } while ($modelo->loadById($id));
 
             if ($modelo->insertAnime($id, $_POST, $_FILES['imagenAnime'])) {
-                if ($modeloGeneros->insertGenres($_POST['generos'], $id)) {
+                if ($modeloAnimeGeneros->insertGenres($_POST['generos'], $id)) {
                     header('location: /admin/animes');
                 }
             } else {
@@ -116,7 +117,54 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             $this->view->showViews(array('admin/add.animes.view.php'), $data);
         }
     }
+    
+    public function processEdit(int $id) {
+        $modelo = new \Com\Daw2\Models\AnimesModel();
+        $modelGeneros = new \Com\Daw2\Models\GenerosModel();
+        $modelAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
+        
+        $input = $modelo->loadById($id);
+        
+        $errores = $this->checkForm($_POST);
+        
+        if (is_null($input)) {
+            header('location: /admin/animes');
+        } else if(count($errores) < 0) {
+            $data = array(
+                'titulo' => 'Editar Anime',
+                'seccion' => '/animes',
+                'generos' => $modelGeneros->getAll(),
+                'input' => $input,
+                'animeGeneros' => $modelAnimeGeneros->getByAnime($id)
+            );
 
+            $this->view->showViews(array('admin/add.animes.view.php'), $data);
+        }else{
+            if (isset($_POST['en_emision'])) {
+                $_POST['en_emision'] = true;
+            } else {
+                $_POST['en_emision'] = false;
+            }
+            
+            if ($modelo->updateAnime($id, $_POST, $_FILES['imagenAnime'])) {
+                $modelAnimeGeneros->deleteById($id);
+                if ($modelAnimeGeneros->insertGenres($_POST['generos'], $id)) {
+                    header('location: /admin/animes');
+                }
+            } else {
+                $data = array(
+                    'título' => 'Añadir Anime',
+                    'seccion' => '/animes',
+                    'generos' => $modeloGeneros->getAll(),
+                    'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS)
+                );
+                $this->view->showViews(array('admin/add.animes.view.php'), $data);
+            }
+            
+        }
+    }
+    
+    
     function generateRandomId($length = 4) {
         $min = pow(10, $length - 1);
         $max = pow(10, $length) - 1;

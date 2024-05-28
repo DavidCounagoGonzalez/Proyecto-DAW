@@ -64,12 +64,16 @@
                                                 <select class="form-control selectGeneros custom-select" id="selectGeneros" name="generos[]" multiple>
                                                     <?php
                                                     foreach ($generos as $genero) {
-                                                        foreach ($animeGeneros as $ag) {
-                                                            
                                                         ?>
-                                                        <option value="<?php echo $genero['id'] ?>" <?php echo (isset($ag['genero_id']) && $ag['genero_id'] == $genero['id'])? 'selected' : '' ?>  ><?php echo $genero['genero'] ?></option>
+                                                        <option value="<?php echo $genero['id'] ?>"
+                                                        <?php if(isset($animeGeneros)){ 
+                                                            foreach ($animeGeneros as $ag) { 
+                                                            echo (isset($ag['genero_id']) && $ag['genero_id'] == $genero['id'])? 'selected' : '' ;
+                                                        }}?>>
+                                                        <?php echo $genero['genero'] ?>
+                                                        </option>
                                                     <?php 
-                                                        }
+                                                        
                                                         } ?>
                                                 </select>
                                             </div>
@@ -124,7 +128,7 @@
                                                         <?php if (!isset($input['imagenes']) || is_null($input['imagenes'])) { ?>
                                                             <p id="fileName">Ningún archivo seleccionado</p>
                                                         <?php } else { ?>
-                                                            <img src="<?php echo $input['imagenes'] ?>" alt='imagen'>
+                                                            <img id='imagen' src="/assets/img/animeImgs/<?php echo $input['imagenes'] ?>" alt='imagen'>
                                                         <?php } ?>
                                                     </label>
                                                     <button class="btn btn-primary btn-file animation-on-hover">
@@ -156,8 +160,10 @@
                 var numFiles = input.get(0).files ? input.get(0).files.length : 1;
                 var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
                 var log = numFiles > 1 ? numFiles + ' archivos seleccionados' : label;
-
+                
                 $('#fileName').text(log);
+                $('#imagen').attr('src', '/assets/img/animeImgs/'+log);
+                $('#imagen').attr('alt', log);
             });
         });
     </script>
