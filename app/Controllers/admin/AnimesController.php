@@ -34,23 +34,18 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         $modelo = new \Com\Daw2\Models\AnimesModel();
         $modeloGeneros = new \Com\Daw2\Models\GenerosModel();
         $modeloAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
-        
+
         $errores = $this->checkForm($_POST);
-        if(count($errores) > 0) {
+        if (count($errores) > 0) {
             $data = array(
-                    'título' => 'Añadir Anime',
-                    'seccion' => '/animes',
-                    'generos' => $modeloGeneros->getAll(),
-                    'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS),
-                    'errores' => $errores
-                );
-                $this->view->showViews(array('admin/add.animes.view.php'), $data);
-        }else{
-            if (isset($_POST['en_emision'])) {
-                $_POST['en_emision'] = true;
-            } else {
-                $_POST['en_emision'] = false;
-            }
+                'título' => 'Añadir Anime',
+                'seccion' => '/animes',
+                'generos' => $modeloGeneros->getAll(),
+                'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS),
+                'errores' => $errores
+            );
+            $this->view->showViews(array('admin/add.animes.view.php'), $data);
+        } else {
 
             do {
                 $id = $this->generateRandomId();
@@ -71,27 +66,57 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             }
         }
     }
-    
-    function checkForm(array $post){
+
+    function checkForm(array $post) {
         $errores = [];
-        if(empty($post['titulo'])){
+        if (empty($post['titulo'])) {
             $errores['titulo'] = 'Debe indicar un título';
         }
-        
-        if(empty($post['episodios'])){
+
+        if (empty($post['episodios'])) {
             $errores['episodios'] = 'No puede estar vacío';
-        }else if($post['episodios'] < 1){
+        } else if ($post['episodios'] < 1) {
             $errores['episodios'] = 'Debe tener mínimo un episodio';
         }
-        
-        if(empty($post['fecha_emision'])){
+
+        if (empty($post['calificacion'])) {
+            $errores['calificacion'] = 'No puede estar vacío';
+        } else if (!in_array($post['calificacion'], array('TP', '12', '16', '18'))) {
+            $errores['calificacion'] = 'Error de valores';
+        }
+
+        if (empty($post['fecha_emision'])) {
             $errores['fecha_emision'] = 'No puede estar vacío';
         }
-        
-        if(!isset($post['generos'])){
+
+        if (empty($post['generos'])) {
             $errores['generos'] = 'Debe escoger al menos un género';
         }
-        
+
+        if (isset($_POST['en_emision'])) {
+            $_POST['en_emision'] = 1;
+        } else {
+            $_POST['en_emision'] = 0;
+        }
+
+        if (empty($post['puntuacion'])) {
+            $errores['puntuacion'] = 'No puede estar vacío';
+        } else if ($post['puntuacion'] < 0) {
+            $errores['puntuacion'] = 'Debe tener mínimo un episodio';
+        } else if ($post['puntuacion'] > 10) {
+            $errores['puntuacion'] = 'Debe ser menor de 10';
+        }
+
+        if (empty($post['trailer'])) {
+            $errores['trailer'] = 'No puede estar vacío';
+        } else if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $post['trailer'])) {
+            $errores['trailer'] = 'Debe indicar el formato completo de la url';
+        }
+
+        if (empty($post['sinopsis'])) {
+            $errores['sinopsis'] = 'No puede estar vacío';
+        }
+
         return $errores;
     }
 
@@ -100,14 +125,19 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         $modelo = new \Com\Daw2\Models\AnimesModel();
         $modelGeneros = new \Com\Daw2\Models\GenerosModel();
         $modelAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
-        
+
         $input = $modelo->loadById($id);
 
         if (is_null($input)) {
             header('location: /admin/animes');
         } else {
+
+            if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $input['imagenes'])) {
+                $input['imagenes'] = '/assets/img/animeImgs/' . $input['imagenes'];
+            }
+
             $data = array(
-                'titulo' => 'Editar Anime',
+                'título' => 'Editar Anime',
                 'seccion' => '/animes',
                 'generos' => $modelGeneros->getAll(),
                 'input' => $input,
@@ -117,35 +147,39 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             $this->view->showViews(array('admin/add.animes.view.php'), $data);
         }
     }
-    
+
     public function processEdit(int $id) {
         $modelo = new \Com\Daw2\Models\AnimesModel();
         $modelGeneros = new \Com\Daw2\Models\GenerosModel();
         $modelAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
-        
+
         $input = $modelo->loadById($id);
-        
+
         $errores = $this->checkForm($_POST);
-        
+
         if (is_null($input)) {
             header('location: /admin/animes');
-        } else if(count($errores) < 0) {
+        } else if (count($errores) > 0) {
             $data = array(
-                'titulo' => 'Editar Anime',
+                'título' => 'Editar Anime',
                 'seccion' => '/animes',
                 'generos' => $modelGeneros->getAll(),
                 'input' => $input,
-                'animeGeneros' => $modelAnimeGeneros->getByAnime($id)
+                'animeGeneros' => $modelAnimeGeneros->getByAnime($id),
+                'errores' => $errores
             );
 
             $this->view->showViews(array('admin/add.animes.view.php'), $data);
-        }else{
-            if (isset($_POST['en_emision'])) {
-                $_POST['en_emision'] = true;
-            } else {
-                $_POST['en_emision'] = false;
+        } else {
+
+            if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $input['imagenes'])) {
+                $input['imagenes'] = '/assets/img/animeImgs/' . $input['imagenes'];
             }
-            
+
+            if (empty($_FILES['imagenAnime']['name'])) {
+                $_FILES['imagenAnime']['name'] = $input['imagenes'];
+            }
+
             if ($modelo->updateAnime($id, $_POST, $_FILES['imagenAnime'])) {
                 $modelAnimeGeneros->deleteById($id);
                 if ($modelAnimeGeneros->insertGenres($_POST['generos'], $id)) {
@@ -160,11 +194,9 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
                 );
                 $this->view->showViews(array('admin/add.animes.view.php'), $data);
             }
-            
         }
     }
-    
-    
+
     function generateRandomId($length = 4) {
         $min = pow(10, $length - 1);
         $max = pow(10, $length) - 1;

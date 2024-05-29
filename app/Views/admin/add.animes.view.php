@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h2 class="title">Añadir Anime</h2>
+                                <h2 class="title"><?php echo $título ?></h2>
                             </div>
                             <div class="card-body">
                                 <form method="post" enctype="multipart/form-data">
@@ -20,12 +20,14 @@
                                             <div class="form-group">
                                                 <label for="titulo">Título</label>
                                                 <input id="titulo" name='titulo' type="text" class="form-control" placeholder="Título del Anime" value="<?php echo $input['titulo'] ?? '' ?>">
+                                                <p class="text-danger"><?php echo isset($errores['titulo']) ? $errores['titulo'] : ''; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-4 px-md-1">
                                             <div class="form-group">
                                                 <label for="episodios">Episodios</label>
                                                 <input id='episodios' name="episodios" type="number" class="form-control" placeholder="Número de episodios" value="<?php echo $input['episodios'] ?? '' ?>">
+                                                <p class="text-danger"><?php echo isset($errores['episodios']) ? $errores['episodios'] : ''; ?></p>
                                             </div>
                                         </div>
                                         <div class="d-flex col-md-2 pl-md-20 align-items-center">
@@ -45,17 +47,19 @@
                                             <div class="form-group">
                                                 <label for="fecha_emision">Fecha de emisión</label>
                                                 <input id='fecha_emision' name="fecha_emision" type="text" class="form-control" placeholder="Desde - Hasta" value="<?php echo $input['fecha_emision'] ?? '' ?>">
+                                                <p class="text-danger"><?php echo isset($errores['fecha_emision']) ? $errores['fecha_emision'] : ''; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-3 pr-md-1">
                                             <div class="form-group">
                                                 <label for="calificacion">Calificación</label>
                                                 <select class="form-control selectCustom" id="calificacion" name="calificacion">
-                                                    <option>Todos los públicos</option>
-                                                    <option>+12</option>
-                                                    <option>+16</option>
-                                                    <option>+18</option>
+                                                    <option value="TP">Todos los públicos</option>
+                                                    <option value="12">+12</option>
+                                                    <option value="16">+16</option>
+                                                    <option value="18">+18</option>
                                                 </select>
+                                                <p class="text-danger"><?php echo isset($errores['calificacion']) ? $errores['calificacion'] : ''; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
@@ -76,6 +80,7 @@
                                                         
                                                         } ?>
                                                 </select>
+                                                <p class="text-danger"><?php echo isset($errores['generos']) ? $errores['generos'] : ''; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -105,12 +110,14 @@
                                             <div class="form-group">
                                                 <label for="puntuacion">Puntuación</label>
                                                 <input id="puntuacion" name='puntuacion' type="number" class="form-control" placeholder="Home Address" value="<?php echo $input['puntuacion'] ?? '0.00' ?>" step=".01">
+                                                <p class="text-danger"><?php echo isset($errores['puntuacion']) ? $errores['puntuacion'] : ''; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-md-1">
                                             <div class="form-group">
                                                 <label for="trailer">Enlace al trailer:</label>
                                                 <input type="text" class="form-control" id="trailer" name="trailer" value='<?php echo $input['trailer'] ?? '' ?>'>
+                                                <p class="text-danger"><?php echo isset($errores['trailer']) ? $errores['trailer'] : ''; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -119,6 +126,7 @@
                                             <div class="form-group">
                                                 <label for="sinopsis">Sinopsis</label>
                                                 <textarea id="sinopsis" name="sinopsis" rows="10" cols="80" class="form-control" placeholder="Sinopsis del anime"><?php echo $input['descripcion'] ?? '' ?></textarea>
+                                                <p class="text-danger"><?php echo isset($errores['sinopsis']) ? $errores['sinopsis'] : ''; ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-md-1">
@@ -128,7 +136,7 @@
                                                         <?php if (!isset($input['imagenes']) || is_null($input['imagenes'])) { ?>
                                                             <p id="fileName">Ningún archivo seleccionado</p>
                                                         <?php } else { ?>
-                                                            <img id='imagen' src="/assets/img/animeImgs/<?php echo $input['imagenes'] ?>" alt='imagen'>
+                                                            <img id='imagen' src="<?php echo $input['imagenes'] ?>" alt='imagen'>
                                                         <?php } ?>
                                                     </label>
                                                     <button class="btn btn-primary btn-file animation-on-hover">
@@ -161,7 +169,8 @@
                 var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
                 var log = numFiles > 1 ? numFiles + ' archivos seleccionados' : label;
                 
-                $('#fileName').text(log);
+                $('#fileName').empty();
+                $('#fileName').append($("<img id='imagen' src='"+ log +"' alt='imagen'>"));
                 $('#imagen').attr('src', '/assets/img/animeImgs/'+log);
                 $('#imagen').attr('alt', log);
             });

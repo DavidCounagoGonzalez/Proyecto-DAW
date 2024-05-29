@@ -66,7 +66,7 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
             'puntuacion' => $datos['puntuacion'],
             'descripcion' => $datos['sinopsis'],
             'transmision' => $datos['dia'] . ' a las ' . $datos['hora'],
-            'imagenes' => '/assets/img/animeImgs/' . $imagen['name'],
+            'imagenes' => $imagen['name'],
             'trailer' => $datos['trailer'],
             'id' => $id
         );
