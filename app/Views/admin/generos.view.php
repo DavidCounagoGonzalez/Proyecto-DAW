@@ -27,9 +27,6 @@
                                                 <th>
                                                     Géneros
                                                 </th>
-                                                <th class="text-center">
-                                                    Opciones
-                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -43,9 +40,6 @@
                                                 </td>
                                                 <td>
                                                     <?php echo $genero['genero'] ?? '' ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <i class="tim-icons icon-app"></i>
                                                 </td>
                                             </tr>
                                             <?php

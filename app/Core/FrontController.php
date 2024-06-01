@@ -72,6 +72,13 @@ class FrontController {
             }
             , 'get');
             
+        Route::add('/admin/usuarios/add',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();
+                $controlador->mostrarAdd();
+            }
+            , 'get');
+            
         Route::add('/actualiza',
             function () {
                 $controlador = new \Com\Daw2\Controllers\admin\CargarAnimesModel();
