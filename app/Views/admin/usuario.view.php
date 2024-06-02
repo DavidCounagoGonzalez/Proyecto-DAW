@@ -64,7 +64,7 @@
                                                             <?php echo $usuario['last_date'] ?? '' ?>
                                                         </td>
                                                         <td class="text-center">
-                                                            <a href="/admin/animes/edit/<?php echo $usuario['id_usuario']; ?>" class="btn btn-success ml-1"><i class="fas fa-edit"></i></a>
+                                                            <a href="/admin/usuarios/edit/<?php echo $usuario['id_usuario']; ?>" class="btn btn-success ml-1"><i class="fas fa-edit"></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php

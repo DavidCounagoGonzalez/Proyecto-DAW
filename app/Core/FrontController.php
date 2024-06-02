@@ -57,6 +57,13 @@ class FrontController {
             }
             , 'post');
             
+        Route::add('/admin/animes/delete/([0-9]+)',
+            function ($id) {
+                $controlador = new \Com\Daw2\Controllers\admin\AnimesController();
+                $controlador->processDelete($id);
+            }
+            , 'get');
+            
         Route::add('/admin/generos',
             function () {
                 $controlador = new \Com\Daw2\Controllers\admin\GenerosController();
@@ -76,6 +83,13 @@ class FrontController {
             function () {
                 $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();
                 $controlador->mostrarAdd();
+            }
+            , 'get');
+            
+        Route::add('/admin/usuarios/edit/([0-9]+)',
+            function ($id) {
+                $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();
+                $controlador->mostrarEdit($id);
             }
             , 'get');
             

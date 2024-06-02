@@ -8,6 +8,17 @@
             <?php include 'templates/navbar.view.php' ?>
             <div class="content">
                 <div class="row">
+                    <?php
+                    if (isset($mensaje)) {
+                        ?>
+                        <div class="col-12">
+                            <div class="alert alert-<?php echo $mensaje['class']; ?>">
+                                <p><?php echo $mensaje['texto']; ?></p>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <div class="col-md-12">
                         <div class="card ">
                             <div class="card-header">
@@ -64,7 +75,10 @@
                                                             <?php echo $anime['puntuacion'] ?? '' ?>
                                                         </td>
                                                         <td class="text-center">
-                                                             <a href="/admin/animes/edit/<?php echo $anime['id']; ?>" class="btn btn-success ml-1"><i class="fas fa-edit"></i></a>
+                                                            <div class="row">
+                                                                <a href="/admin/animes/edit/<?php echo $anime['id']; ?>" class="btn btn-success btn-sm ml-1"><i class="fas fa-edit"></i></a>
+                                                                <a href="/admin/animes/delete/<?php echo $anime['id']; ?>" class="btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></a>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <?php

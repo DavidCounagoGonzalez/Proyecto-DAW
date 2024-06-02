@@ -14,6 +14,11 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             'animes' => $model->getAll()
         );
 
+        if (isset($_SESSION['mensaje'])) {
+            $data['mensaje'] = $_SESSION['mensaje'];
+            unset($_SESSION['mensaje']);
+        }
+
         $this->view->showViews(array('admin/animes.view.php'), $data);
     }
 
@@ -34,6 +39,8 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         $modelo = new \Com\Daw2\Models\AnimesModel();
         $modeloGeneros = new \Com\Daw2\Models\GenerosModel();
         $modeloAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
+        $guardar = new \Com\Daw2\Models\SubirArchivos();
+        $dir = 'assets/img/animeImgs/';
 
         $errores = $this->checkForm($_POST);
         if (count($errores) > 0) {
@@ -51,7 +58,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
                 $id = $this->generateRandomId();
             } while ($modelo->loadById($id));
 
-            if ($modelo->insertAnime($id, $_POST, $_FILES['imagenAnime'])) {
+            if ($modelo->insertAnime($id, $_POST, $_FILES['imagenAnime']) && $guardar->guardar($dir, $_FILES)) {
                 if ($modeloAnimeGeneros->insertGenres($_POST['generos'], $id)) {
                     header('location: /admin/animes');
                 }
@@ -197,7 +204,23 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         }
     }
 
-    function generateRandomId($length = 4) {
+    function processDelete(int $id) {
+        $modelo = new \Com\Daw2\Models\AnimesModel();
+        if ($modelo->deleteAnime($id)) {
+            $_SESSION['mensaje'] = array(
+                'class' => 'success',
+                'texto' => 'Elemento eliminado con éxito.'
+            );
+        } else {
+            $_SESSION['mensaje'] = array(
+                'class' => 'danger',
+                'texto' => 'No se pudo eliminar el elemento.'
+            );
+        }
+        header('location: /admin/animes');
+    }
+
+    function generateRandomId($length = 6) {
         $min = pow(10, $length - 1);
         $max = pow(10, $length) - 1;
         return mt_rand($min, $max);

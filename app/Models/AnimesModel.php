@@ -74,5 +74,16 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
         return $stmt->execute($vars);
     }
     
+    function deleteAnime(int $id): bool{
+        $query = "DELETE FROM `Animes` WHERE id = ?";
+        
+        $stmt = $this->pdo->prepare($query);
+        if($stmt->execute([$id])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
 }
 

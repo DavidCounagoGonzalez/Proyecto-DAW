@@ -30,4 +30,21 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
 
         $this->view->showViews(array('admin/add.usuario.view.php'), $data);
     }
+    
+    public function mostrarEdit(int $id) {
+        
+        $rolModel = new \Com\Daw2\Models\RolModel();
+        
+        $model = new \Com\Daw2\Models\UsuarioModel();
+        
+        $data = array(
+            'título' => 'Editar Usuario',
+            'seccion' => '/usuarios',
+            'roles' => $rolModel->getAll(),
+            'input' => $model->getById($id)
+        );
+        
+        $this->view->showViews(array('admin/add.usuario.view.php'), $data);
+        
+    }
 }
