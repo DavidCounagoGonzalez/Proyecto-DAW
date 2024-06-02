@@ -32,13 +32,13 @@
                                         </div>
                                         <div class="d-flex col-md-2 pl-md-20 align-items-center">
                                             <div class="form-group">
-                                                <label for="rol">Rol</label>
-                                                <select class="form-control selectCustom" id="roles" name="roles">
+                                                <label for="id_rol">Rol</label>
+                                                <select class="form-control selectCustom" id="id_rol" name="id_rol">
                                                     <?php foreach ($roles as $rol) { ?>
-                                                        <option value='<?php echo $rol['id_rol'] ?>' <?php echo ($input['id_rol'] == $rol['id_rol'] ) ? 'selected' : '' ?> > <?php echo $rol['nombre_rol'] ?> </option>
+                                                        <option value='<?php echo $rol['id_rol'] ?>' <?php echo (isset($input['id_rol']) && $input['id_rol'] == $rol['id_rol'] ) ? 'selected' : '' ?> > <?php echo $rol['nombre_rol'] ?> </option>
                                                     <?php } ?>
                                                 </select>
-                                                <p class="text-danger"><?php echo isset($errores['rol']) ? $errores['rol'] : ''; ?></p>
+                                                <p class="text-danger"><?php echo isset($errores['id_rol']) ? $errores['id_rol'] : ''; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -47,12 +47,14 @@
                                                 <div class="form-group">
                                                     <label for="pass">Contraseña</label>
                                                     <input type="password" name="pass" id="pass" class="form-control" placeholder="8 o más caracteres">
+                                                    <p class="text-danger"><?php echo isset($errores['pass']) ? $errores['pass'] : ''; ?></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="pass">Confirmar Contraseña</label>
                                                     <input type="password" name="pass2" id="pass2" class="form-control" placeholder="Repite la contraseña">
+                                                    <p class="text-danger"><?php echo isset($errores['pass2']) ? $errores['pass2'] : ''; ?></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pl-md-1">

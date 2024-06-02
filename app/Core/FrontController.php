@@ -86,6 +86,13 @@ class FrontController {
             }
             , 'get');
             
+        Route::add('/admin/usuarios/add',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();
+                $controlador->processAdd();
+            }
+            , 'post');
+            
         Route::add('/admin/usuarios/edit/([0-9]+)',
             function ($id) {
                 $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();

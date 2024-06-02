@@ -39,8 +39,6 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         $modelo = new \Com\Daw2\Models\AnimesModel();
         $modeloGeneros = new \Com\Daw2\Models\GenerosModel();
         $modeloAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
-        $guardar = new \Com\Daw2\Models\SubirArchivos();
-        $dir = 'assets/img/animeImgs/';
 
         $errores = $this->checkForm($_POST);
         if (count($errores) > 0) {
@@ -58,7 +56,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
                 $id = $this->generateRandomId();
             } while ($modelo->loadById($id));
 
-            if ($modelo->insertAnime($id, $_POST, $_FILES['imagenAnime']) && $guardar->guardar($dir, $_FILES)) {
+            if ($modelo->insertAnime($id, $_POST, $_FILES['imagenAnime'])) {
                 if ($modeloAnimeGeneros->insertGenres($_POST['generos'], $id)) {
                     header('location: /admin/animes');
                 }
@@ -122,6 +120,12 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
 
         if (empty($post['sinopsis'])) {
             $errores['sinopsis'] = 'No puede estar vacío';
+        }
+        
+        $guardar = new \Com\Daw2\Models\SubirArchivos();
+        
+        if(!$guardar->guardar('assets/img/animeImgs/', $_FILES['imagenAnime'])){
+            $errores['imagen'] = 'Ha habido un error al subir la imagen';
         }
 
         return $errores;

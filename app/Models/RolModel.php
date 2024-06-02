@@ -12,4 +12,15 @@ class RolModel extends \Com\Daw2\Core\BaseModel {
         return $this->pdo->query(self::SELECT_FROM)->fetchAll();
     }
     
+    function loadRol(int $id): ?array {
+        $stmt = $this->pdo->prepare(self::SELECT_FROM . ' WHERE id_rol = ?');
+        $stmt->execute([$id]);
+        if($row = $stmt->fetch()){
+            return $row;
+        }
+        else {
+            return null;
+        }
+    }
+    
 }
