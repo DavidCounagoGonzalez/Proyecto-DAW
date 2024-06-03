@@ -20547,3 +20547,8 @@ input:-webkit-autofill:active{
     height: 60px;
     overflow-y: scroll;
 } 
+
+.imagenPrueba{
+    max-height: 200px;
+    max-width: 200px;
+}

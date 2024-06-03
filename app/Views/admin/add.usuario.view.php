@@ -64,12 +64,13 @@
                                                         <?php if (!isset($input['foto']) || is_null($input['foto'])) { ?>
                                                             <p id="fileName">Ningún archivo seleccionado</p>
                                                         <?php } else { ?>
-                                                            <img id='foto' src="/assets/img/FotosPerfil/<?php echo $input['foto'] ?>?timestamp=<?= time() ?>" alt='foto'>
+                                                            <img class="imagenPrueba" id='foto' src="/assets/img/FotosPerfil/<?php echo $input['foto'] ?>?timestamp=<?= time() ?>" alt='foto'>
                                                         <?php } ?>
                                                     </label>
                                                     <button class="btn btn-primary btn-file animation-on-hover">
                                                         Subir Foto de Perfil<input accept=".jpg,.png,.jpeg" class="hidden" name="fotoPerfil" type="file" id="fileImg">
                                                     </button>
+                                                    <div id="error" class="text text-danger"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,20 +90,33 @@
     <!--   Core JS Files   -->
     <?php include 'templates/scripts.view.php' ?>
     <script>
-        $(document).ready(function () {
+         $(document).ready(function () {
             $('#fileImg').on('change', function (event) {
                 var input = $(this);
                 var archivo = input.get(0).files[0];
+                var maxFileSize = 2 * 1024 * 1024; // 2MB
+
+                $('#error').text('');
 
                 if (archivo) {
-                    var lector = new FileReader();
-                    lector.onload = function (e) {
-                        var nuevaSrc = e.target.result;
-                        $('#foto').attr('src', nuevaSrc);
-                        $('#foto').attr('alt', archivo.name);
+                    // Verificar el tamaño del archivo
+                    if (archivo.size > maxFileSize) {
+                        $('#error').text('El archivo supera el tamaño máximo permitido de 2MB.');
+                        return;
+                    }
 
-                        $('#fileName').empty();
-                        $('#fileName').append($("<img id='imagen' src='" + nuevaSrc + "' alt='imagen' width='200'>"));
+                    var lector = new FileReader();
+                    lector.onload = function(e) {
+                        var img = new Image();
+                        img.onload = function() {
+                                $('#foto').attr('src', e.target.result);
+                                $('#foto').attr('alt', archivo.name);
+
+                                $('#fileName').empty();
+                                $('#fileName').append($("<img id='imagen' src='" + e.target.result + "' alt='imagen' width='200'>"));
+                            
+                        };
+                        img.src = e.target.result;
                     };
                     lector.readAsDataURL(archivo);
                 }
