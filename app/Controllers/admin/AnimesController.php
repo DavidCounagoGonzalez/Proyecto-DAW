@@ -171,6 +171,11 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         if (is_null($input)) {
             header('location: /admin/animes');
         } else if (count($errores) > 0) {
+            
+            if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $input['imagenes'])) {
+                $input['imagenes'] = '/assets/img/animeImgs/' . $input['imagenes'];
+            }
+            
             $data = array(
                 'título' => 'Editar Anime',
                 'seccion' => '/animes',
@@ -182,11 +187,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
 
             $this->view->showViews(array('admin/add.animes.view.php'), $data);
         } else {
-
-            if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $input['imagenes'])) {
-                $input['imagenes'] = '/assets/img/animeImgs/' . $input['imagenes'];
-            }
-
+            
             if (empty($_FILES['imagenAnime']['name'])) {
                 $_FILES['imagenAnime']['name'] = $input['imagenes'];
             }

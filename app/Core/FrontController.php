@@ -100,6 +100,13 @@ class FrontController {
             }
             , 'get');
             
+        Route::add('/admin/usuarios/edit/([0-9]+)',
+            function ($id) {
+                $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();
+                $controlador->processEdit($id);
+            }
+            , 'post');
+            
         Route::add('/actualiza',
             function () {
                 $controlador = new \Com\Daw2\Controllers\admin\CargarAnimesModel();

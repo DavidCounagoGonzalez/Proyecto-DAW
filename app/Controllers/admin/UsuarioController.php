@@ -34,7 +34,7 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
         $rolModel = new \Com\Daw2\Models\RolModel();
         $modelo = new \Com\Daw2\Models\UsuarioModel();
 
-        $errores = $this->checkform($_POST);
+        $errores = $this->checkInsert($_POST);
 
         if (count($errores) > 0) {
             $data = array(
@@ -82,12 +82,45 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
         $this->view->showViews(array('admin/add.usuario.view.php'), $data);
     }
 
-    function checkform(array $post) {
-        $errores = [];
+    public function processEdit(int $id_user) {
+        $rolModel = new \Com\Daw2\Models\RolModel();
+        $model = new \Com\Daw2\Models\UsuarioModel();
 
-        if (empty($post['nombre'])) {
-            $errores['nombre'] = 'Debes indicar un nombre de Usuario';
+        $errores = $this->checkEdit($_POST, $id_user);
+
+        if (count($errores) > 0) {
+
+            $data = array(
+                'título' => 'Editar Usuario',
+                'seccion' => '/usuarios',
+                'roles' => $rolModel->getAll(),
+                'input' => $model->getById($id_user),
+                'errores' => $errores
+            );
+            $this->view->showViews(array('admin/add.usuario.view.php'), $data);
+        } else {
+            if ($model->updateUsuario($_POST, $id_user)) {
+                $guardar = new \Com\Daw2\Models\SubirArchivos();
+                $_FILES['fotoPerfil']['name'] = $id_user . '.jpg';
+
+                $guardar->guardar('assets/img/FotosPerfil/', $_FILES['fotoPerfil']);
+                if ($model->updateFoto($_FILES['fotoPerfil']['name'], $id_user)) {
+                    header('location: /admin/usuarios');
+                }
+            } else {
+                $data = array(
+                    'título' => 'Añadir Usuario',
+                    'seccion' => '/usuarios',
+                    'roles' => $rolModel->getAll(),
+                    'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS)
+                );
+                $this->view->showViews(array('admin/add.usuario.view.php'), $data);
+            }
         }
+    }
+
+    private function checkInsert(array $post) {
+        $errores = $this->checkform($post);
 
         if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
             $errores['email'] = 'Debes indicar un correo válido';
@@ -97,6 +130,31 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
             if (!is_null($usuario)) {
                 $errores['email'] = 'El email introducido está en uso.';
             }
+        }
+        return $errores;
+    }
+
+    private function checkEdit(array $post, int $id) {
+        $errores = $this->checkform($post);
+
+        if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+            $errores['email'] = 'Debes indicar un correo válido';
+        } else {
+            $model = new \Com\Daw2\Models\UsuarioModel();
+            $usuario = $model->loadEditEmail($post['email'], $id);
+
+            if (!is_null($usuario)) {
+                $errores['email'] = 'El email introducido está en uso';
+            }
+        }
+        return $errores;
+    }
+
+    private function checkform(array $post) {
+        $errores = [];
+
+        if (empty($post['nombre'])) {
+            $errores['nombre'] = 'Debes indicar un nombre de Usuario';
         }
 
         if (empty($post['id_rol'])) {

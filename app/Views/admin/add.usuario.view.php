@@ -42,67 +42,73 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="pass">Contraseña</label>
-                                                    <input type="password" name="pass" id="pass" class="form-control" placeholder="8 o más caracteres">
-                                                    <p class="text-danger"><?php echo isset($errores['pass']) ? $errores['pass'] : ''; ?></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="pass">Confirmar Contraseña</label>
-                                                    <input type="password" name="pass2" id="pass2" class="form-control" placeholder="Repite la contraseña">
-                                                    <p class="text-danger"><?php echo isset($errores['pass2']) ? $errores['pass2'] : ''; ?></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-md-1">
-                                                <div class="form-group">
-                                                    <div class="input-group row justify-content-center text-center">
-                                                        <label for="fileImg" class="col-12" >
-                                                            <?php if (!isset($input['foto']) || is_null($input['foto'])) { ?>
-                                                                <p id="fileName">Ningún archivo seleccionado</p>
-                                                            <?php } else { ?>
-                                                                <img id='foto' src="<?php echo $input['foto'] ?>" alt='foto'>
-                                                            <?php } ?>
-                                                        </label>
-                                                        <button class="btn btn-primary btn-file animation-on-hover">
-                                                            Subir Foto de Perfil<input accept=".jpg,.png,.jpeg" class="hidden" name="fotoPerfil" type="file" id="fileImg">
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="pass">Contraseña</label>
+                                                <input type="password" name="pass" id="pass" class="form-control" placeholder="8 o más caracteres">
+                                                <p class="text-danger"><?php echo isset($errores['pass']) ? $errores['pass'] : ''; ?></p>
                                             </div>
                                         </div>
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-fill btn-primary">Guardar</button>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="pass">Confirmar Contraseña</label>
+                                                <input type="password" name="pass2" id="pass2" class="form-control" placeholder="Repite la contraseña">
+                                                <p class="text-danger"><?php echo isset($errores['pass2']) ? $errores['pass2'] : ''; ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-md-1">
+                                            <div class="form-group">
+                                                <div class="input-group row justify-content-center text-center">
+                                                    <label for="fileImg" class="col-12" >
+                                                        <?php if (!isset($input['foto']) || is_null($input['foto'])) { ?>
+                                                            <p id="fileName">Ningún archivo seleccionado</p>
+                                                        <?php } else { ?>
+                                                            <img id='foto' src="/assets/img/FotosPerfil/<?php echo $input['foto'] ?>?timestamp=<?= time() ?>" alt='foto'>
+                                                        <?php } ?>
+                                                    </label>
+                                                    <button class="btn btn-primary btn-file animation-on-hover">
+                                                        Subir Foto de Perfil<input accept=".jpg,.png,.jpeg" class="hidden" name="fotoPerfil" type="file" id="fileImg">
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-fill btn-primary">Guardar</button>
+                                    </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <?php include 'templates/footer.view.php' ?>
             </div>
+            <?php include 'templates/footer.view.php' ?>
         </div>
-        <!--   Core JS Files   -->
-        <?php include 'templates/scripts.view.php' ?>
-        <script>
-            $(document).ready(function () {
-                $('#fileImg').on('change', function (event) {
-                    var input = $(this);
-                    var numFiles = input.get(0).files ? input.get(0).files.length : 1;
-                    var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                    var log = numFiles > 1 ? numFiles + ' archivos seleccionados' : label;
+    </div>
+    <!--   Core JS Files   -->
+    <?php include 'templates/scripts.view.php' ?>
+    <script>
+        $(document).ready(function () {
+            $('#fileImg').on('change', function (event) {
+                var input = $(this);
+                var archivo = input.get(0).files[0];
 
-                    $('#fileName').empty();
-                    $('#fileName').append($("<img id='imagen' src='" + log + "' alt='imagen'>"));
-                    $('#imagen').attr('src', '/assets/img/FotosPerfil/' + log);
-                    $('#imagen').attr('alt', log);
-                });
+                if (archivo) {
+                    var lector = new FileReader();
+                    lector.onload = function (e) {
+                        var nuevaSrc = e.target.result;
+                        $('#foto').attr('src', nuevaSrc);
+                        $('#foto').attr('alt', archivo.name);
+
+                        $('#fileName').empty();
+                        $('#fileName').append($("<img id='imagen' src='" + nuevaSrc + "' alt='imagen' width='200'>"));
+                    };
+                    lector.readAsDataURL(archivo);
+                }
             });
-        </script>
+        });
+    </script>
 </body>
 
 

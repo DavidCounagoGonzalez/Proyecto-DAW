@@ -38,6 +38,19 @@ class UsuarioModel extends \Com\Daw2\Core\BaseModel {
         }
     }
     
+    function loadEditEmail(string $email, int $id): ?array {
+        $query =  self::SELECT_FROM . " WHERE uw.email = ? AND uw.id_usuario != ?";
+        
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$email, $id]);
+        
+        if($row = $stmt->fetch()){
+            return $row;
+        }else{
+            return null;
+        }
+    }
+    
     function insertUsuario(array $datos){
         $query = "INSERT INTO `usuarios_web`(`id_rol`, `email`, `pass`, `nombre`) "
                 . "VALUES (:id_rol,:email,:pass,:nombre)";
@@ -55,6 +68,22 @@ class UsuarioModel extends \Com\Daw2\Core\BaseModel {
         }else{
             return 0;
         }
+    }
+    
+    function updateUsuario(array $datos, $id_usuario){
+        $query = "UPDATE `usuarios_web` SET `id_rol` = :id_rol, `email` = :email, `pass` = :pass, `nombre` = :nombre WHERE id_usuario = :id_usuario ";
+        
+        $stmt = $this->pdo->prepare($query);
+        
+        $data = array(
+            'id_rol' => $datos['id_rol'],
+            'email' => $datos['email'],
+            'pass' => $datos['pass'],
+            'nombre' => $datos['nombre'],
+            'id_usuario' => $id_usuario
+        );
+        
+        return $stmt->execute($data);
     }
     
     function updateFoto(string $archivo, $id_usuario){

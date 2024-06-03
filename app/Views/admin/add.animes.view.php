@@ -165,14 +165,20 @@
         $(document).ready(function () {
             $('#fileImg').on('change', function (event) {
                 var input = $(this);
-                var numFiles = input.get(0).files ? input.get(0).files.length : 1;
-                var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                var log = numFiles > 1 ? numFiles + ' archivos seleccionados' : label;
-                
-                $('#fileName').empty();
-                $('#fileName').append($("<img id='imagen' src='"+ log +"' alt='imagen'>"));
-                $('#imagen').attr('src', '/assets/img/animeImgs/'+log);
-                $('#imagen').attr('alt', log);
+                var archivo = input.get(0).files[0];
+
+                if (archivo) {
+                    var lector = new FileReader();
+                    lector.onload = function (e) {
+                        var nuevaSrc = e.target.result;
+                        $('#imagen').attr('src', nuevaSrc);
+                        $('#imagen').attr('alt', archivo.name);
+
+                        $('#fileName').empty();
+                        $('#fileName').append($("<img id='imagen' src='" + nuevaSrc + "' alt='imagen' width='200'>"));
+                    };
+                    lector.readAsDataURL(archivo);
+                }
             });
         });
     </script>
