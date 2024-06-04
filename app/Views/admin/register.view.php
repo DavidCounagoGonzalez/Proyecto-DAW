@@ -13,7 +13,7 @@
                 <div class="full-page login-page">
                     <div class="content">
                         <div class="container">
-                            <div class="col-10 col-md-8 col-lg-6 ml-auto mr-auto">
+                            <div class=" col-10 col-md-8 col-lg-6 ml-auto mr-auto">
                                 <form method="post" class="form">
                                     <div class="card">
                                         <div class="card-header">
@@ -22,25 +22,31 @@
                                             </div>
                                             <div class="text-overlay text-center">
                                                 <img src="/assets/img/LogoKeroAnimeTextR.png"/>
-                                                <h2>Log In</h2>
+                                                <h2>Registro</h2>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group">
+                                                <label for="nombre">Nombre de Usuario</label>
+                                                <input type="text" name="nombre" class="form-control" placeholder="" required id="nombre">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input type="text" name="email" class="form-control" placeholder="Correo electrónico" required id="email" value="<?php echo isset($email)? $email : '' ?> ">
-                                                <p class="text-danger"><?php echo isset($errores['email']) ? $errores['email'] : ''; ?></p>
+                                                <input type="text" name="email" class="form-control" placeholder="Correo electrónico" required id="email">
                                             </div>
                                             <div class="form-group">
                                                 <label for="pass">Contraseña</label>
                                                 <input type="password" name="pass" class="form-control" placeholder="Contraseña" required id="pass">
-                                                <p class="text-danger"><?php echo isset($errores['pass']) ? $errores['pass'] : ''; ?></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pass2">Confirma tu contraseña</label>
+                                                <input type="password" name="pass2" class="form-control" placeholder="Repite la contraseña" required id="pass2">
                                             </div>
                                         </div>
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block mb-3" >Iniciar Sesión</button>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block mb-3" >Registrarse</button>
                                             <div class="pull-left">
-                                                <h6><a href="/accounts/register" class="link link-footer">Registrarse</a></h6>
+                                                <h6><a href="/accounts/login" class="link link-footer">Ya tienes una cuenta?</a></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -56,4 +62,3 @@
     </body>
 
 </html>
-

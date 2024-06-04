@@ -100,4 +100,10 @@ class UsuarioModel extends \Com\Daw2\Core\BaseModel {
 
     }
     
+    function ultimoInicio(int $id): bool {
+        $query = "UPDATE usuarios_web SET last_date=NOW() WHERE id_usuario=?";
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([$id]);
+    }
+    
 }

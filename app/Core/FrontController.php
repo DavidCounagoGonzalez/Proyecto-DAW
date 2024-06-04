@@ -16,6 +16,20 @@ class FrontController {
             }
             , 'get');
             
+        Route::add('/accounts/login',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\LoginController();
+                $controlador->processLogin();
+            }
+            , 'post');
+            
+        Route::add('/accounts/register',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\LoginController();
+                $controlador->mostrarRegistro();
+            }
+            , 'get');
+            
         Route::add('/',
             function () {
                 $controlador = new \Com\Daw2\Controllers\user\InicioController();

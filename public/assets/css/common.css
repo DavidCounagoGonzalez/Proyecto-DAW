@@ -1,4 +1,12 @@
+body{
+    min-width: 330px !important; 
+}
+
 h1 img{
     width: 10%;
     min-width: 80px;
+}
+
+a:hover{
+    cursor: pointer !important;
 }

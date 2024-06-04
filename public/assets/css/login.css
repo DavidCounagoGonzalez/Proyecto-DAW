@@ -5,6 +5,7 @@
     z-index: 4;
 }
 
+
 .image-container {
     position: relative;
     display: inline-block;
@@ -18,7 +19,7 @@
 
 .text-overlay {
     position: absolute;
-    top: 50%;
+    margin-top: -55%;
     left: 25%;
     transform: translate(-50%, -50%);
     font-size: 24px;
@@ -35,3 +36,26 @@
     margin-left: 4%;
 }
 
+.card-body{
+    margin-top: -20%;
+}
+
+.form-group{
+    margin-bottom: 25px;
+}
+
+@media (max-width: 450px) {
+    #grande{
+        display: none; /* Oculta la imagen original */
+    }
+    
+    .text-overlay{
+        margin-top: 0;
+        top:10%;
+        left: 50%
+    }
+
+    .card-body{
+        margin-top: 20%;
+    }
+}

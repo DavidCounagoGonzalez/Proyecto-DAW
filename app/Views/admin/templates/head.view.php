@@ -7,7 +7,6 @@
             Black Dashboard by Creative Tim
         </title>
         <!--     Fonts and icons     -->
-        <link href="/assets/css/normalize.css" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
