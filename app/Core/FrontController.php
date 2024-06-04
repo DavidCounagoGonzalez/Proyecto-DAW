@@ -7,6 +7,14 @@ use Steampixel\Route;
 class FrontController {
 
     static function main() {
+        
+        
+        Route::add('/accounts/login',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\admin\LoginController();
+                $controlador->mostrarLogin();
+            }
+            , 'get');
             
         Route::add('/',
             function () {

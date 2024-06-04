@@ -1,0 +1,37 @@
+.full-page>.content{
+    padding-bottom: 150px;
+    padding-top: 150px;
+    position: relative;
+    z-index: 4;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    width: 50%;
+    height: auto;
+    margin-left: 50%;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text-overlay h2{
+    color: #f79959;
+}
+
+.text-overlay img{
+    width: 70%;
+    margin-left: 4%;
+}
+

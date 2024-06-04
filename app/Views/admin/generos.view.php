@@ -1,4 +1,9 @@
-<?php include 'templates/head.view.php' ?>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <?php include 'templates/head.view.php' ?>
+    </head>
 
 <body class="">
     <div class="wrapper">
