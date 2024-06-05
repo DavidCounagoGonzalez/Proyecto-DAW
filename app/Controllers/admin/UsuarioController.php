@@ -172,8 +172,6 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
             $errores['pass2'] = 'Las contraseñas no coinciden';
         }
 
-        $guardar = new \Com\Daw2\Models\SubirArchivos();
-
         return $errores;
     }
 }
