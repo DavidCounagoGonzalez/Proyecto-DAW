@@ -1,10 +1,7 @@
 <div class="sidebar">
       <div class="sidebar-wrapper">
         <div class="logo">
-          <a href="javascript:void(0)" class="simple-text logo-mini">
-           Log
-          </a>
-          <a href="javascript:void(0)" class="simple-text logo-normal">
+          <a href="javascript:void(0)" class="simple-text logo-normal text-center">
             Gestiones
           </a>
         </div>

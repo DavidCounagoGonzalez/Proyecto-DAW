@@ -16476,7 +16476,7 @@ h6,
 }
 
 p {
-    font-weight: 300;
+    font-weight: 600;
 }
 
 button,
@@ -16520,7 +16520,8 @@ a:focus {
 h1,
 .h1 {
     line-height: 1.05;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 h1 small,
@@ -16568,7 +16569,7 @@ h6,
 }
 
 p {
-    color: rgba(255, 255, 255, 0.8);
+    color: #FFFFFFB3;
     margin-bottom: 5px;
 }
 
@@ -17507,7 +17508,7 @@ table.tablesorter thead tr .headerSortDown {
     position: relative;
     text-transform: uppercase;
     cursor: pointer;
-    font-size: 0.62475rem;
+    font-size: 0.8rem;
     padding: 10px 8px;
     line-height: 1.625rem;
 }

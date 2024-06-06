@@ -1,0 +1,18 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination button, .pagination input {
+    margin: 0 2px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.input-page {
+    width: 50px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: pink;
+}
+

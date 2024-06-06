@@ -3,6 +3,7 @@
 
     <head>
         <?php include 'templates/head.view.php' ?>
+        <link href="/assets/css/paginacion.css" rel="stylesheet" />
     </head>
 
 <body class="">
@@ -94,6 +95,7 @@
                                         <?php
                                     }
                                     ?>
+                                    <div class="pagination" id="pagination"></div>
                                 </div>
                             </div>
                         </div>
@@ -105,6 +107,7 @@
     </div>
 
     <?php include 'templates/scripts.view.php' ?>
+    <script src="/assets/js/paginacion.js"></script>
 
 </body>
 
