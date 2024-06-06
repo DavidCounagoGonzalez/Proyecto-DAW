@@ -3,6 +3,7 @@
 
     <head>
         <?php include 'templates/head.view.php' ?>
+        <link href="/assets/css/paginacion.css" rel="stylesheet" />
     </head>
 
     <body class="">
@@ -24,6 +25,33 @@
                             <?php
                         }
                         ?>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-sm-6 text-left">
+                                            <h2 class="title">Filtros</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-5 pr-md-1">
+                                            <div class="form-group">
+                                                <label for="filterNombre">Nombre</label>
+                                                <input id="filterNombre" name='filterNombre' type="text" class="form-control" placeholder="Nombre usuario" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 pr-md-1">
+                                            <div class="form-group">
+                                                <label for="filterEmail">Email</label>
+                                                <input id="filterEmail" name='filterEmail' type="text" class="form-control" placeholder="email usuario" value=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="card ">
                                 <div class="card-header">
@@ -92,6 +120,7 @@
                                             <?php
                                         }
                                         ?>
+                                        <div class="pagination" id="pagination"></div>
                                     </div>
                                 </div>
                             </div>
@@ -102,6 +131,8 @@
             </div>
         </div>
 
+        <script src="/assets/js/filtrosUsuarios.js"></script>
+        <script src="/assets/js/paginacion.js"></script>
         <?php include 'templates/scripts.view.php' ?>
 
     </body>

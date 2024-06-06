@@ -1,65 +1,79 @@
-document.addEventListener('DOMContentLoaded', function () {
-            const rowsPerPage = 10;
-            const table = document.getElementById('tabla').getElementsByTagName('tbody')[0];
-            const rows = table.getElementsByTagName('tr');
-            const totalPages = Math.ceil(rows.length / rowsPerPage);
-            const pagination = document.getElementById('pagination');
-            let currentPage = 1;
+class Pagination {
+    constructor(table, paginationElement, options = {}) {
+        this.table = table;
+        this.paginationElement = paginationElement;
+        this.rows = Array.from(this.table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'));
+        this.rowsPerPage = options.rowsPerPage || 15;
+        this.currentPage = localStorage.getItem('paginaTabla') || 1;
+        this.filterFunction = options.filterFunction || (() => this.rows);
+        this.filteredRows = this.rows;
+    }
 
-            function showPage(page) {
-                const start = (page - 1) * rowsPerPage;
-                const end = start + rowsPerPage;
+    init() {
+        this.update();
+    }
 
-                for (let i = 0; i < rows.length; i++) {
-                    rows[i].style.display = (i >= start && i < end) ? '' : 'none';
-                }
+    showPage(page) {
+        this.filteredRows = this.filterFunction();
+        this.currentPage = page;
+        
+         // Guardar el número de página actual en el almacenamiento local
+        localStorage.setItem('paginaTabla', page);
+        
+        const start = (page - 1) * this.rowsPerPage;
+        const end = start + this.rowsPerPage;
 
-                updatePagination();
+        this.rows.forEach(row => row.style.display = 'none');
+        this.filteredRows.slice(start, end).forEach(row => row.style.display = '');
+
+        this.updatePagination();
+    }
+
+    createButton(text, page, isCurrent = false) {
+        const button = document.createElement('button');
+        button.textContent = text;
+        if (isCurrent) {
+            button.classList.add('btn-secondary', 'current-page');
+        } else {
+            button.classList.add('btn-info');
+            button.addEventListener('click', () => this.showPage(page));
+        }
+        return button;
+    }
+
+    updatePagination() {
+        this.paginationElement.innerHTML = '';
+
+        const totalPages = Math.ceil(this.filteredRows.length / this.rowsPerPage);
+
+        if (this.currentPage > 1) {
+            this.paginationElement.appendChild(this.createButton('Primera', 1));
+            this.paginationElement.appendChild(this.createButton('Anterior', this.currentPage - 1));
+        }
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.min = 1;
+        input.max = totalPages;
+        input.value = this.currentPage;
+        input.classList.add('btn-primary', 'input-page');
+        input.addEventListener('change', () => {
+            const newPage = parseInt(input.value);
+            if (newPage >= 1 && newPage <= totalPages) {
+                this.showPage(newPage);
+            } else {
+                input.value = this.currentPage;
             }
-
-            function createButton(text, page, isCurrent = false) {
-                const button = document.createElement('button');
-                button.textContent = text;
-                button.className = 'btn-info';
-                if (!isCurrent) {
-                    button.addEventListener('click', function () {
-                        currentPage = page;
-                        showPage(currentPage);
-                    });
-                }
-                return button;
-            }
-
-            function updatePagination() {
-                pagination.innerHTML = '';
-
-                if (currentPage > 1) {
-                    pagination.appendChild(createButton('Primera', 1));
-                    pagination.appendChild(createButton('Anterior', currentPage - 1));
-                }
-
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.min = 1;
-                input.max = totalPages;
-                input.value = currentPage;
-                input.classList.add('btn-primary','input-page');
-                input.addEventListener('change', function () {
-                    const newPage = parseInt(input.value);
-                    if (newPage >= 1 && newPage <= totalPages) {
-                        currentPage = newPage;
-                        showPage(currentPage);
-                    } else {
-                        input.value = currentPage;
-                    }
-                });
-                pagination.appendChild(input);
-
-                if (currentPage < totalPages) {
-                    pagination.appendChild(createButton('Siguiente', currentPage + 1));
-                    pagination.appendChild(createButton('Última', totalPages));
-                }
-            }
-
-            showPage(1);
         });
+        this.paginationElement.appendChild(input);
+
+        if (this.currentPage < totalPages) {
+            this.paginationElement.appendChild(this.createButton('Siguiente', this.currentPage + 1));
+            this.paginationElement.appendChild(this.createButton('Última', totalPages));
+        }
+    }
+
+    update() {
+        this.showPage(this.currentPage);
+    }
+}

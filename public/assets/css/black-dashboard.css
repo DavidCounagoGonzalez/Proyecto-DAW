@@ -17508,7 +17508,7 @@ table.tablesorter thead tr .headerSortDown {
     position: relative;
     text-transform: uppercase;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding: 10px 8px;
     line-height: 1.625rem;
 }

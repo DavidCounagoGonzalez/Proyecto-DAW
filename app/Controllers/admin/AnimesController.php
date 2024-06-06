@@ -112,20 +112,20 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             $errores['puntuacion'] = 'Debe ser menor de 10';
         }
 
-        if (empty($post['trailer'])) {
-            $errores['trailer'] = 'No puede estar vacío';
-        } else if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $post['trailer'])) {
+        if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $post['trailer']) && !empty($post['trailer'])) {
             $errores['trailer'] = 'Debe indicar el formato completo de la url';
         }
 
         if (empty($post['sinopsis'])) {
             $errores['sinopsis'] = 'No puede estar vacío';
         }
-        
-        $guardar = new \Com\Daw2\Models\SubirArchivos();
-        
-        if(!$guardar->guardar('assets/img/animeImgs/', $_FILES['imagenAnime'])){
-            $errores['imagen'] = 'Ha habido un error al subir la imagen';
+
+        if ($_FILES['imagenAnime']['name'] != '') {
+            $guardar = new \Com\Daw2\Models\SubirArchivos();
+
+            if (!$guardar->guardar('assets/img/animeImgs/', $_FILES['imagenAnime'])) {
+                $errores['imagen'] = 'Ha habido un error al subir la imagen';
+            }
         }
 
         return $errores;
@@ -171,11 +171,14 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         if (is_null($input)) {
             header('location: /admin/animes');
         } else if (count($errores) > 0) {
-            
+
+            var_dump($errores['imagen']);
+            die;
+
             if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $input['imagenes'])) {
                 $input['imagenes'] = '/assets/img/animeImgs/' . $input['imagenes'];
             }
-            
+
             $data = array(
                 'título' => 'Editar Anime',
                 'seccion' => '/animes',
@@ -187,7 +190,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
 
             $this->view->showViews(array('admin/add.animes.view.php'), $data);
         } else {
-            
+
             if (empty($_FILES['imagenAnime']['name'])) {
                 $_FILES['imagenAnime']['name'] = $input['imagenes'];
             }
@@ -201,7 +204,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
                 $data = array(
                     'título' => 'Añadir Anime',
                     'seccion' => '/animes',
-                    'generos' => $modeloGeneros->getAll(),
+                    'generos' => $modelGeneros->getAll(),
                     'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS)
                 );
                 $this->view->showViews(array('admin/add.animes.view.php'), $data);
