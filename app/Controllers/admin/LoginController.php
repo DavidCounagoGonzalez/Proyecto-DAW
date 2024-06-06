@@ -59,11 +59,28 @@ class LoginController extends \Com\Daw2\Core\BaseController {
         }
     }
 
-    function ProcessRegistro() {
+    function processRegistro() {
         $errores = $this->checkRegister($_POST);
 
         if (count($errores) == 0) {
-            
+            $modelo = new \Com\Daw2\Models\UsuarioModel();
+            $_POST['id_rol'] = 2;
+            if($id_user = $modelo->insertUsuario($_POST)){
+                $nombreImagen = $this->fotoPorDefecto($id_user);
+                $modelo->updateFoto($nombreImagen, $id_user);
+                header('location: /accounts/login');
+            }else{
+                var_dump('Algo salio mal');
+                die;
+            }
+        }else{
+            $data = array(
+                'título' => 'Añadir Usuario',
+                'seccion' => '/usuarios',
+                'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS),
+                'errores' => $errores
+            );
+            $this->view->showViews(array('admin/register.view.php'), $data);
         }
     }
 
@@ -89,6 +106,22 @@ class LoginController extends \Com\Daw2\Core\BaseController {
             $errores['pass2'] = 'Las contraseñas no coinciden';
         }
         return $errores;
+    }
+    
+    function fotoPorDefecto($userId) {
+        $defaultImages = glob('assets/img/FotosPerfil/Default/*.jpg'); // Obtiene todas las imágenes JPG en la carpeta default_pfp
+        if (empty($defaultImages)) {
+            return "default00.jpg";
+        }
+
+        $randomImage = $defaultImages[array_rand($defaultImages)]; // Selecciona una imagen aleatoria
+        $newImageName = "assets/img/FotosPerfil/{$userId}.jpg"; // Define el nuevo nombre de la imagen
+
+        if (!copy($randomImage, $newImageName)) {
+            return "default00.jpg";
+        }
+
+        return "{$userId}.jpg";
     }
 
     function logout() {

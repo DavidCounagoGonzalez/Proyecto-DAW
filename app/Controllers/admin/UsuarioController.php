@@ -13,6 +13,11 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
 
         $modelo = new \Com\Daw2\Models\UsuarioModel();
         $data['usuarios'] = $modelo->getAll();
+        
+        if (isset($_SESSION['mensaje'])) {
+            $data['mensaje'] = $_SESSION['mensaje'];
+            unset($_SESSION['mensaje']);
+        }
 
         $this->view->showViews(array('admin/usuario.view.php'), $data);
     }
@@ -173,5 +178,31 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
         }
 
         return $errores;
+    }
+
+    function processDelete(int $id) {
+        $modelo = new \Com\Daw2\Models\UsuarioModel();
+        if ($modelo->deleteUser($id)) {
+            $_SESSION['mensaje'] = array(
+                'class' => 'success',
+                'texto' => 'Elemento eliminado con éxito.'
+            );
+        $this->deleteFoto($id);
+        } else {
+            $_SESSION['mensaje'] = array(
+                'class' => 'danger',
+                'texto' => 'No se pudo eliminar el elemento.'
+            );
+        }
+        header('location: /admin/usuarios');
+    }
+
+    function deleteFoto(int $id_user) {
+        $archivos = glob("assets/img/FotosPerfil/{$id_user}.jpg");
+        foreach ($archivos as $archivo) {
+            if (file_exists($archivo)) {
+                unlink($archivo);
+            }
+        }
     }
 }

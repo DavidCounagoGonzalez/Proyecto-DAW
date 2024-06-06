@@ -5,8 +5,11 @@
         <group>
             <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Core/FrontController.php</file>
             <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/admin/login.view.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Models/SubirArchivos.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Controllers/admin/UsuarioController.php</file>
             <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Controllers/admin/LoginController.php</file>
             <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/admin/register.view.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Models/UsuarioModel.php</file>
         </group>
     </open-files>
 </project-private>

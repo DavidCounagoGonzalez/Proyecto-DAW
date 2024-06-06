@@ -36,6 +36,13 @@ class FrontController {
                         $controlador->mostrarRegistro();
                     }
                     , 'get');
+                    
+            Route::add('/accounts/register',
+                    function () {
+                        $controlador = new \Com\Daw2\Controllers\admin\LoginController();
+                        $controlador->processRegistro();
+                    }
+                    , 'post');
 
             Route::pathNotFound(
                     function () {
@@ -135,6 +142,13 @@ class FrontController {
                         $controlador->processEdit($id);
                     }
                     , 'post');
+                    
+            Route::add('/admin/usuarios/delete/([0-9]+)',
+                    function ($id) {
+                        $controlador = new \Com\Daw2\Controllers\admin\UsuarioController();
+                        $controlador->processDelete($id);
+                    }
+                    , 'get');
 
             Route::add('/actualiza',
                     function () {
