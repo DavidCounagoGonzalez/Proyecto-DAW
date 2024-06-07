@@ -3689,7 +3689,7 @@ input[type="button"].btn-block {
     color: #525f7f;
     text-align: left;
     list-style: none;
-    background-color: #ffffff;
+    background-color: #f79959;
     background-clip: padding-box;
     border: 0 solid rgba(34, 42, 66, 0.15);
     border-radius: 0.1428rem;
@@ -3860,7 +3860,7 @@ input[type="button"].btn-block {
     width: 100%;
     padding: 0.25rem 1.5rem;
     clear: both;
-    font-weight: 400;
+    font-weight: 700;
     color: #212529;
     text-align: inherit;
     white-space: nowrap;
@@ -7361,7 +7361,7 @@ button.bg-darker:focus {
 }
 
 .bg-white {
-    background-color: #ffffff !important;
+    background-color: #1a1e34 !important;
 }
 
 .bg-transparent {
@@ -14246,7 +14246,7 @@ fieldset[disabled] .btn-link.active {
 
 .dropdown-menu .dropdown-item,
 .bootstrap-select .dropdown-menu.inner li a {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding-top: .6rem;
     padding-bottom: .6rem;
     margin-top: 5px;
@@ -14584,7 +14584,7 @@ fieldset[disabled] .btn-link.active {
 
 @media screen and (min-width: 992px) {
     .dropdown-menu .dropdown-item {
-        color: #9A9A9A;
+        color: #222a42;
     }
 }
 
@@ -15836,11 +15836,11 @@ img {
 }
 
 .navbar.bg-white .navbar-nav a.nav-link {
-    color: #222a42 !important;
+    color: #FFFFFFB3 !important;
 }
 
 .navbar.bg-white .navbar-nav a.nav-link p {
-    color: #222a42;
+    color: #ffffffb3;
 }
 
 .navbar.bg-white .navbar-text,
@@ -16011,7 +16011,7 @@ img {
     }
 
     .navbar .dropdown .dropdown-menu li a {
-        color: #222a42;
+        color: #ffffffb3;
     }
 
     .navbar .dropdown.show .dropdown-menu,
@@ -16075,7 +16075,7 @@ img {
     }
 
     .navbar.bg-white:not(.navbar-transparent) .navbar-toggler-bar {
-        background-color: #344675;
+        background-color: #ffffff;
     }
 
     .navbar .toggled .navbar-toggler-bar {

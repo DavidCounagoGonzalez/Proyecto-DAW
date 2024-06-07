@@ -3,10 +3,10 @@
         <div class="navbar-wrapper">
             <h1><a class="" href="/"><img src="/assets/img/LogoKeroAnimeBG.png"></a></h1>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-        </button>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
