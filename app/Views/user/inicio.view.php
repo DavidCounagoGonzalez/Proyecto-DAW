@@ -13,7 +13,8 @@
                 <div class="wrapper wrapper-full-page">
                     <div class="contenedor">
                         <div class="texto text-center">
-                            <h1>Bienvenidos a KeroAnime</h1>
+                            <h1><a class="" href="/"><img src="/assets/img/LogoKeroAnimeBG.png"></a></h1>
+                            <h2>Bienvenidos a KeroAnime</h2>
                             <p>Este es un texto de ejemplo que se superpone ligeramente sobre la imagen a la derecha.</p>
                             <div class="mt-3">
                                 <a class="btn btn-primary" href="/accounts/login">Acceder</a>
@@ -27,6 +28,7 @@
                         <p> Hasta aquí </p>
                     </div>
                 </div>
+                <?php include 'templates/footer.view.php' ?>
         </div>
         <?php include 'templates/scripts.view.php' ?>
     </body>
