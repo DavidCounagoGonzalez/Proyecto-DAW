@@ -14567,7 +14567,7 @@ fieldset[disabled] .btn-link.active {
     border-radius: 0.4285rem;
 }
 
-@media screen and (max-width: 991px) {
+/*@media screen and (max-width: 991px) {
     .dropdown-toggle:after {
         display: inline-block;
         width: 0;
@@ -14580,7 +14580,7 @@ fieldset[disabled] .btn-link.active {
         border-bottom: 0;
         border-left: .3em solid transparent;
     }
-}
+}*/
 
 @media screen and (min-width: 992px) {
     .dropdown-menu .dropdown-item {
@@ -16011,12 +16011,12 @@ img {
     }
 
     .navbar .dropdown .dropdown-menu li a {
-        color: #ffffffb3;
+        color: #222A42;
     }
 
     .navbar .dropdown.show .dropdown-menu,
     .navbar .dropdown .dropdown-menu {
-        background-color: transparent;
+        background-color: #f79959;
         border: 0;
         transition: none;
         -webkit-box-shadow: none;
