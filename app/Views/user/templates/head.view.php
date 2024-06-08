@@ -9,5 +9,6 @@
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
 <link href="/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+<link href="/assets/css/paginacion.css" rel="stylesheet" />
 <link href="/assets/css/common.css" rel="stylesheet" />
 

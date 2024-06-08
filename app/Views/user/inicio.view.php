@@ -6,10 +6,11 @@
         <title>Portada Fusionada</title>
         <?php include 'templates/head.view.php' ?>
         <link rel="stylesheet" href="assets/css/usuarios/inicio.css">
+        <link rel="stylesheet" href="assets/css/usuarios/tarjetas.css">
     </head>
     <body>
         <div class="main-panel">
-            <?php include 'templates/navbar.view.php' ?>
+            <?php include 'templates/navbarInicio.view.php' ?>
             <div class="wrapper wrapper-full-page">
                 <div class="contenedor">
                     <div class="texto text-center">
@@ -26,10 +27,10 @@
                 </div>
 
                 <div id="carouselInicio" class="carousel slide mt-5" data-ride="carousel">
+                    <div class="carousel-title text-center">
+                        <h2><a href="/verTodos">Ver todos ></a></h2>
+                    </div>
                     <div class="carousel-inner">
-                        <div class="carousel-title ml-5">
-                            <h2>Ver todos ></h2>
-                        </div>
                         <?php
                         $activo = true;
 
@@ -39,10 +40,14 @@
                                 <div class="row justify-content-center">
                                     <?php foreach ($parte as $anime) { ?>
                                         <div class="col-md-6 col-lg-3 mt-4 mt-lg-0 cardContainer">
-                                            <div class="card mx-auto" style="background-image: url('<?php echo $anime['imagenes'] ?>');">
+                                            <div class="card mx-auto" style="background-image: url('<?php echo $anime['imagenes'] ?>');"
+                                                 data-descripcion="<?php echo $anime['descripcion'] ?>"
+                                                 data-episodios = " <?php echo $anime['episodios'] ?>"
+                                                 data-enEmision = " <?php echo $anime['en_emision'] ?> "
+                                                 data-emision = "<?php echo $anime['fecha_emision'] ?> "
+                                                 data-calificacion = "<?php echo $anime['calificacion'] ?>">
                                                 <div class="card-body-overlay">
                                                     <h5 class="card-title"><?php echo $anime['titulo'] ?></h5>
-                                                    <p class="card-text"><?php echo $anime['descripcion'] ?></p>
                                                     <button class="btn btn-info guarda">Hola</button>
                                                 </div>
                                             </div>
@@ -77,7 +82,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p id="animeDescription"></p>
+                        <p id="animeCalificacion"></p>
+                        <p id="animeEpisodios"></p>
+                        <p id="animeEmision"></p>
+                        <p id="animeDescripcion"></p>
                     </div>
                 </div>
             </div>

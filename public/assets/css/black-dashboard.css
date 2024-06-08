@@ -4823,7 +4823,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-nav .dropdown-menu {
-    position: static;
+    position: relative;
     float: none;
 }
 
@@ -16028,7 +16028,7 @@ img {
 
     .navbar .dropdown.show .dropdown-menu:before,
     .navbar .dropdown .dropdown-menu:before {
-        display: none;
+        display: block;
     }
 
     .navbar .dropdown-menu .dropdown-item:focus,

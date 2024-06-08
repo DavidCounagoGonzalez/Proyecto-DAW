@@ -157,12 +157,19 @@ class FrontController {
                     }
                     , 'get');
             }else{
+
                 Route::add('/admin/([A-Za-z0-9]+)',
                     function () {
                         header('location: /');
                     });
-                
             }
+            
+            Route::add('/verTodos',
+                function () {
+                    $controlador = new \Com\Daw2\Controllers\user\verTodosController();
+                    $controlador->verTodos();
+                }
+                , 'get');
 
             Route::add('/accounts/logout',
                     function () {

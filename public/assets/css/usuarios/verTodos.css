@@ -1,0 +1,11 @@
+a img{
+    width: 100px;
+}
+
+@media (max-width: 992px){
+    .dropdown-menu.dropdown-navbar {
+        left: -100px !important;
+        top: 23px !important;
+    }
+}
+

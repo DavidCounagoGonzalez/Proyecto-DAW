@@ -1,10 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
     <div class="container-fluid text-end">
-        <div class="mr-auto">
-            <a class="" href="/"><img src="/assets/img/LogoKeroAnimeBG.png"></a>
-        </div>
-        <div class="ml-auto" id="navigation">
-            <ul class="navbar-nav mr-auto">
+
+        <div class=" ml-md-auto" id="navigation">
+            <ul class="navbar-nav ml-auto">
                 <?php if (isset($_SESSION['usuario'])) { ?> 
                     <li class="dropdown nav-item" id='fotoPerfil'>
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -28,4 +26,3 @@
 
     </div>
 </nav>
-
