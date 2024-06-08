@@ -25,36 +25,38 @@
                     </div>
                 </div>
 
-                <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                <div id="carouselInicio" class="carousel slide mt-5" data-ride="carousel">
                     <div class="carousel-inner">
-                        <?php 
-                            $activo = true;
-                            
-                            foreach($animesPart as $parte){
-                        ?>
-                        <div class="carousel-item <?php echo $activo ? 'active' : '' ?>">
-                            <div class="row justify-content-center">
-                                <?php foreach($parte as $anime){ ?>
-                                <div class="col-md-3">
-                                    <div class="card" style="background-image: url('<?php echo $anime['imagenes'] ?>');">
-                                        <div class="card-body-overlay">
-                                            <h5 class="card-title"><?php echo $anime['titulo'] ?></h5>
-                                            <p class="card-text"><?php echo $anime['descripcion'] ?></p> 
+                        <?php
+                        $activo = true;
+
+                        foreach ($animesPart as $parte) {
+                            ?>
+                            <div class="carousel-item <?php echo $activo ? 'active' : '' ?>">
+                                <div class="row justify-content-center">
+                                    <?php foreach ($parte as $anime) { ?>
+                                        <div class="col-md-3">
+                                            <div class="card" style="background-image: url('<?php echo $anime['imagenes'] ?>');">
+                                                <div class="card-body-overlay">
+                                                    <h5 class="card-title"><?php echo $anime['titulo'] ?></h5>
+                                                    <p class="card-text"><?php echo $anime['descripcion'] ?></p>
+                                                    <button class="btn btn-info guarda">Hola</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php } ?>
                                 </div>
-                                <?php } ?>
                             </div>
-                        </div>
-                            <?php 
-                                $activo = false;
-                                } ?>
+                            <?php
+                            $activo = false;
+                        }
+                        ?>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#carouselInicio" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#carouselInicio" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
@@ -62,7 +64,22 @@
             </div>
             <?php include 'templates/footer.view.php' ?>
         </div>
+        <div class="modal fade" id="animeModal" tabindex="-1" aria-labelledby="animeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="animeModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="animeDescription"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php include 'templates/scripts.view.php' ?>
-<!--        <script src="/assets/js/carrouselInicio.js"></script>-->
+        <script src="/assets/js/tarjetas.js"></script>
     </body>
 </html>
