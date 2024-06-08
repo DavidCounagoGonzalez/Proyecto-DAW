@@ -35,8 +35,8 @@
                             <div class="carousel-item <?php echo $activo ? 'active' : '' ?>">
                                 <div class="row justify-content-center">
                                     <?php foreach ($parte as $anime) { ?>
-                                        <div class="col-md-3">
-                                            <div class="card" style="background-image: url('<?php echo $anime['imagenes'] ?>');">
+                                        <div class="col-md-6 col-lg-3 mt-4 mt-lg-0 cardContainer">
+                                            <div class="card mx-auto" style="background-image: url('<?php echo $anime['imagenes'] ?>');">
                                                 <div class="card-body-overlay">
                                                     <h5 class="card-title"><?php echo $anime['titulo'] ?></h5>
                                                     <p class="card-text"><?php echo $anime['descripcion'] ?></p>
