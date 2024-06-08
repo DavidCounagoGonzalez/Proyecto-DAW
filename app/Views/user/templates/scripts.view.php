@@ -19,3 +19,22 @@
                 token: "ee6fab19c5a04ac1a32a645abde4613a",
                 application: "black-dashboard-free"
             });</script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.selectGeneros').select2({
+            allowClear: true,
+            width: '100%'  // Ajusta el ancho para que se adapte al contenedor
+        });
+        // Inicializar Select2 para el select individual
+        $('.selectCustom').select2({
+            width: '100%'  // Ajusta el ancho para que se adapte al contenedor
+        });
+        // Ocultar la barra de búsqueda en el select individual
+        $('.selectCustom').on('select2:open', function () {
+            $(this).next('.select2-container').next('.select2-dropdown').find('.select2-search').hide();
+        });
+    });
+</script>

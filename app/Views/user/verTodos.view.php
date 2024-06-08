@@ -13,48 +13,60 @@
         <div class="main-panel">
             <?php include 'templates/navbar.view.php' ?>
             <div class="content">
-                <div class="filters-container">
+                <div class="filters-container text-center">
+                    <h2>Filtros</h2>
                     <button class="btn btn-primary d-lg-none" type="button" data-toggle="collapse" data-target="#filtersCollapse" aria-expanded="false" aria-controls="filtersCollapse">
-                        Mostrar/Ocultar Filtros
+                        <i class="tim-icons icon-zoom-split"></i>
                     </button>
                     <div class="collapse d-lg-block mt-2" id="filtersCollapse">
-                        <h2>Filtros</h2>
-                        <div class="form-group">
-                            <label for="genre-filter">Género:</label>
-                            <select id="genre-filter" class="form-control">
-                                <option value="all">Todos</option>
-                                <option value="accion">Acción</option>
-                                <option value="aventura">Aventura</option>
-                                <option value="comedia">Comedia</option>
-                                <!-- Agrega más opciones según tus géneros -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="status-filter">Estado de Emisión:</label>
-                            <select id="status-filter" class="form-control">
-                                <option value="all">Todos</option>
-                                <option value="en_emision">En Emisión</option>
-                                <option value="finalizado">Finalizado</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="filtroTitulo">Título</label>
+                                    <input id="filtroTitulo" name='filtroTitulo' type="text" class="form-control" placeholder="Título del Anime" value="<?php echo $input['titulo'] ?? '' ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="filtroCalificacion">Calificación</label>
+                                    <select class="form-control selectCustom" id="filtroCalificacion" name="filtroCalificacion">
+                                        <option value="">-----</option>
+                                        <option value="TP">Todos los públicos</option>
+                                        <option value="12">+12</option>
+                                        <option value="16">+16</option>
+                                        <option value="18">+18</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="selectGeneros">Géneros</label>
+                                    <select class="form-control selectGeneros custom-select" id="selectGeneros" name="generos[]" multiple>
+                                        <?php
+                                        foreach ($generos as $genero) {
+                                            ?>
+                                            <option value="<?php echo $genero['id'] ?>">
+                                                <?php echo $genero['genero'] ?>
+                                            </option>
+                                        <?php }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="filtroEnEmision">En emision</label>
+                                    <select class="form-control selectCustom" id="filtroEnEmision" name="filtroEnEmision">
+                                        <option value="">------</option>
+                                        <option value="1">En emision</option>
+                                        <option value="0">Finalizada</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center" id="cardContainer">
-                    <?php foreach ($animes as $anime) { ?>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4 cardContainer">
-                            <div class="card mx-auto" style="background-image: url('<?php echo $anime['imagenes'] ?>');"
-                                 data-descripcion="<?php echo $anime['descripcion'] ?>"
-                                 data-episodios = " <?php echo $anime['episodios'] ?>"
-                                 data-enEmision = " <?php echo $anime['en_emision'] ?> "
-                                 data-emision = "<?php echo $anime['fecha_emision'] ?> "
-                                 data-calificacion = "<?php echo $anime['calificacion'] ?>">
-                                <div class="card-body-overlay">
-                                    <h5 class="card-title"><?php echo $anime['titulo'] ?></h5>
-                                    <button class="btn btn-info guarda">Hola</button>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
 
                 </div>
                 <div class=" row pagination" id="pagination"></div>
@@ -82,15 +94,8 @@
         <?php include 'templates/scripts.view.php' ?>
         <script src="/assets/js/paginacionTarjetas.js"></script>
         <script src="/assets/js/tarjetas.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const cardContainer = document.getElementById('cardContainer');
-                const paginationElement = document.getElementById('pagination');
-
-                const pagination = new Pagination(cardContainer, paginationElement, {
-                    cardsPerPage: 16
-                });
-                pagination.init();
-            });
+        <script type="text/javascript">
+            const animes = <?php echo json_encode($animes); ?>;
         </script>
+        <script src="/assets/js/filtrosAllAnimes.js"></script>
     </body>

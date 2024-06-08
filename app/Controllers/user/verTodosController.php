@@ -6,6 +6,7 @@ class verTodosController extends \Com\Daw2\Core\BaseController {
 
     public function verTodos() {
         $modelAnimes = new \Com\Daw2\Models\AnimesModel();
+        $modelGeneros = new \Com\Daw2\Models\GenerosModel();
         
         $animes = $modelAnimes->getAll();
         
@@ -18,7 +19,8 @@ class verTodosController extends \Com\Daw2\Core\BaseController {
         $data = array(
             'titulo' => 'Página de inicio',
             'breadcrumb' => ['Inicio'],
-            'animes' => $animes
+            'animes' => $animes,
+            'generos' => $modelGeneros->getAll()
         ); 
         
         $this->view->showViews(array('user/verTodos.view.php'), $data);

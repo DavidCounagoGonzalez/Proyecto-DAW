@@ -13,6 +13,9 @@ a img{
     padding: 125px 50px 50px 50px !important;
  }
  
+ .cardContainer{
+     margin-bottom: 30px;
+ } 
  .card{
      max-width: 27vh;
      min-width: 20vh;
