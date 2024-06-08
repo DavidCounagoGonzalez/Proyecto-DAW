@@ -27,6 +27,9 @@
 
                 <div id="carouselInicio" class="carousel slide mt-5" data-ride="carousel">
                     <div class="carousel-inner">
+                        <div class="carousel-title ml-5">
+                            <h2>Ver todos ></h2>
+                        </div>
                         <?php
                         $activo = true;
 

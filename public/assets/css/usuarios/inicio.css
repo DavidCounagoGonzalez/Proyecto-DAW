@@ -117,6 +117,7 @@ body {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    z-index: 1;
 }
 
 .card-body-overlay {

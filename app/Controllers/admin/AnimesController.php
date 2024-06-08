@@ -172,9 +172,6 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             header('location: /admin/animes');
         } else if (count($errores) > 0) {
 
-            var_dump($errores['imagen']);
-            die;
-
             if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $input['imagenes'])) {
                 $input['imagenes'] = '/assets/img/animeImgs/' . $input['imagenes'];
             }
