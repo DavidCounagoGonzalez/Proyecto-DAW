@@ -12,6 +12,12 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
         return $this->pdo->query(self::SELECT_FROM)->fetchAll();
     }
     
+    function get12(): array{
+        $query = "SELECT * FROM Animes ORDER BY RAND() LIMIT 12";
+        
+        return $this->pdo->query($query)->fetchAll();
+    }
+    
     function loadById(int $id): ?array{
         $query = "SELECT a.* FROM Animes a WHERE id = ?";
         $stmt = $this->pdo->prepare($query);

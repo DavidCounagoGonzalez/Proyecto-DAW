@@ -20,20 +20,6 @@
                         </ul>
                     </li>
                     <li class="separator d-lg-none"></li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a href="/accounts/register" class="nav-link">
-                            <i class="tim-icons icon-laptop"></i>
-                            Registrarse
-                        </a>
-                    </li>
-                    <li class="separator d-lg-none"></li>
-                    <li class="nav-item">
-                        <a href="/accounts/login" class="nav-link">
-                            <i class="tim-icons icon-single-02"></i>
-                            Login
-                        </a>
-                    </li>   
                 <?php } ?>
             </ul>
         </div>
