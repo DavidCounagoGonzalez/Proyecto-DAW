@@ -9,8 +9,8 @@ a img{
     }
 }
 
-#cardContainer{
-    margin: 50px !important;
+.content{
+    padding: 125px 50px 50px 50px !important;
  }
  
  .card{
