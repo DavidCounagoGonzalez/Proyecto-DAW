@@ -9,3 +9,14 @@ a img{
     }
 }
 
+#cardContainer{
+    margin: 50px !important;
+ }
+ 
+ .card{
+     max-width: 27vh;
+     min-width: 20vh;
+     height: 35vh;
+ }
+ 
+

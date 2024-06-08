@@ -12,9 +12,30 @@
     <body>
         <div class="main-panel">
             <?php include 'templates/navbar.view.php' ?>
+            <div class="filters-container">
+                <h2>Filtros</h2>
+                <div class="form-group">
+                    <label for="genre-filter">Género:</label>
+                    <select id="genre-filter" class="form-control">
+                        <option value="all">Todos</option>
+                        <option value="accion">Acción</option>
+                        <option value="aventura">Aventura</option>
+                        <option value="comedia">Comedia</option>
+                        <!-- Agrega más opciones según tus géneros -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status-filter">Estado de Emisión:</label>
+                    <select id="status-filter" class="form-control">
+                        <option value="all">Todos</option>
+                        <option value="en_emision">En Emisión</option>
+                        <option value="finalizado">Finalizado</option>
+                    </select>
+                </div>
+            </div>
             <div class="row justify-content-center" id="cardContainer">
                 <?php foreach ($animes as $anime) { ?>
-                    <div class="col-md-6 col-lg-3 mt-4 mt-lg-0 cardContainer">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4 cardContainer">
                         <div class="card mx-auto" style="background-image: url('<?php echo $anime['imagenes'] ?>');"
                              data-descripcion="<?php echo $anime['descripcion'] ?>"
                              data-episodios = " <?php echo $anime['episodios'] ?>"
@@ -28,9 +49,9 @@
                         </div>
                     </div>
                 <?php } ?>
-                
+
             </div>
-            <div class="pagination" id="pagination"></div>
+            <div class=" row pagination" id="pagination"></div>
             <?php include 'templates/footer.view.php' ?>
         </div>
         <div class="modal fade" id="animeModal" tabindex="-1" aria-labelledby="animeModalLabel" aria-hidden="true">
@@ -55,14 +76,14 @@
         <script src="/assets/js/paginacionTarjetas.js"></script>
         <script src="/assets/js/tarjetas.js"></script>
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cardContainer = document.getElementById('cardContainer');
-            const paginationElement = document.getElementById('pagination');
+            document.addEventListener('DOMContentLoaded', function () {
+                const cardContainer = document.getElementById('cardContainer');
+                const paginationElement = document.getElementById('pagination');
 
-            const pagination = new Pagination(cardContainer, paginationElement, {
-                cardsPerPage: 20
+                const pagination = new Pagination(cardContainer, paginationElement, {
+                    cardsPerPage: 16
+                });
+                pagination.init();
             });
-            pagination.init();
-        });
-    </script>
+        </script>
     </body>
