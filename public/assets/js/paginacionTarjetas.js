@@ -1,4 +1,4 @@
-class Pagination {
+class PaginationTarjetas {
     constructor(cardContainer, paginationElement, options = {}) {
         this.cardContainer = cardContainer;
         this.paginationElement = paginationElement;

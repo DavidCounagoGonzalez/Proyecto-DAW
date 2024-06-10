@@ -4,7 +4,7 @@ class Pagination {
         this.paginationElement = paginationElement;
         this.rows = Array.from(this.table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'));
         this.rowsPerPage = options.rowsPerPage || 15;
-        this.currentPage = localStorage.getItem('paginaTabla') || 1;
+        this.currentPage =  parseInt(localStorage.getItem('paginaTabla')) || 1;
         this.filterFunction = options.filterFunction || (() => this.rows);
         this.filteredRows = this.rows;
     }
@@ -75,5 +75,10 @@ class Pagination {
 
     update() {
         this.showPage(this.currentPage);
+    }
+    
+    reset() {
+        this.currentPage = 1;
+        this.update();
     }
 }

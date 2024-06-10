@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     enEmisionFilter.addEventListener('change', updateFiltersAndPagination);
 
     function updateFiltersAndPagination() {
-        currentPage = 1; // Reset to first page on filter change
+        currentPage = 1;
         const filteredAnimes = filterAnimes();
         updatePagination(filteredAnimes);
     }
@@ -39,8 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedTitulo && !titulo.includes(selectedTitulo)) {
                 isVisible = false;
             }
-
-            console.log(!titulo.includes('a'));
 
             return isVisible;
         });
@@ -87,6 +85,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
         const animesToShow = filteredAnimes.slice(start, end);
+        currentPage = page;
+        
+        console.log(currentPage);
 
         cardContainer.innerHTML = '';
         animesToShow.forEach(anime => {

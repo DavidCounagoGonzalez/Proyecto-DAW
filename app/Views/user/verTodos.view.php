@@ -96,6 +96,7 @@
         <script src="/assets/js/tarjetas.js"></script>
         <script type="text/javascript">
             const animes = <?php echo json_encode($animes); ?>;
+            let currentPage = 1;
         </script>
         <script src="/assets/js/filtrosAllAnimes.js"></script>
     </body>

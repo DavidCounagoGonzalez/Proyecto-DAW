@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Core/FrontController.php</file>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/admin/login.view.php</file>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/user/templates/navbar.view.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/user/verTodos.view.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/public/assets/js/paginacionTarjetas.js</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/public/assets/css/usuarios/verTodos.css</file>
             <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/user/inicio.view.php</file>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/user/templates/head.view.php</file>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/user/templates/footer.view.php</file>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/public/assets/css/black-dashboard.css</file>
-            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/public/assets/js/carrouselinicio.js</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/public/assets/js/filtrosAllAnimes.js</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Controllers/user/verTodosController.php</file>
+            <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/app/Views/admin/templates/sidebar.view.php</file>
             <file>file:/D:/Archivos%20de%20Programa/www-proyecto/proxecto/public/assets/css/usuarios/inicio.css</file>
         </group>
     </open-files>

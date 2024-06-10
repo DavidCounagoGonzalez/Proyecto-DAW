@@ -28,9 +28,14 @@ document.addEventListener('DOMContentLoaded', function () {
         filterFunction: () => applyFilters(rows, filterTitulo, filterEmision, filterCalificacion)
     });
 
-    filterTitulo.addEventListener('input', () => pagination.update());
-    filterEmision.addEventListener('change', () => pagination.update());
-    $('.selectCustom').on('change', () => pagination.update());
+    function applyFiltersAndResetPagination() {
+        pagination.update();
+        pagination.reset(); // Suponiendo que existe un método reset en la clase Pagination que reinicia a la página 1
+    }
+
+    filterTitulo.addEventListener('input', applyFiltersAndResetPagination);
+    filterEmision.addEventListener('change', applyFiltersAndResetPagination);
+    $('.selectCustom').on('change', applyFiltersAndResetPagination);
 
     pagination.init();
 });
