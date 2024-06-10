@@ -1,9 +1,9 @@
 class PaginationTarjetas {
-    constructor(cardContainer, paginationElement, options = {}) {
-        this.cardContainer = cardContainer;
+    constructor(container, paginationElement, options = {}) {
+        this.container = container;
         this.paginationElement = paginationElement;
-        this.cards = Array.from(this.cardContainer.getElementsByClassName('cardContainer'));
-        this.cardsPerPage = options.cardsPerPage || 8;
+        this.cards = Array.from(this.container.getElementsByClassName('card'));
+        this.cardsPerPage = options.cardsPerPage || 24;
         this.currentPage = parseInt(localStorage.getItem('paginaTarjetas')) || 1;
         this.filterFunction = options.filterFunction || (() => this.cards);
         this.filteredCards = this.cards;
@@ -32,10 +32,8 @@ class PaginationTarjetas {
     createButton(text, page, isCurrent = false) {
         const button = document.createElement('button');
         button.textContent = text;
-        if (isCurrent) {
-            button.classList.add('btn-secondary', 'current-page');
-        } else {
-            button.classList.add('btn-info');
+        button.classList.add('btn', isCurrent ? 'btn-secondary' : 'btn-info');
+        if (!isCurrent) {
             button.addEventListener('click', () => this.showPage(page));
         }
         return button;
@@ -56,7 +54,7 @@ class PaginationTarjetas {
         input.min = 1;
         input.max = totalPages;
         input.value = this.currentPage;
-        input.classList.add('btn-primary', 'input-page');
+        input.classList.add('btn', 'btn-primary', 'input-page');
         input.addEventListener('change', () => {
             const newPage = parseInt(input.value);
             if (newPage >= 1 && newPage <= totalPages) {
@@ -75,5 +73,10 @@ class PaginationTarjetas {
 
     update() {
         this.showPage(this.currentPage);
+    }
+    
+    reset() {
+        this.currentPage = 1;
+        this.update();
     }
 }

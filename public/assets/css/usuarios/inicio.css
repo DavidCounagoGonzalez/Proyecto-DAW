@@ -82,11 +82,11 @@ body {
     display: block;
 }
 
-.btn{
+.btn-inicio{
     font-size: 18px;
 }
 
-.btn:hover{
+.btn-inicio:hover{
     transform: scale(1.25) !important;
 }
 

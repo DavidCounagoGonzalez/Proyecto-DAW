@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
     enEmisionFilter.addEventListener('change', updateFiltersAndPagination);
 
     function updateFiltersAndPagination() {
-        currentPage = 1;
         const filteredAnimes = filterAnimes();
         updatePagination(filteredAnimes);
+        showPage(currentPage, filteredAnimes);
     }
 
     function filterAnimes() {
@@ -52,12 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const createButton = (text, page) => {
                 const button = document.createElement('button');
                 button.textContent = text;
-                button.classList.add('btn', 'btn-primary', 'm-1');
+                button.classList.add('btn-info', 'm-1');
                 if (page === currentPage) {
                     button.classList.add('active');
                 }
                 button.addEventListener('click', () => {
-                    currentPage = page;
                     showPage(page, filteredAnimes);
                 });
                 return button;
@@ -68,17 +67,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 paginationElement.appendChild(createButton('Anterior', currentPage - 1));
             }
 
-            for (let i = 1; i <= totalPages; i++) {
-                paginationElement.appendChild(createButton(i, i));
-            }
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.min = 1;
+            input.max = totalPages;
+            input.value = currentPage;
+            input.classList.add('btn-primary', 'input-page');
+            input.addEventListener('change', () => {
+                const newPage = parseInt(input.value);
+                if (newPage >= 1 && newPage <= totalPages) {
+                    showPage(newPage, filteredAnimes);
+                } else {
+                    input.value = currentPage;
+                }
+            });
+            paginationElement.appendChild(input);
 
             if (currentPage < totalPages) {
-                paginationElement.appendChild(createButton('Siguiente', currentPage + 1));
+                const nextPage = currentPage + 1;
+                const nextButton = createButton('Siguiente', nextPage);
+                nextButton.addEventListener('click', () => {
+                    console.log('Página actual antes de hacer clic en Siguiente:', currentPage);
+                    currentPage = nextPage;
+                    console.log('Página actual después de hacer clic en Siguiente:', currentPage);
+                    showPage(currentPage, filteredAnimes);
+                });
+                paginationElement.appendChild(nextButton);
                 paginationElement.appendChild(createButton('Última', totalPages));
             }
         }
 
-        showPage(currentPage, filteredAnimes);
     }
 
     function showPage(page, filteredAnimes) {
@@ -86,8 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const end = start + rowsPerPage;
         const animesToShow = filteredAnimes.slice(start, end);
         currentPage = page;
-        
-        console.log(currentPage);
 
         cardContainer.innerHTML = '';
         animesToShow.forEach(anime => {
@@ -111,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>`;
             cardContainer.innerHTML += cardHtml;
         });
+        updatePagination(filteredAnimes);
     }
 
     // Inicializar filtros y paginación

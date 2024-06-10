@@ -18,7 +18,7 @@
                         <h2>Bienvenidos a KeroAnime</h2>
                         <p>Este es un texto de ejemplo que se superpone ligeramente sobre la imagen a la derecha.</p>
                         <div class="mt-3">
-                            <a class="btn btn-primary" href="/accounts/login">Acceder</a>
+                            <a class="btn btn-primary btn-inicio" href="/accounts/login">Acceder</a>
                         </div>
                     </div>
                     <div class="imagen">

@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center" id="cardContainer">
-
+                    
                 </div>
                 <div class=" row pagination" id="pagination"></div>
             </div>
@@ -92,7 +92,7 @@
             </div>
         </div>
         <?php include 'templates/scripts.view.php' ?>
-        <script src="/assets/js/paginacionTarjetas.js"></script>
+<!--        <script src="/assets/js/paginacionTarjetas.js"></script>-->
         <script src="/assets/js/tarjetas.js"></script>
         <script type="text/javascript">
             const animes = <?php echo json_encode($animes); ?>;
