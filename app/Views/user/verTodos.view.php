@@ -69,7 +69,7 @@
                 <div class="row justify-content-center" id="cardContainer">
                     
                 </div>
-                <div class=" row pagination" id="pagination"></div>
+                <div class=" pagination" id="pagination"></div>
             </div>
             <?php include 'templates/footer.view.php' ?>
             <div class="modal fade" id="animeModal" tabindex="-1" aria-labelledby="animeModalLabel" aria-hidden="true">

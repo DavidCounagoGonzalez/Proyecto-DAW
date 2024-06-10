@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const createButton = (text, page) => {
                 const button = document.createElement('button');
                 button.textContent = text;
-                button.classList.add('btn-info', 'm-1');
+                button.classList.add('btn-info');
                 if (page === currentPage) {
                     button.classList.add('active');
                 }
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cardContainer.innerHTML = '';
         animesToShow.forEach(anime => {
             const cardHtml = `
-                <div class="col-md-6 col-lg-3 mt-4 cardContainer anime-card" 
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4 cardContainer anime-card" 
                      data-titulo="${anime.titulo}" 
                      data-calificacion="${anime.calificacion}" 
                      data-generos="${anime.generos ? anime.generos.join(',') : ''}" 
