@@ -13,9 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
     calificacionFilter.addEventListener('change', updateFiltersAndPagination);
     generosFilter.addEventListener('change', updateFiltersAndPagination);
     enEmisionFilter.addEventListener('change', updateFiltersAndPagination);
+    $('.selectCustom').on('change', updateFiltersAndPagination);
 
     function updateFiltersAndPagination() {
+        currentPage = 1;
         const filteredAnimes = filterAnimes();
+        
         updatePagination(filteredAnimes);
         showPage(currentPage, filteredAnimes);
     }
@@ -25,23 +28,31 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedCalificacion = calificacionFilter.value;
         const selectedGeneros = Array.from(generosFilter.selectedOptions).map(option => option.value);
         const selectedEnEmision = enEmisionFilter.value;
+            
 
-
-
-        return animes.filter(anime => {
+        animesfiltrados =  animesGeneros.filter(anime => {
             const titulo = anime.titulo.toLowerCase();
             const calificacion = anime.calificacion;
             const generos = anime.generos ? anime.generos.split(',') : [];
             const enEmision = anime.en_emision;
-
+            
             let isVisible = true;
 
             if (selectedTitulo && !titulo.includes(selectedTitulo)) {
+                isVisible = false;
+            }if (selectedCalificacion && calificacion !== selectedCalificacion){
+                isVisible = false;
+            }if (selectedEnEmision && enEmision !== parseInt(selectedEnEmision)){
+                isVisible = false;
+            }if(selectedGeneros.length > 0 && !selectedGeneros.some(elemento => generos.includes(elemento))){
                 isVisible = false;
             }
 
             return isVisible;
         });
+        
+        
+        return animesfiltrados;
     }
 
     function updatePagination(filteredAnimes) {
@@ -86,12 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (currentPage < totalPages) {
                 const nextPage = currentPage + 1;
                 const nextButton = createButton('Siguiente', nextPage);
-                nextButton.addEventListener('click', () => {
-                    console.log('Página actual antes de hacer clic en Siguiente:', currentPage);
-                    currentPage = nextPage;
-                    console.log('Página actual después de hacer clic en Siguiente:', currentPage);
-                    showPage(currentPage, filteredAnimes);
-                });
                 paginationElement.appendChild(nextButton);
                 paginationElement.appendChild(createButton('Última', totalPages));
             }
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4 cardContainer anime-card" 
                      data-titulo="${anime.titulo}" 
                      data-calificacion="${anime.calificacion}" 
-                     data-generos="${anime.generos ? anime.generos.join(',') : ''}" 
+                     data-generos="${anime.generos}" 
                      data-enemision="${anime.en_emision}">
                     <div class="card mx-auto" style="background-image: url('${anime.imagenes}');"
                         data-descripcion="${anime.descripcion}" 

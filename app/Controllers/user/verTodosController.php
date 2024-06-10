@@ -9,6 +9,7 @@ class verTodosController extends \Com\Daw2\Core\BaseController {
         $modelGeneros = new \Com\Daw2\Models\GenerosModel();
         
         $animes = $modelAnimes->getAll();
+        $animesGeneros = $modelAnimes->getAllWithGenres();
         
         for($anime=0; $anime < count($animes); $anime++) {
             if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $animes[$anime]['imagenes']) && $animes[$anime]['imagenes'] != '' ) {
@@ -20,8 +21,10 @@ class verTodosController extends \Com\Daw2\Core\BaseController {
             'titulo' => 'Página de inicio',
             'breadcrumb' => ['Inicio'],
             'animes' => $animes,
-            'generos' => $modelGeneros->getAll()
+            'generos' => $modelGeneros->getAll(),
+            'animesGeneros' => $animesGeneros
         ); 
+        
         
         $this->view->showViews(array('user/verTodos.view.php'), $data);
     }

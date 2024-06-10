@@ -12,6 +12,13 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
         return $this->pdo->query(self::SELECT_FROM)->fetchAll();
     }
     
+    function getAllWithGenres(): array{
+        $query = "SELECT *, GROUP_CONCAT(ga.genero_id SEPARATOR ', ') as generos FROM Animes a INNER JOIN genero_anime ga ON a.id = ga.anime_id GROUP BY a.titulo";
+        
+        return $this->pdo->query($query)->fetchAll();
+    }
+    
+    
     function get12Animes(): array{
         $query = "SELECT * FROM Animes ORDER BY RAND() LIMIT 12";
         

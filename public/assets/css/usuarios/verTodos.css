@@ -22,4 +22,11 @@ a img{
      height: 35vh;
  }
  
+ .form-group label{
+     color: #f79959;
+ }
+ 
+ .select2-selection, .form-group input {
+     border-color: #e14eca !important;
+ }
 
