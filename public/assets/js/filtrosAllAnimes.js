@@ -126,7 +126,20 @@ document.addEventListener('DOMContentLoaded', function () {
                         data-calificacion="${anime.calificacion}">
                         <div class="card-body-overlay">
                             <h5 class="card-title">${anime.titulo}</h5>
-                            <button class="btn btn-info guarda">Hola</button>
+                            <div class="row text-center">
+                                <div class="col-3">
+                                    <button class="guarda"><i class="fa-regular fa-heart icon-guarda"></i></button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="guarda"><i class="fa-solid fa-check icon-guarda"></i></button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="guarda"><i class="fa-regular fa-eye icon-guarda"></i></button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="guarda"><i class="fa-regular fa-clock icon-guarda"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>`;

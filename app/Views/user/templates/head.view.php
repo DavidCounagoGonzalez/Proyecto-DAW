@@ -12,4 +12,5 @@
 <link href="/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
 <link href="/assets/css/paginacion.css" rel="stylesheet" />
 <link href="/assets/css/common.css" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/a3b3463635.js" crossorigin="anonymous"></script>
 
