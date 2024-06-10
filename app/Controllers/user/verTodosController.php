@@ -11,9 +11,9 @@ class verTodosController extends \Com\Daw2\Core\BaseController {
         $animes = $modelAnimes->getAll();
         $animesGeneros = $modelAnimes->getAllWithGenres();
         
-        for($anime=0; $anime < count($animes); $anime++) {
-            if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $animes[$anime]['imagenes']) && $animes[$anime]['imagenes'] != '' ) {
-                $animes[$anime]['imagenes'] = '/assets/img/animeImgs/' . $animes[$anime]['imagenes'];
+        for($anime=0; $anime < count($animesGeneros); $anime++) {
+            if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $animesGeneros[$anime]['imagenes']) && $animesGeneros[$anime]['imagenes'] != '' ) {
+                $animesGeneros[$anime]['imagenes'] = '/assets/img/animeImgs/' . $animesGeneros[$anime]['imagenes'];
             }
         }
         
