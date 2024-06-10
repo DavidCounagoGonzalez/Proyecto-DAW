@@ -1,4 +1,4 @@
-function applyFilters(rows, filterNombre, filterEmail) {
+function applyUserFilters(rows, filterNombre, filterEmail) {
     const nameText = filterNombre.value.toLowerCase();
     const emailText = filterEmail.value.toLowerCase();
 
@@ -23,11 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const pagination = new Pagination(table, paginationElement, {
         rowsPerPage: 15,
-        filterFunction: () => applyFilters(rows, filterNombre, filterEmail)
+        filterFunction: () => applyUserFilters(rows, filterNombre, filterEmail)
     });
+    
+    function applyFiltersAndResetPagination() {
+        pagination.update();
+        pagination.reset(); // Suponiendo que existe un método reset en la clase Pagination que reinicia a la página 1
+    }
 
-    filterNombre.addEventListener('input', () => pagination.update());
-    filterEmail.addEventListener('input', () => pagination.update());
+    filterNombre.addEventListener('input',applyFiltersAndResetPagination);
+    filterEmail.addEventListener('input', applyFiltersAndResetPagination);
 
     pagination.init();
 });
