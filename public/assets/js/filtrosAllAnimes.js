@@ -10,10 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Añadir eventos de cambio a los filtros
     tituloFilter.addEventListener('input', updateFiltersAndPagination);
-    calificacionFilter.addEventListener('change', updateFiltersAndPagination);
-    generosFilter.addEventListener('change', updateFiltersAndPagination);
-    enEmisionFilter.addEventListener('change', updateFiltersAndPagination);
     $('.selectCustom').on('change', updateFiltersAndPagination);
+    $('.selectGeneros').on('change', updateFiltersAndPagination);
 
     function updateFiltersAndPagination() {
         currentPage = 1;
@@ -126,24 +124,26 @@ document.addEventListener('DOMContentLoaded', function () {
                         data-calificacion="${anime.calificacion}">
                         <div class="card-body-overlay">
                             <h5 class="card-title">${anime.titulo}</h5>
-                            <div class="row text-center">
+                            <div class="row text-center btn-acciones">
                                 <div class="col-3">
-                                    <button class="guarda"><i class="fa-regular fa-heart icon-guarda"></i></button>
+                                    <input type="checkbox" class="guarda" value="3" data-anime="${anime.id}"><i class="fa-regular fa-heart icon-guarda"></i></input>
                                 </div>
                                 <div class="col-3">
-                                    <button class="guarda"><i class="fa-solid fa-check icon-guarda"></i></button>
+                                    <button class="guarda" value="2" data-anime="${anime.id}"><i class="fa-solid fa-check icon-guarda"></i></button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="guarda"><i class="fa-regular fa-eye icon-guarda"></i></button>
+                                    <button class="guarda" value="1" data-anime="${anime.id}"><i class="fa-regular fa-eye icon-guarda"></i></button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="guarda"><i class="fa-regular fa-clock icon-guarda"></i></button>
+                                    <button class="guarda" value="4" data-anime="${anime.id}"><i class="fa-regular fa-clock icon-guarda"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>`;
             cardContainer.innerHTML += cardHtml;
+            
+            
         });
         updatePagination(filteredAnimes);
     }

@@ -187,7 +187,14 @@ class FrontController {
                     function () {
                         header('location: /');
                     });
-
+                    
+            Route::add('/agregarLista',
+                function () {
+                    $controlador = new \Com\Daw2\Controllers\user\ListasAnimesController();
+                    $controlador->processInsert();
+                }
+                , 'post');
+                    
             Route::pathNotFound(
                     function () {
                         $controller = new \Com\Daw2\Controllers\ErroresController();
