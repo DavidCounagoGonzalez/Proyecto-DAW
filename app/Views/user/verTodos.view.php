@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center" id="cardContainer">
-                    
+
                 </div>
                 <div class=" pagination" id="pagination"></div>
             </div>

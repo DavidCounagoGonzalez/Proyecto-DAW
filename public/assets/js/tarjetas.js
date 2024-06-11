@@ -46,6 +46,10 @@ $(document).ready(function () {
                 .then(data => {
                     if (data.clase === 'success') {
                         console.log('Éxito: ', data.mensaje);
+                        $(this).removeClass('guarda');
+                        $(this).addClass('borra');
+                        $(this).children(0).removeClass('fa-regular');
+                        $(this).children(0).addClass('fa-solid');
                     } else {
                         console.log('Error: ', data.mensaje);
                     }
@@ -78,6 +82,11 @@ $(document).ready(function () {
                 .then(data => {
                     if (data.clase === 'success') {
                         console.log('Éxito: ', data.mensaje);
+                        $(this).removeClass('borra');
+                        $(this).addClass('guarda');
+                        $(this).children(0).removeClass('fa-solid');
+                        $(this).children(0).addClass('fa-regular');
+                        showCustomAlert();
                     } else {
                         console.log('Error: ', data.mensaje);
                     }
@@ -87,4 +96,3 @@ $(document).ready(function () {
                 });
     });
 });
-

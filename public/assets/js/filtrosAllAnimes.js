@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="row text-center btn-acciones">
                                 <div class="col-3">
                                     <button class="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}" value="3" data-anime="${anime.id}">
-                                        <i class="fa-${(listas !== null && listas.includes(4)) ? 'solid' : 'regular'} fa-heart icon-guarda"></i>
+                                        <i class="fa-${(listas !== null && listas.includes(3)) ? 'solid' : 'regular'} fa-heart icon-guarda"></i>
                                     </button>
                                 </div>
                                 <div class="col-3">
