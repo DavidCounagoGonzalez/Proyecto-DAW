@@ -54,5 +54,37 @@ $(document).ready(function () {
                     console.error('Error: ', error);
                 });
     });
+    
+    $('#cardContainer').on('click', '.borra', function (event) { 
+        event.stopPropagation();
+        
+        console.log('borra');
+        
+        estado_id = $(this).val();
+        anime_id = $(this).data('anime');
+        
+        var params = new URLSearchParams();
+        params.append('estado_id', estado_id);
+        params.append('anime_id', anime_id);
+        
+        fetch('/borrarLista', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: params.toString()
+        })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.clase === 'success') {
+                        console.log('Éxito: ', data.mensaje);
+                    } else {
+                        console.log('Error: ', data.mensaje);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error: ', error);
+                });
+    });
 });
 

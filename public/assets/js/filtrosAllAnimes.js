@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateFiltersAndPagination() {
         currentPage = 1;
         const filteredAnimes = filterAnimes();
-        
+
         updatePagination(filteredAnimes);
         showPage(currentPage, filteredAnimes);
     }
@@ -26,30 +26,33 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedCalificacion = calificacionFilter.value;
         const selectedGeneros = Array.from(generosFilter.selectedOptions).map(option => option.value);
         const selectedEnEmision = enEmisionFilter.value;
-            
 
-        animesfiltrados =  animesGeneros.filter(anime => {
+
+        animesfiltrados = animesGeneros.filter(anime => {
             const titulo = anime.titulo.toLowerCase();
             const calificacion = anime.calificacion;
             const generos = anime.generos ? anime.generos.split(',') : [];
             const enEmision = anime.en_emision;
-            
+
             let isVisible = true;
 
             if (selectedTitulo && !titulo.includes(selectedTitulo)) {
                 isVisible = false;
-            }if (selectedCalificacion && calificacion !== selectedCalificacion){
+            }
+            if (selectedCalificacion && calificacion !== selectedCalificacion) {
                 isVisible = false;
-            }if (selectedEnEmision && enEmision !== parseInt(selectedEnEmision)){
+            }
+            if (selectedEnEmision && enEmision !== parseInt(selectedEnEmision)) {
                 isVisible = false;
-            }if(selectedGeneros.length > 0 && !selectedGeneros.some(elemento => generos.includes(elemento))){
+            }
+            if (selectedGeneros.length > 0 && !selectedGeneros.some(elemento => generos.includes(elemento))) {
                 isVisible = false;
             }
 
             return isVisible;
         });
-        
-        
+
+
         return animesfiltrados;
     }
 
@@ -108,8 +111,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const animesToShow = filteredAnimes.slice(start, end);
         currentPage = page;
 
+
+
         cardContainer.innerHTML = '';
         animesToShow.forEach(anime => {
+            listas = anime.listas;
             const cardHtml = `
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4 cardContainer anime-card" 
                      data-titulo="${anime.titulo}" 
@@ -126,24 +132,31 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h5 class="card-title">${anime.titulo}</h5>
                             <div class="row text-center btn-acciones">
                                 <div class="col-3">
-                                    <input type="checkbox" class="guarda" value="3" data-anime="${anime.id}"><i class="fa-regular fa-heart icon-guarda"></i></input>
+                                    <button class="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}" value="3" data-anime="${anime.id}">
+                                        <i class="fa-${(listas !== null && listas.includes(4)) ? 'solid' : 'regular'} fa-heart icon-guarda"></i>
+                                    </button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="guarda" value="2" data-anime="${anime.id}"><i class="fa-solid fa-check icon-guarda"></i></button>
+                                    <button class="${(listas !== null && listas.includes(2)) ? 'borra' : 'guarda'}" value="2" data-anime="${anime.id}">
+                                        <i class="fa-solid fa-check icon-guarda"></i>
+                                    </button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="guarda" value="1" data-anime="${anime.id}"><i class="fa-regular fa-eye icon-guarda"></i></button>
+                                    <button class="${(listas !== null && listas.includes(1)) ? 'borra' : 'guarda'}" value="1" data-anime="${anime.id}" ${(listas !== null && listas.includes(1)) ? 'checked' : ''}>
+                                        <i class="fa-regular fa-eye icon-guarda"></i>
+                                    </button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="guarda" value="4" data-anime="${anime.id}"><i class="fa-regular fa-clock icon-guarda"></i></button>
+                                    <button class="${(listas !== null && listas.includes(4)) ? 'borra' : 'guarda'}" value="4" data-anime="${anime.id}">
+                                        <i class="fa-regular fa-clock icon-guarda"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>`;
             cardContainer.innerHTML += cardHtml;
-            
-            
+
         });
         updatePagination(filteredAnimes);
     }

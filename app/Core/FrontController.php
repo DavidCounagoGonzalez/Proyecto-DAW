@@ -194,6 +194,13 @@ class FrontController {
                     $controlador->processInsert();
                 }
                 , 'post');
+                
+            Route::add('/borrarLista',
+                function () {
+                    $controlador = new \Com\Daw2\Controllers\user\ListasAnimesController();
+                    $controlador->processBorrar();
+                }
+                , 'post');
                     
             Route::pathNotFound(
                     function () {
