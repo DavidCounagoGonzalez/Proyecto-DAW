@@ -25,7 +25,6 @@
 <script>
     $(document).ready(function () {
         $('.selectGeneros').select2({
-            allowClear: true,
             width: '100%'  // Ajusta el ancho para que se adapte al contenedor
         });
         // Inicializar Select2 para el select individual

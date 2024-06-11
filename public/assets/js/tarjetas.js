@@ -48,8 +48,8 @@ $(document).ready(function () {
                         console.log('Éxito: ', data.mensaje);
                         $(this).removeClass('guarda');
                         $(this).addClass('borra');
-                        $(this).children(0).removeClass('fa-regular');
-                        $(this).children(0).addClass('fa-solid');
+                        $(this).children(0).removeClass('icon-guarda');
+                        $(this).children(0).addClass('icon-borra');
                     } else {
                         console.log('Error: ', data.mensaje);
                     }
@@ -84,9 +84,8 @@ $(document).ready(function () {
                         console.log('Éxito: ', data.mensaje);
                         $(this).removeClass('borra');
                         $(this).addClass('guarda');
-                        $(this).children(0).removeClass('fa-solid');
-                        $(this).children(0).addClass('fa-regular');
-                        showCustomAlert();
+                        $(this).children(0).removeClass('icon-borra');
+                        $(this).children(0).addClass('icon-guarda');
                     } else {
                         console.log('Error: ', data.mensaje);
                     }

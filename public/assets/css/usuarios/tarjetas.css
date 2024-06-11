@@ -34,11 +34,17 @@
     opacity: 1;
 }
 
-.icon-guarda{
+.icon-borra, .icon-guarda{
     font-size: 25px;
 }
 
+.icon-guarda{
+    color: inherit;
+}
 
+.icon-borra{
+    color: #f79959
+}
 
 @media (min-width: 1440px){
     .card {

@@ -13,7 +13,7 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
     }
     
     function getAllWithGenres($user_id): array{
-        $query = "SELECT a.*, GROUP_CONCAT(DISTINCT ga.genero_id SEPARATOR ', ') AS generos, GROUP_CONCAT(DISTINCT la.estado_id SEPARATOR ', ') AS listas 
+        $query = "SELECT a.*, GROUP_CONCAT(DISTINCT ga.genero_id SEPARATOR ',') AS generos, GROUP_CONCAT(DISTINCT la.estado_id SEPARATOR ',') AS listas 
             FROM Animes a LEFT JOIN genero_anime ga ON a.id = ga.anime_id LEFT JOIN (SELECT * FROM listas_anime WHERE usuario_id = ?)
             la ON a.id = la.anime_id GROUP BY a.id, a.titulo ORDER BY a.titulo";
         

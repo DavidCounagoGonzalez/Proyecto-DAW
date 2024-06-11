@@ -26,13 +26,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedCalificacion = calificacionFilter.value;
         const selectedGeneros = Array.from(generosFilter.selectedOptions).map(option => option.value);
         const selectedEnEmision = enEmisionFilter.value;
-
-
+        
+        console.log(selectedGeneros);
         animesfiltrados = animesGeneros.filter(anime => {
+            
             const titulo = anime.titulo.toLowerCase();
             const calificacion = anime.calificacion;
             const generos = anime.generos ? anime.generos.split(',') : [];
             const enEmision = anime.en_emision;
+            
+            console.log(generos);
 
             let isVisible = true;
 
@@ -45,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedEnEmision && enEmision !== parseInt(selectedEnEmision)) {
                 isVisible = false;
             }
-            if (selectedGeneros.length > 0 && !selectedGeneros.some(elemento => generos.includes(elemento))) {
+            if (selectedGeneros.length > 0 && !selectedGeneros.every(elemento => generos.includes(elemento))) {
                 isVisible = false;
             }
 
@@ -111,8 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const animesToShow = filteredAnimes.slice(start, end);
         currentPage = page;
 
-
-
         cardContainer.innerHTML = '';
         animesToShow.forEach(anime => {
             listas = anime.listas;
@@ -133,22 +134,22 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="row text-center btn-acciones">
                                 <div class="col-3">
                                     <button class="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}" value="3" data-anime="${anime.id}">
-                                        <i class="fa-${(listas !== null && listas.includes(3)) ? 'solid' : 'regular'} fa-heart icon-guarda"></i>
+                                        <i class="fa-solid fa-heart icon-${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>
                                 <div class="col-3">
                                     <button class="${(listas !== null && listas.includes(2)) ? 'borra' : 'guarda'}" value="2" data-anime="${anime.id}">
-                                        <i class="fa-solid fa-check icon-guarda"></i>
+                                        <i class="fa-solid fa-check icon-${(listas !== null && listas.includes(2)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>
                                 <div class="col-3">
                                     <button class="${(listas !== null && listas.includes(1)) ? 'borra' : 'guarda'}" value="1" data-anime="${anime.id}" ${(listas !== null && listas.includes(1)) ? 'checked' : ''}>
-                                        <i class="fa-regular fa-eye icon-guarda"></i>
+                                        <i class="fa-regular fa-eye icon-${(listas !== null && listas.includes(1)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>
                                 <div class="col-3">
                                     <button class="${(listas !== null && listas.includes(4)) ? 'borra' : 'guarda'}" value="4" data-anime="${anime.id}">
-                                        <i class="fa-regular fa-clock icon-guarda"></i>
+                                        <i class="fa-regular fa-clock icon-${(listas !== null && listas.includes(4)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>
                             </div>
@@ -156,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>`;
             cardContainer.innerHTML += cardHtml;
-
         });
         updatePagination(filteredAnimes);
     }
