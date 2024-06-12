@@ -12,6 +12,22 @@ class ListaAnimesModel extends \Com\Daw2\Core\BaseModel {
         return $this->pdo->query(self::SELECT_FROM)->fetchAll();
     }
     
+    function getByUser(int $user_id, int $estado_id):array {
+        $query = "SELECT a.*, GROUP_CONCAT(DISTINCT ga.genero_id SEPARATOR ',') AS generos, GROUP_CONCAT(DISTINCT g.genero SEPARATOR ', ') AS generosStr, la.estado_id
+            FROM Animes a LEFT JOIN genero_anime ga ON a.id = ga.anime_id INNER JOIN generos g ON ga.genero_id = g.id LEFT JOIN listas_anime la ON a.id = la.anime_id 
+            WHERE la.usuario_id = ? AND la.estado_id = ? GROUP BY a.id, a.titulo ORDER BY a.titulo";
+        
+        $stmt = $this->pdo->prepare($query);
+        
+        if($stmt->execute([$user_id, $estado_id])){
+            return $stmt->fetchAll();
+        }else{
+            return null;
+        }
+        
+        
+    }
+    
     function getByData(array $datos) :bool {
         $query = self::SELECT_FROM . " WHERE usuario_id = :usuario_id AND anime_id = :anime_id AND estado_id = :estado_id";
         

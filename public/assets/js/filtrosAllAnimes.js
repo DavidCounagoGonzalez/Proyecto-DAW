@@ -27,15 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedGeneros = Array.from(generosFilter.selectedOptions).map(option => option.value);
         const selectedEnEmision = enEmisionFilter.value;
 
-        console.log(selectedGeneros);
         animesfiltrados = animesGeneros.filter(anime => {
 
             const titulo = anime.titulo.toLowerCase();
             const calificacion = anime.calificacion;
             const generos = anime.generos ? anime.generos.split(',') : [];
             const enEmision = anime.en_emision;
-
-            console.log(generos);
 
             let isVisible = true;
 

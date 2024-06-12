@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portada Fusionada</title>
+        <title>Inicio</title>
         <?php include 'templates/head.view.php' ?>
         <link rel="stylesheet" href="assets/css/usuarios/inicio.css">
         <link rel="stylesheet" href="assets/css/usuarios/tarjetas.css">
@@ -37,7 +37,7 @@
                         foreach ($animesPart as $parte) {
                             ?>
                             <div class="carousel-item <?php echo $activo ? 'active' : '' ?>">
-                                <div class="row justify-content-center">
+                                <div class="row justify-content-center cardContainer">
                                     <?php foreach ($parte as $anime) { ?>
                                         <div class="col-md-6 col-lg-3 mt-4 mt-lg-0 cardContainer">
                                             <div class="card mx-auto" style="background-image: url('<?php echo $anime['imagenes'] ?>');"

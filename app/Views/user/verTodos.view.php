@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portada Fusionada</title>
+        <title>Todos los animes</title>
         <?php include 'templates/head.view.php' ?>
         <link rel="stylesheet" href="assets/css/usuarios/inicio.css">
         <link rel="stylesheet" href="assets/css/usuarios/tarjetas.css">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center" id="cardContainer">
+                <div class="row justify-content-center cardContainer" id="cardContainer">
 
                 </div>
                 <div class=" pagination" id="pagination"></div>

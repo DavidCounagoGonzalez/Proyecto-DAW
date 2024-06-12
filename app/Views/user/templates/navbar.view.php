@@ -13,8 +13,8 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-navbar">
-                            <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Perfil</a></li>
-                            <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Ajustes</a></li>
+                            <li class="nav-link"><a href="/perfil" class="nav-item dropdown-item">Perfil</a></li>
+                            <li class="nav-link"><a href="/verTodos" class="nav-item dropdown-item">Animes</a></li>
                             <?php if ($_SESSION['usuario']['id_rol'] == 1) { ?> 
                                 <li class="nav-link"><a href="/admin" class="nav-item dropdown-item">Administración</a></li>
                             <?php } ?>

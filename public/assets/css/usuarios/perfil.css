@@ -1,0 +1,15 @@
+.perfil{
+    border-radius: 50%; 
+    border-collapse: separate; 
+    overflow: hidden;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.icon-eliminar{
+    font-size: 25px;
+    color: red;
+}
+
+
+
