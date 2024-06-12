@@ -43,8 +43,8 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
     }
 
     function insertAnime(int $id, array $datos, array $imagen){
-        $query = "INSERT INTO `Animes`(`id`, `titulo`, `episodios`, `en_emision`, `fecha_emision`, `calificacion`, `puntuacion`, `descripcion`, `transmision`, `imagenes`, `trailer`)"
-                . " VALUES (:id, :titulo, :episodios, :en_emision, :fecha_emision, :calificacion, :puntuacion, :descripcion, :transmision, :imagenes, :trailer)";
+        $query = "INSERT INTO `Animes`(`id`, `titulo`, `episodios`, `en_emision`, `fecha_emision`, `calificacion`, `puntuacion`, `descripcion`, `imagenes`, `trailer`)"
+                . " VALUES (:id, :titulo, :episodios, :en_emision, :fecha_emision, :calificacion, :puntuacion, :descripcion, :imagenes, :trailer)";
         
         $stmt = $this->pdo->prepare($query);
         
@@ -57,7 +57,6 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
             'calificacion' => $datos['calificacion'],
             'puntuacion' => $datos['puntuacion'],
             'descripcion' => $datos['sinopsis'],
-            'transmision' => $datos['dia'] . ' a las ' . $datos['hora'],
             'imagenes' => $imagen['name'],
             'trailer' => $datos['trailer']
         );
@@ -71,7 +70,7 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
     
     function updateAnime(int $id, array $datos, array $imagen){
         $query = "UPDATE `Animes` SET `titulo`=:titulo,`episodios`=:episodios,`en_emision`=:en_emision,`fecha_emision`=:fecha_emision,"
-                . " `calificacion`=:calificacion,`puntuacion`=:puntuacion,`descripcion`=:descripcion,`transmision`=:transmision,`imagenes`=:imagenes,`trailer`=:trailer WHERE id = :id";
+                . " `calificacion`=:calificacion,`puntuacion`=:puntuacion,`descripcion`=:descripcion,`imagenes`=:imagenes,`trailer`=:trailer WHERE id = :id";
         
         $stmt = $this->pdo->prepare($query);
         
@@ -83,7 +82,6 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
             'calificacion' => $datos['calificacion'],
             'puntuacion' => $datos['puntuacion'],
             'descripcion' => $datos['sinopsis'],
-            'transmision' => $datos['dia'] . ' a las ' . $datos['hora'],
             'imagenes' => $imagen['name'],
             'trailer' => $datos['trailer'],
             'id' => $id

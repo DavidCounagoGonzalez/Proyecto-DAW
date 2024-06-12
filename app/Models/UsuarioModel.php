@@ -71,14 +71,13 @@ class UsuarioModel extends \Com\Daw2\Core\BaseModel {
     }
     
     function updateUsuario(array $datos, $id_usuario){
-        $query = "UPDATE `usuarios_web` SET `id_rol` = :id_rol, `email` = :email, `pass` = :pass, `nombre` = :nombre WHERE id_usuario = :id_usuario ";
+        $query = "UPDATE `usuarios_web` SET `id_rol` = :id_rol, `email` = :email, `nombre` = :nombre WHERE id_usuario = :id_usuario ";
         
         $stmt = $this->pdo->prepare($query);
         
         $data = array(
             'id_rol' => $datos['id_rol'],
             'email' => $datos['email'],
-            'pass' => password_hash($datos['pass'], PASSWORD_DEFAULT),
             'nombre' => $datos['nombre'],
             'id_usuario' => $id_usuario
         );
@@ -86,6 +85,20 @@ class UsuarioModel extends \Com\Daw2\Core\BaseModel {
         return $stmt->execute($data);
     }
     
+    function updatePass(string $pass, $id_usuario){
+        $query = "UPDATE `usuarios_web` SET `pass` = :pass WHERE id_usuario = :id_usuario";
+        
+        $stmt = $this->pdo->prepare($query);
+        
+        $data = [
+            'pass' => password_hash($pass, PASSWORD_DEFAULT), 
+            'id_usuario' => $id_usuario
+        ];
+        
+        return $stmt->execute($data);
+    }
+
+
     function updateFoto(string $archivo, $id_usuario){
         $query = "UPDATE `usuarios_web` SET `foto` = :foto WHERE id_usuario = :id_usuario";
         

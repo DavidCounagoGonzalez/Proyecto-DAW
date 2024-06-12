@@ -90,27 +90,6 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3 pr-md-1">
-                                            <div class="form-group">
-                                                <label for="selectDia">Día trasmisión</label>
-                                                <select class="form-control selectCustom" id="selectDia" name="dia">
-                                                    <option value="" selected>--------</option>
-                                                    <option value="lunes">Lunes</option>
-                                                    <option value="martes">Martes</option>
-                                                    <option value="miércoles">Miércoles</option>
-                                                    <option value="jueves">Jueves</option>
-                                                    <option value="viernes">Viernes</option>
-                                                    <option value="sábado">Sábado</option>
-                                                    <option value="domingo">Domingo</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 px-md-1">
-                                            <div class="form-group">
-                                                <label for="selectHora">Hora</label>
-                                                <input id="selectHora" type="time" class="form-control" id="timePicker" name="hora">
-                                            </div>
-                                        </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="puntuacion">Puntuación</label>

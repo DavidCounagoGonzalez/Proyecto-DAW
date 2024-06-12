@@ -13,7 +13,7 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
 
         $modelo = new \Com\Daw2\Models\UsuarioModel();
         $data['usuarios'] = $modelo->getAll();
-        
+
         if (isset($_SESSION['mensaje'])) {
             $data['mensaje'] = $_SESSION['mensaje'];
             unset($_SESSION['mensaje']);
@@ -93,6 +93,10 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
 
         $errores = $this->checkEdit($_POST, $id_user);
 
+        if (empty($_POST['pass'])) {
+            unset($errores['pass']);
+        }
+
         if (count($errores) > 0) {
 
             $data = array(
@@ -105,6 +109,10 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
             $this->view->showViews(array('admin/add.usuario.view.php'), $data);
         } else {
             if ($model->updateUsuario($_POST, $id_user)) {
+                if (!is_null($_POST['pass'])) {
+                    $model->updatePass($_POST['pass'], $id_user);
+                }
+
                 $guardar = new \Com\Daw2\Models\SubirArchivos();
                 $_FILES['fotoPerfil']['name'] = $id_user . '.jpg';
 
@@ -187,7 +195,7 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
                 'class' => 'success',
                 'texto' => 'Elemento eliminado con éxito.'
             );
-        $this->deleteFoto($id);
+            $this->deleteFoto($id);
         } else {
             $_SESSION['mensaje'] = array(
                 'class' => 'danger',
