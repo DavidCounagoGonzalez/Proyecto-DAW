@@ -14,10 +14,17 @@
         <div class="main-panel">
             <?php include 'templates/navbar.view.php' ?>
             <div class="content row">
-                <div  class="col-md-3 ml-md-5">
-                    <div class="perfil">
-                        <img src="/assets/img/FotosPerfil/<?php echo $_SESSION['usuario']['foto'] ?>" alt="Profile Photo">
-                    </div>
+                <div  class="col-md-3 ml-lg-3 text-center">
+                    <form id='actuFoto' method="POST" enctype="multipart/form-data">
+                        <div id='perfil' class="perfil">
+                            <input type="file" id="fileInput" name="foto">
+                            <img src="/assets/img/FotosPerfil/<?php echo $_SESSION['usuario']['foto'] ?>" alt="Profile Photo">
+                            <div id="fondo" class="fondo"></div>
+                            <div id="cambiarTxt" class="cambiarTxt text-center">
+                                <p>Cambiar Foto <i class="fa-solid fa-arrow-up-right-from-square"></i></p>
+                            </div>
+                        </div>
+                    </form>
                     <h2 class="userName"><?php echo $_SESSION['usuario']['nombre'] ?></h2>
                 </div>
                 <div class="col-md-8">
@@ -35,7 +42,7 @@
                                 if (isset($favoritos)) {
                                     foreach ($favoritos as $favorito) {
                                         ?>
-                                        <div class="col-12 col-md-6 col-lg-4 mt-4 cardContainer anime-card" >
+                                        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-4 cardContainer anime-card" >
                                             <div class="card mx-auto" style="background-image: url('<?php echo $favorito['imagenes'] ?>');"
                                                  data-descripcion="<?php echo $favorito['descripcion'] ?>"
                                                  data-generos="<?php echo $favorito['generosStr'] ?>"
@@ -63,7 +70,7 @@
                                 if (isset($viendo)) {
                                     foreach ($viendo as $animeV) {
                                         ?>
-                                        <div class="col-12 col-md-6 col-lg-4 mt-4 cardContainer anime-card" >
+                                        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-4 cardContainer anime-card" >
                                             <div class="card mx-auto" style="background-image: url('<?php echo $animeV['imagenes'] ?>');"
                                                  data-descripcion="<?php echo $animeV['descripcion'] ?>"
                                                  data-generos="<?php echo $animeV['generosStr'] ?>"
@@ -91,7 +98,7 @@
                                 if (isset($completados)) {
                                     foreach ($completados as $completado) {
                                         ?>
-                                        <div class="col-12 col-md-6 col-lg-4 mt-4 cardContainer anime-card" >
+                                        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-4 cardContainer anime-card" >
                                             <div class="card mx-auto" style="background-image: url('<?php echo $completado['imagenes'] ?>');"
                                                  data-descripcion="<?php echo $completado['descripcion'] ?>"
                                                  data-generos="<?php echo $completado['generosStr'] ?>"
@@ -107,7 +114,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -119,7 +126,7 @@
                                 if (isset($pendientes)) {
                                     foreach ($pendientes as $pendiente) {
                                         ?>
-                                        <div class="col-12 col-md-6 col-lg-4 mt-4 cardContainer anime-card" >
+                                        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-4 cardContainer anime-card" >
                                             <div class="card mx-auto" style="background-image: url('<?php echo $pendiente['imagenes'] ?>');"
                                                  data-descripcion="<?php echo $pendiente['descripcion'] ?>"
                                                  data-generos="<?php echo $pendiente['generosStr'] ?>"
@@ -135,7 +142,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php
+                                        <?php
                                     }
                                 }
                                 ?>
@@ -144,7 +151,7 @@
                     </div>
                 </div>
             </div>
-<?php include 'templates/footer.view.php' ?>
+            <?php include 'templates/footer.view.php' ?>
             <div class="modal fade" id="animeModal" tabindex="-1" aria-labelledby="animeModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -165,6 +172,15 @@
                 </div>
             </div>
         </div>
-<?php include 'templates/scripts.view.php' ?>
+        <?php include 'templates/scripts.view.php' ?>
         <script src="/assets/js/tarjetas.js"></script>
+        <script>
+            document.getElementById('perfil').addEventListener('click', function () {
+                document.getElementById('fileInput').click();
+            });
+
+            document.getElementById('fileInput').addEventListener('change', function () {
+                document.getElementById('actuFoto').submit();
+            });
+        </script>
     </body>

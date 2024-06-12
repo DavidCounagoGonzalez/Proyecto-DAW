@@ -48,7 +48,6 @@
                                                  data-calificacion = "<?php echo $anime['calificacion'] ?>">
                                                 <div class="card-body-overlay">
                                                     <h5 class="card-title"><?php echo $anime['titulo'] ?></h5>
-                                                    <button class="btn btn-info guarda">Hola</button>
                                                 </div>
                                             </div>
                                         </div>

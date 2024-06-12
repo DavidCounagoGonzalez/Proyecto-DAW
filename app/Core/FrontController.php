@@ -170,13 +170,20 @@ class FrontController {
                     $controlador->verTodos();
                 }
                 , 'get');
-                                
+                
             Route::add('/perfil',
                 function (){
                     $controlador = new \Com\Daw2\Controllers\user\PerfilController();
                     $controlador->mostrarPerfil();
                 }    
                 , 'get');
+                                
+            Route::add('/perfil',
+                function (){
+                    $controlador = new \Com\Daw2\Controllers\user\PerfilController();
+                    $controlador->mostrarPerfil();
+                }    
+                , 'post');
 
             Route::add('/accounts/logout',
                     function () {

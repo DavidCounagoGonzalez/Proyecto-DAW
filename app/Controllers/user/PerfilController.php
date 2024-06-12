@@ -6,6 +6,16 @@ class PerfilController extends \Com\Daw2\Core\BaseController {
 
     public function mostrarPerfil() {
         
+        if(isset($_FILES['foto'])){
+            $guardar = new \Com\Daw2\Models\SubirArchivos();
+            $modeloUsuario = new \Com\Daw2\Models\UsuarioModel();
+            $_FILES['foto']['name'] = $_SESSION['usuario']['id_usuario'] . '.jpg';
+            
+            if($guardar->guardar('assets/img/FotosPerfil/', $_FILES['foto'])){
+                $modeloUsuario->updateFoto($_FILES['foto']['name'], $_SESSION['usuario']['id_usuario']);
+            }
+        }
+        
         $modelo = new \Com\Daw2\Models\ListaAnimesModel();
         
         $favoritos = $this->urlImg($modelo->getByUser($_SESSION['usuario']['id_usuario'], 3));

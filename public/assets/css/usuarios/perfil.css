@@ -1,9 +1,9 @@
 .perfil{
-    border-radius: 50%; 
-    border-collapse: separate; 
+    border-radius: 50%;
+    border-collapse: separate;
     overflow: hidden;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 .icon-eliminar{
@@ -11,5 +11,49 @@
     color: red;
 }
 
+#fileInput {
+    display: none; 
+}
+.perfil {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
 
+.fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con poca opacidad */
+  border-radius: 5px;
+  display: none; /* Ocultar el fondo inicialmente */
+}
+
+.cambiarTxt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 18px;
+  transform: translate(-50%, -50%);
+  color: white; /* Color de texto blanco para mayor contraste */
+  display: none;
+}
+
+.cambiarTxt p{
+    color: white;
+}
+
+.perfil:hover .fondo {
+  display: block; /* Mostrar el fondo al pasar el ratón por encima */
+}
+.perfil:hover .cambiarTxt {
+  display: block; /* Mostrar el texto al pasar el ratón por encima */
+}
+
+.userName{
+    color: #f79959;
+    overflow-wrap: break-word;
+}
 
