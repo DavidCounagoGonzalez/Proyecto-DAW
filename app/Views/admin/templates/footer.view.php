@@ -1,29 +1,20 @@
 <footer class="footer">
-        <div class="container-fluid">
-          <ul class="nav">
+    <div class="container-fluid">
+        <ul class="nav">
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                Creative Tim
-              </a>
+                <a class="nav-link" data-bs-toggle="tooltip" data-bs-placement="top" title="info@keroanime.com">
+                    Contacto
+                </a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                About Us
-              </a>
+                <a class="nav-link" onclick="alert('En KeroAnime nos reservamos el derecho de gestionar y utilizar los datos de los usuarios para poder mantener un correcto funcionamiento y una buena seguridad de la página.')">
+                    Política de privacidad
+                </a>
             </li>
-            <li class="nav-item">
-              <a href="javascript:void(0)" class="nav-link">
-                Blog
-              </a>
-            </li>
-          </ul>
-          <div class="copyright">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script> - 2018 made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
-          </div>
+        </ul>
+        <div class="copyright">
+            © KeroAnime 2024. Todos los derechos reservados.
         </div>
-      </footer>
+    </div>
+</footer>
 

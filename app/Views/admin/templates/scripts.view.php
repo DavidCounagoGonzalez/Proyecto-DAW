@@ -42,16 +42,22 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
 // Espera a que el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', function () {
-    // Inicializa flatpickr en el input
-    flatpickr("input[type=time]", {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-        time_24hr: true,
-        onReady: function (selectedDates, dateStr, instance) {
-            instance.input.removeAttribute("readonly");
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Inicializa flatpickr en el input
+        flatpickr("input[type=time]", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            onReady: function (selectedDates, dateStr, instance) {
+                instance.input.removeAttribute("readonly");
+            }
+        });
     });
-});
+</script>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 </script>
