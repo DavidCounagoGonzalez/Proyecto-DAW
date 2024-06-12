@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
     <div class="container-fluid text-end">
         <div class="mr-auto">
-            <a class="" href="/"><img src="/assets/img/LogoKeroAnimeBG.png"></a>
+            <h1><a class="" href="/"><img src="/assets/img/LogoKeroAnimeBG.png" alt="Logo KeroAnime"></a></h1>
         </div>
         <div class="ml-auto" id="navigation">
             <ul class="navbar-nav mr-auto">

@@ -14,7 +14,7 @@
       <div class="content">
           <div class="row">
               <div class="col-12">
-                  <h1>HOla desde Admin</h1>
+                  <h1>Bienvenido <?php echo $_SESSION['usuario']['nombre'] ?></h1>
               </div>
           </div>
       </div>

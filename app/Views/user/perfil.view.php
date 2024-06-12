@@ -52,7 +52,7 @@
                                                  data-calificacion="<?php echo $favorito['calificacion'] ?>">
                                                 <div class="card-body-overlay">
                                                     <h5 class="card-title"><?php echo $favorito['titulo'] ?></h5>
-                                                    <button class="eliminar" value="3" data-anime="<?php echo $favorito['id'] ?>">
+                                                    <button class="eliminar" value="3" data-anime="<?php echo $favorito['id'] ?>" aria-label="elimina-favorito">
                                                         <i class="fa-solid fa-trash icon-eliminar"></i>
                                                     </button>
                                                 </div>
@@ -80,7 +80,7 @@
                                                  data-calificacion="<?php echo $animeV['calificacion'] ?>">
                                                 <div class="card-body-overlay">
                                                     <h5 class="card-title"><?php echo $animeV['titulo'] ?></h5>
-                                                    <button class="eliminar" value="1" data-anime="<?php echo $animeV['id'] ?>">
+                                                    <button class="eliminar" value="1" data-anime="<?php echo $animeV['id'] ?>" aria-label="elimina-viendo">
                                                         <i class="fa-solid fa-trash icon-eliminar"></i>
                                                     </button>
                                                 </div>
@@ -108,7 +108,7 @@
                                                  data-calificacion="<?php echo $completado['calificacion'] ?>">
                                                 <div class="card-body-overlay">
                                                     <h5 class="card-title"><?php echo $completado['titulo'] ?></h5>
-                                                    <button class="eliminar" value="2" data-anime="<?php echo $completado['id'] ?>">
+                                                    <button class="eliminar" value="2" data-anime="<?php echo $completado['id'] ?>" aria-label="elimina-completado">
                                                         <i class="fa-solid fa-trash icon-eliminar"></i>
                                                     </button>
                                                 </div>
@@ -136,7 +136,7 @@
                                                  data-calificacion="<?php echo $pendiente['calificacion'] ?>">
                                                 <div class="card-body-overlay">
                                                     <h5 class="card-title"><?php echo $pendiente['titulo'] ?></h5>
-                                                    <button class="eliminar" value="4" data-anime="<?php echo $pendiente['id'] ?>">
+                                                    <button class="eliminar" value="4" data-anime="<?php echo $pendiente['id'] ?>" aria-label="elimina-pendiente">
                                                         <i class="fa-solid fa-trash icon-eliminar"></i>
                                                     </button>
                                                 </div>

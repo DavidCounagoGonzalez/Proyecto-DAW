@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="pass">Confirmar Contraseña</label>
+                                                <label for="pass2">Confirmar Contraseña</label>
                                                 <input type="password" name="pass2" id="pass2" class="form-control" placeholder="Repite la contraseña">
                                                 <p class="text-danger"><?php echo isset($errores['pass2']) ? $errores['pass2'] : ''; ?></p>
                                             </div>

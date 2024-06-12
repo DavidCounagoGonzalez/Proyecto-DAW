@@ -28,10 +28,10 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Ajustes</a></li>
+                  <li class="nav-link"><a href="/perfil" class="nav-item dropdown-item">Perfil</a></li>
+                  <li class="nav-link"><a href="/verTodos" class="nav-item dropdown-item">Animes</a></li>
                   <li class="dropdown-divider"></li>
-                  <li class="nav-link"><a href="/accounts/logout" class="nav-item dropdown-item">Log out</a></li>
+                  <li class="nav-link"><a href="/accounts/logout" class="nav-item dropdown-item">Desconectarse</a></li>
                 </ul>
               </li>
               <li class="separator d-lg-none"></li>

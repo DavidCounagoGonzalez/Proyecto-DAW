@@ -108,7 +108,7 @@
                                         <div class="col-md-3 px-md-1">
                                             <div class="form-group">
                                                 <label for="selectHora">Hora</label>
-                                                <input type="time" class="form-control" id="timePicker" name="hora">
+                                                <input id="selectHora" type="time" class="form-control" id="timePicker" name="hora">
                                             </div>
                                         </div>
                                         <div class="col-md-2">

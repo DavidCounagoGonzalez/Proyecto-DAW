@@ -126,8 +126,14 @@
                                                             </td>
                                                             <td class="text-center">
                                                                 <div class="row">
-                                                                    <a href="/admin/animes/edit/<?php echo $anime['id']; ?>" class="btn btn-success btn-sm ml-1"><i class="fas fa-edit"></i></a>
-                                                                    <a href="/admin/animes/delete/<?php echo $anime['id']; ?>" class="btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></a>
+                                                                    <a href="/admin/animes/edit/<?php echo $anime['id']; ?>" class="btn btn-success btn-sm ml-1">
+                                                                        <i class="fas fa-edit"></i>
+                                                                        <span class="sr-only">Editar Anime</span>
+                                                                    </a>
+                                                                    <a href="/admin/animes/delete/<?php echo $anime['id']; ?>" class="btn btn-danger btn-sm ml-1">
+                                                                        <i class="fas fa-trash"></i>
+                                                                        <span class="sr-only">Eliminar Anime</span>
+                                                                    </a>
                                                                 </div>
                                                             </td>
                                                         </tr>

@@ -108,8 +108,14 @@
                                                                 <?php echo $usuario['last_date'] ?? '' ?>
                                                             </td>
                                                             <td class="text-center">
-                                                                <a href="/admin/usuarios/edit/<?php echo $usuario['id_usuario']; ?>" class="btn btn-success btn-sm ml-1"><i class="fas fa-edit"></i></a>
-                                                                <a href="/admin/usuarios/delete/<?php echo $usuario['id_usuario']; ?>" class="btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></a>
+                                                                <a href="/admin/usuarios/edit/<?php echo $usuario['id_usuario']; ?>" class="btn btn-success btn-sm ml-1">
+                                                                    <i class="fas fa-edit"></i>
+                                                                    <span class="sr-only">Editar usuario</span>
+                                                                </a>
+                                                                <a href="/admin/usuarios/delete/<?php echo $usuario['id_usuario']; ?>" class="btn btn-danger btn-sm ml-1">
+                                                                    <i class="fas fa-trash"></i>
+                                                                    <span class="sr-only">Eliminar usuario</span>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                         <?php

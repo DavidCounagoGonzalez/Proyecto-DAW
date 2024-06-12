@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (totalPages > 1) {
             const createButton = (text, page) => {
                 const button = document.createElement('button');
-                button.textContent = text;
+                button.textContent = text;               
                 button.classList.add('btn-info');
                 if (page === currentPage) {
                     button.classList.add('active');
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             input.type = 'text';
             input.min = 1;
             input.max = totalPages;
+            input.setAttribute("aria-label", 'página-actual');
             input.value = currentPage;
             input.classList.add('btn-primary', 'input-page');
             input.addEventListener('change', () => {
@@ -127,22 +128,26 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h5 class="card-title">${anime.titulo}</h5>
                             <div class="row text-center btn-acciones">
                                 <div class="col-3">
-                                    <button class="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}" value="3" data-anime="${anime.id}">
+                                    <button class="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}" value="3" data-anime="${anime.id}" 
+                                    aria-label="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}-favoritos">
                                         <i class="fa-solid fa-heart icon-${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="${(listas !== null && listas.includes(2)) ? 'borra' : 'guarda'}" value="2" data-anime="${anime.id}">
+                                    <button class="${(listas !== null && listas.includes(2)) ? 'borra' : 'guarda'}" value="2" data-anime="${anime.id}"
+                                    aria-label="${(listas !== null && listas.includes(2)) ? 'borra' : 'guarda'}-completado">
                                         <i class="fa-solid fa-check icon-${(listas !== null && listas.includes(2)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="${(listas !== null && listas.includes(1)) ? 'borra' : 'guarda'}" value="1" data-anime="${anime.id}" ${(listas !== null && listas.includes(1)) ? 'checked' : ''}>
+                                    <button class="${(listas !== null && listas.includes(1)) ? 'borra' : 'guarda'}" value="1" data-anime="${anime.id}"
+                                    aria-label="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}-viendo">
                                         <i class="fa-regular fa-eye icon-${(listas !== null && listas.includes(1)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="${(listas !== null && listas.includes(4)) ? 'borra' : 'guarda'}" value="4" data-anime="${anime.id}">
+                                    <button class="${(listas !== null && listas.includes(4)) ? 'borra' : 'guarda'}" value="4" data-anime="${anime.id}"
+                                    aria-label="${(listas !== null && listas.includes(3)) ? 'borra' : 'guarda'}-pendiente">
                                         <i class="fa-regular fa-clock icon-${(listas !== null && listas.includes(4)) ? 'borra' : 'guarda'}"></i>
                                     </button>
                                 </div>

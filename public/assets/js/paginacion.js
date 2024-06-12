@@ -55,6 +55,7 @@ class Pagination {
         input.type = 'text';
         input.min = 1;
         input.max = totalPages;
+        input.setAttribute("aria-label", "página-actual");
         input.value = this.currentPage;
         input.classList.add('btn-primary', 'input-page');
         input.addEventListener('change', () => {

@@ -30,12 +30,6 @@
               <p>Usuarios</p>
             </a>
           </li>
-          <li class="<?php echo isset($seccion) && $seccion === '/listas' ? 'active' : '' ?>"> <!-- Tengo que hacer con class active para añadirle el puntito a la derecha -->
-            <a href="/admin/listas">
-              <i class="tim-icons icon-book-bookmark"></i>
-              <p>Listas</p>
-            </a>
-          </li>
         </ul>
       </div>
     </div>

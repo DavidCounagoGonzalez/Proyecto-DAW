@@ -14,12 +14,16 @@
             <div class="wrapper wrapper-full-page">
                 <div class="contenedor">
                     <div class="texto text-center">
-                        <h1><a class="" href="/"><img src="/assets/img/LogoKeroAnimeBG.png"></a></h1>
-                        <h2>Bienvenidos a KeroAnime</h2>
-                        <p>Este es un texto de ejemplo que se superpone ligeramente sobre la imagen a la derecha.</p>
+                        <h1><a class="" href="/"><img src="/assets/img/LogoKeroAnimeBG.png" alt="Logo KeroAnime"></a></h1>
+                        <h2>Bienvenido a KeroAnime</h2>
+                        <p>Sumérgete en un mundo lleno de aventuras, fantasía, drama y acción con nuestra amplia colección de series y películas de anime. En KeroAnime, 
+                            nos dedicamos a ofrecerte lo último y lo mejor del universo del anime, actualizado diariamente para que no te pierdas ningún episodio de tus series favoritas 
+                            del ayer y el hoy. </p>
+                        <?php if (!isset($_SESSION['usuario'])){ ?>
                         <div class="mt-3">
                             <a class="btn btn-primary btn-inicio" href="/accounts/login">Acceder</a>
                         </div>
+                        <?php } ?>
                     </div>
                     <div class="imagen">
                         <img src="/assets/img/PoratdaKeroAnime.jpg" alt="Imagen de ejemplo">
