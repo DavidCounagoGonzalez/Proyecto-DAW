@@ -83,6 +83,7 @@
                         </div>
                         <div class="modal-body">
                             <p id="animeCalificacion"></p>
+                            <p id="animeGeneros"></p>
                             <p id="animeEpisodios"></p>
                             <p id="animeEmision"></p>
                             <p id="animeDescripcion"></p>

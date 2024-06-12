@@ -4,6 +4,9 @@ $(document).ready(function () {
         var episodios = $(this).data('episodios');
         var descripcion = $(this).data('descripcion');
         var emision = $(this).data('emision');
+        var generoStr = $(this).data('generos');
+        
+        console.log($(this).data('generos'));
 
         if ($(this).data('enEmision')) {
             emision = 'En emisión desde el ' + emision;
@@ -19,6 +22,7 @@ $(document).ready(function () {
 
         $('#animeModalLabel').text(title);
         $('#animeCalificacion').text('Apto para ' + calificacion);
+        $('#animeGeneros').text('Géneros: ' + generoStr);
         $('#animeEpisodios').text('Episodios:  ' + episodios);
         $('#animeEmision').text(emision);
         $('#animeDescripcion').text(descripcion);

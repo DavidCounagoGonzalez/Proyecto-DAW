@@ -26,15 +26,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedCalificacion = calificacionFilter.value;
         const selectedGeneros = Array.from(generosFilter.selectedOptions).map(option => option.value);
         const selectedEnEmision = enEmisionFilter.value;
-        
+
         console.log(selectedGeneros);
         animesfiltrados = animesGeneros.filter(anime => {
-            
+
             const titulo = anime.titulo.toLowerCase();
             const calificacion = anime.calificacion;
             const generos = anime.generos ? anime.generos.split(',') : [];
             const enEmision = anime.en_emision;
-            
+
             console.log(generos);
 
             let isVisible = true;
@@ -118,13 +118,10 @@ document.addEventListener('DOMContentLoaded', function () {
         animesToShow.forEach(anime => {
             listas = anime.listas;
             const cardHtml = `
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4 cardContainer anime-card" 
-                     data-titulo="${anime.titulo}" 
-                     data-calificacion="${anime.calificacion}" 
-                     data-generos="${anime.generos}" 
-                     data-enemision="${anime.en_emision}">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4 cardContainer anime-card" >
                     <div class="card mx-auto" style="background-image: url('${anime.imagenes}');"
-                        data-descripcion="${anime.descripcion}" 
+                        data-descripcion="${anime.descripcion}"
+                        data-generos="${anime.generosStr}"
                         data-episodios="${anime.episodios}" 
                         data-enemision="${anime.en_emision}" 
                         data-emision="${anime.fecha_emision}" 
