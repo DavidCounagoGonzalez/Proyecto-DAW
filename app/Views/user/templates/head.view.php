@@ -1,9 +1,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Página de listas de animes, en la cuál puedes guardar en tu perfil las listas de animes que más te gusten.">
+<meta name="keywords" content="animes, listas, perfil">
+<meta name="author" content="David Couñago">
 <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/LogoKeroAnimeBG.png">
 <link rel="icon" type="image/png" href="/assets/img/LogoKeroAnimeBG.png">
 <title>
-    Black Dashboard by Creative Tim
+    KeroAnime, página de listas de animes.
 </title>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />

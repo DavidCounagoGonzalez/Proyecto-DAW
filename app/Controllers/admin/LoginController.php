@@ -65,18 +65,19 @@ class LoginController extends \Com\Daw2\Core\BaseController {
         if (count($errores) == 0) {
             $modelo = new \Com\Daw2\Models\UsuarioModel();
             $_POST['id_rol'] = 2;
-            if($id_user = $modelo->insertUsuario($_POST)){
+            if ($id_user = $modelo->insertUsuario($_POST)) {
                 $nombreImagen = $this->fotoPorDefecto($id_user);
                 $modelo->updateFoto($nombreImagen, $id_user);
                 header('location: /accounts/login');
-            }else{
-                var_dump('Algo salio mal');
-                die;
+            } else {
+                $data = array(
+                    'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS),
+                    'errores' => 'Algo salio mal'
+                );
+                $this->view->showViews(array('admin/register.view.php'), $data);
             }
-        }else{
+        } else {
             $data = array(
-                'título' => 'Añadir Usuario',
-                'seccion' => '/usuarios',
                 'input' => filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS),
                 'errores' => $errores
             );
@@ -107,7 +108,7 @@ class LoginController extends \Com\Daw2\Core\BaseController {
         }
         return $errores;
     }
-    
+
     function fotoPorDefecto($userId) {
         $defaultImages = glob('assets/img/FotosPerfil/Default/*.jpg'); // Obtiene todas las imágenes JPG en la carpeta default_pfp
         if (empty($defaultImages)) {

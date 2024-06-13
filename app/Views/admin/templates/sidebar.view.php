@@ -12,19 +12,19 @@
               <p>Inicio</p>
             </a>
           </li>
-          <li class="<?php echo isset($seccion) && $seccion === '/animes' ? 'active' : '' ?>"> <!-- Tengo que hacer con class active para añadirle el puntito a la derecha -->
+          <li class="<?php echo isset($seccion) && $seccion === '/animes' ? 'active' : '' ?>">
             <a href="/admin/animes">
               <i class="tim-icons icon-app"></i>
               <p>Animes</p>
             </a>
           </li>
-          <li class="<?php echo isset($seccion) && $seccion === '/generos' ? 'active' : '' ?>"> <!-- Tengo que hacer con class active para añadirle el puntito a la derecha -->
+          <li class="<?php echo isset($seccion) && $seccion === '/generos' ? 'active' : '' ?>">
             <a href="/admin/generos">
               <i class="tim-icons icon-paper"></i>
               <p>Géneros</p>
             </a>
           </li>
-          <li class="<?php echo isset($seccion) && $seccion === '/usuarios' ? 'active' : '' ?>"> <!-- Tengo que hacer con class active para añadirle el puntito a la derecha -->
+          <li class="<?php echo isset($seccion) && $seccion === '/usuarios' ? 'active' : '' ?>">
             <a href="/admin/usuarios">
               <i class="tim-icons icon-single-02"></i>
               <p>Usuarios</p>

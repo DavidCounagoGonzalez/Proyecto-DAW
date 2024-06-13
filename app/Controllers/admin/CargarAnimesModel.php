@@ -11,8 +11,8 @@ class CargarAnimesModel extends \Com\Daw2\Core\BaseModel{
             $datos = file_get_contents($url);
             $datos = json_decode($datos, true);
             
-            $stmt = $this->pdo->prepare("INSERT INTO Animes (id, titulo, episodios, en_emision, fecha_emision, calificacion, puntuacion, descripcion, transmision, imagenes, trailer)"
-                    . " VALUES (:id, :titulo, :episodios, :en_emision, :fecha_emision, :calificacion, :puntuacion, :descripcion, :transmision, :imagenes, :trailer)");
+            $stmt = $this->pdo->prepare("INSERT INTO Animes (id, titulo, episodios, en_emision, fecha_emision, calificacion, puntuacion, descripcion, imagenes, trailer)"
+                    . " VALUES (:id, :titulo, :episodios, :en_emision, :fecha_emision, :calificacion, :puntuacion, :descripcion, :imagenes, :trailer)");
             
             foreach ($datos['data'] as $dato) {
                 var_dump($dato['title']);
@@ -32,7 +32,6 @@ class CargarAnimesModel extends \Com\Daw2\Core\BaseModel{
                     'calificacion' => $dato['rating'],
                     'puntuacion' => $dato['score'],
                     'descripcion' => $dato['synopsis'],
-                    'transmision' => $dato['broadcast']['string'],
                     'imagenes' => $dato['images']['jpg']['image_url'],
                     'trailer' => $dato['trailer']['url']
                 ];

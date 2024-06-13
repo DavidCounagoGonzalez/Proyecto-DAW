@@ -1,0 +1,16 @@
+<phpunit bootstrap="vendor/autoload.php">
+    <!-- Tus otras configuraciones de PHPUnit -->
+
+    <php>
+        <env name="app.debug" value="1" force="true" />
+        <env name="folder.views" value="app/Views/" force="true" />
+        <env name="folder.data" value="app/Data/" force="true" />
+        <env name="table.rowsPerPage" value="10" force="true" />
+        <env name="db.host" value="localhost" force="true" />
+        <env name="db.user" value="admin" force="true" />
+        <env name="db.pass" value="daw2pass" force="true" />
+        <env name="db.schema" value="proyecto" force="true" />
+        <env name="db.charset" value="utf8mb4" force="true" />
+        <env name="db.emulated" value="0" force="true" />
+    </php>
+</phpunit>

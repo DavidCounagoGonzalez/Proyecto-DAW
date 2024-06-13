@@ -1,0 +1,1 @@
+{"version":1,"defects":{"LoginControllerTest::testProcessLogin":4,"LoginControllerTest::testCheckLogin":3,"LoginControllerTest::testProcessRegistro":4,"Test::testModelUser":4},"times":{"LoginControllerTest::testProcessLogin":0.007,"LoginControllerTest::testCheckLogin":0.007,"LoginControllerTest::testProcessRegistro":0.018,"Test::testCheckLogin":0.008,"Test::testModelUser":0.109}}
