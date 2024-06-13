@@ -152,7 +152,7 @@ class FrontController {
 
             Route::add('/actualiza',
                     function () {
-                        $controlador = new \Com\Daw2\Controllers\admin\CargarAnimesModel();
+                        $controlador = new \Com\Daw2\Models\CargarAnimesModel();
                         $controlador->apiAnimes();
                     }
                     , 'get');
