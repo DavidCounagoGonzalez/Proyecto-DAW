@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const rowsPerPage = 18;
     let currentPage = 1;
 
-    // Añadir eventos de cambio a los filtros
+    // Añadir eventos a los filtros
     tituloFilter.addEventListener('input', updateFiltersAndPagination);
     $('.selectCustom').on('change', updateFiltersAndPagination);
     $('.selectGeneros').on('change', updateFiltersAndPagination);
@@ -22,20 +22,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function filterAnimes() {
+        //Recogemos datos de los input
         const selectedTitulo = tituloFilter.value.toLowerCase();
         const selectedCalificacion = calificacionFilter.value;
         const selectedGeneros = Array.from(generosFilter.selectedOptions).map(option => option.value);
         const selectedEnEmision = enEmisionFilter.value;
-
+        
+        //animesGeneros se crea en un script de verTodos.view.php ya que llega desde back
         animesfiltrados = animesGeneros.filter(anime => {
-
+            
             const titulo = anime.titulo.toLowerCase();
             const calificacion = anime.calificacion;
             const generos = anime.generos ? anime.generos.split(',') : [];
             const enEmision = anime.en_emision;
-
+            
             let isVisible = true;
-
+            
             if (selectedTitulo && !titulo.includes(selectedTitulo)) {
                 isVisible = false;
             }
@@ -48,14 +50,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedGeneros.length > 0 && !selectedGeneros.every(elemento => generos.includes(elemento))) {
                 isVisible = false;
             }
-
-            return isVisible;
+            
+            return isVisible; //devuelve si el anime que se está filtrando cumple o no.
         });
 
 
-        return animesfiltrados;
+        return animesfiltrados; //Devuelve los animes que sean visibles
     }
-
+    
+    //Revisar comentarios paginación.js
     function updatePagination(filteredAnimes) {
         paginationElement.innerHTML = '';
         const totalPages = Math.ceil(filteredAnimes.length / rowsPerPage);
@@ -105,7 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
     }
-
+    
+    //Esta función se encarga de recorrer los animesFiltrados para crear las tarjetas de los que se han de mostrar en la página actual.
     function showPage(page, filteredAnimes) {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;

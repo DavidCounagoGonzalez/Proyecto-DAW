@@ -2,7 +2,7 @@ function applyUserFilters(rows, filterNombre, filterEmail) {
     const nameText = filterNombre.value.toLowerCase();
     const emailText = filterEmail.value.toLowerCase();
 
-
+    //recorremos las filas buscando que el valor de los elementos coincida con lo filtrado
     return rows.filter(row => {
         const cells = row.getElementsByTagName('td');
         const nameMatch = cells[1].textContent.toLowerCase().includes(nameText);
@@ -21,14 +21,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const rows = Array.from(table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'));
 
+    //Construimos un objeto basado en la clase de Paginación donde además le añadimos la función de filtros
     const pagination = new Pagination(table, paginationElement, {
         rowsPerPage: 15,
         filterFunction: () => applyUserFilters(rows, filterNombre, filterEmail)
     });
     
     function applyFiltersAndResetPagination() {
-        pagination.update();
-        pagination.reset(); // Suponiendo que existe un método reset en la clase Pagination que reinicia a la página 1
+        pagination.update(); //Esto actualiza los botones de paginación si es necesario
+        pagination.reset(); // Esto nso devuelve siempre a la primera página
     }
 
     filterNombre.addEventListener('input',applyFiltersAndResetPagination);

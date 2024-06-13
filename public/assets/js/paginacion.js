@@ -17,18 +17,18 @@ class Pagination {
         this.filteredRows = this.filterFunction();
         this.currentPage = page;
         
-         // Guardar el número de página actual en el almacenamiento local
-        localStorage.setItem('paginaTabla', page);
+        localStorage.setItem('paginaTabla', page); //Guardamos la página en que se quedo.
         
         const start = (page - 1) * this.rowsPerPage;
         const end = start + this.rowsPerPage;
 
-        this.rows.forEach(row => row.style.display = 'none');
-        this.filteredRows.slice(start, end).forEach(row => row.style.display = '');
+        this.rows.forEach(row => row.style.display = 'none'); //Oculta todas las filas
+        this.filteredRows.slice(start, end).forEach(row => row.style.display = ''); //Muestra las filas de la página actual
 
         this.updatePagination();
     }
-
+    
+    //Creación de los botones con clases y eventos
     createButton(text, page, isCurrent = false) {
         const button = document.createElement('button');
         button.textContent = text;
@@ -42,15 +42,17 @@ class Pagination {
     }
 
     updatePagination() {
-        this.paginationElement.innerHTML = '';
+        this.paginationElement.innerHTML = ''; //Siempre se vacía por si los botones del inicio o final deben desaparecer.
 
         const totalPages = Math.ceil(this.filteredRows.length / this.rowsPerPage);
-
+        
+        //Creación botones para ir hacia atrás
         if (this.currentPage > 1) {
             this.paginationElement.appendChild(this.createButton('Primera', 1));
             this.paginationElement.appendChild(this.createButton('Anterior', this.currentPage - 1));
         }
 
+        //Creación del botón de Página Actual que permite escribir para indicar la página a la que ir
         const input = document.createElement('input');
         input.type = 'text';
         input.min = 1;
@@ -67,7 +69,8 @@ class Pagination {
             }
         });
         this.paginationElement.appendChild(input);
-
+        
+        //Creación de botones para ir hacía delante
         if (this.currentPage < totalPages) {
             this.paginationElement.appendChild(this.createButton('Siguiente', this.currentPage + 1));
             this.paginationElement.appendChild(this.createButton('Última', totalPages));

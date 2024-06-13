@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('.cardContainer').on('click', '.card', function () {
+        // Recojo los datos guardados en la card sobre la que se hace click
         var title = $(this).find('.card-title').text();
         var episodios = $(this).data('episodios');
         var descripcion = $(this).data('descripcion');
@@ -18,7 +19,7 @@ $(document).ready(function () {
         } else {
             calificacion = '+' + $(this).data('calificacion');
         }
-
+        //Le añadimos a las etiquetas del Modal los valores recogidos
         $('#animeModalLabel').text(title);
         $('#animeCalificacion').text('Apto para ' + calificacion);
         $('#animeGeneros').text('Géneros: ' + generoStr);
@@ -29,15 +30,18 @@ $(document).ready(function () {
     });
 
     $('.cardContainer').on('click', '.guarda', function (event) {
-        event.stopPropagation();
+        event.stopPropagation(); // Esto evita que se active la acción sobre la card que se encuentra debajo
 
+        //Recogemos los datos del botón
         estado_id = $(this).val();
         anime_id = $(this).data('anime');
-
+        
+        //Creamos un objeto URLSearchParams que al añadir los elementos los concatena como si fuesen atributos de una URL
         var params = new URLSearchParams();
         params.append('estado_id', estado_id);
         params.append('anime_id', anime_id);
 
+        //Enviamos por POST los datos a la url que lanza la función para agregar el anime a la lista
         fetch('/agregarLista', {
             method: 'POST',
             headers: {
@@ -47,21 +51,21 @@ $(document).ready(function () {
         })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.clase === 'success') {
-                        console.log('Éxito: ', data.mensaje);
+                    if (data.clase === 'success') { //Si sale bien se modifican las clases del botón para cambiar su función y color
                         $(this).removeClass('guarda');
                         $(this).addClass('borra');
                         $(this).children(0).removeClass('icon-guarda');
                         $(this).children(0).addClass('icon-borra');
                     } else {
-                        console.log('Error: ', data.mensaje);
+                        alert('Error: ', data.mensaje);
                     }
                 })
                 .catch(error => {
-                    console.error('Error: ', error);
+                    alert('Error: ', error);
                 });
     });
     
+    //Lo mismo que lo anterior pero para quitar el anime desde la vista de verTodos
     $('.cardContainer').on('click', '.borra', function (event) { 
         event.stopPropagation();
         
@@ -82,20 +86,21 @@ $(document).ready(function () {
                 .then(response => response.json())
                 .then(data => {
                     if (data.clase === 'success') {
-                        console.log('Éxito: ', data.mensaje);
                         $(this).removeClass('borra');
                         $(this).addClass('guarda');
                         $(this).children(0).removeClass('icon-borra');
                         $(this).children(0).addClass('icon-guarda');
                     } else {
-                        console.log('Error: ', data.mensaje);
+                        alert('Error: ', data.mensaje);
                     }
                 })
                 .catch(error => {
-                    console.error('Error: ', error);
+                    alert('Error: ', error);
                 });
     });
     
+    //Este evento también lanza la función para borra de la lista al Anime , pero en este caso elimina la card ya que ocurre en la vista del perfil
+    // donde las card se cargan desde el back.
     $('.cardContainer').on('click', '.eliminar', function (event) { 
         event.stopPropagation();
         

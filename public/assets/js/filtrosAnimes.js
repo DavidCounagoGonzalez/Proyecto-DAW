@@ -1,3 +1,4 @@
+// Revisar comentarios filtrosUsuarios.js
 function applyFilters(rows, filterName, filterInEmision, filterRating) {
     const nameText = filterName.value.toLowerCase();
     const inEmision = filterInEmision.checked;
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function applyFiltersAndResetPagination() {
         pagination.update();
-        pagination.reset(); // Suponiendo que existe un método reset en la clase Pagination que reinicia a la página 1
+        pagination.reset();
     }
 
     filterTitulo.addEventListener('input', applyFiltersAndResetPagination);
