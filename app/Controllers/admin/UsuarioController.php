@@ -204,7 +204,8 @@ class UsuarioController extends \Com\Daw2\Core\BaseController {
         }
         header('location: /admin/usuarios');
     }
-
+    
+    //Borra la foto junto al usuario
     function deleteFoto(int $id_user) {
         $archivos = glob("assets/img/FotosPerfil/{$id_user}.jpg");
         foreach ($archivos as $archivo) {

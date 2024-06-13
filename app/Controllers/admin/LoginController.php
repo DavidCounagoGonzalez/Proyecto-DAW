@@ -19,7 +19,7 @@ class LoginController extends \Com\Daw2\Core\BaseController {
         if (count($errores) == 0) {
             $modelo = new \Com\Daw2\Models\UsuarioModel();
             $usuario = $modelo->loadByEmail(trim($_POST['email']));
-            if (!is_null($usuario)) {
+            if (!is_null($usuario)) { //Comprueba que el email no se haya utilizado en otra cuenta.
                 if (password_verify($_POST['pass'], $usuario['pass'])) {
                     unset($usuario['pass']);
                     $modelo->ultimoInicio($usuario['id_usuario']);
@@ -29,7 +29,7 @@ class LoginController extends \Com\Daw2\Core\BaseController {
                     $errores['pass'] = 'Datos de acceso incorrectos';
                 }
             } else {
-                $errores['pass'] = 'Datos de acceso incorrectos';
+                $errores['email'] = 'El email ya se ha registrado';
             }
         }
         $data = array(
@@ -66,7 +66,7 @@ class LoginController extends \Com\Daw2\Core\BaseController {
             $modelo = new \Com\Daw2\Models\UsuarioModel();
             $_POST['id_rol'] = 2;
             if ($id_user = $modelo->insertUsuario($_POST)) {
-                $nombreImagen = $this->fotoPorDefecto($id_user);
+                $nombreImagen = $this->fotoPorDefecto($id_user); // Cuando un usuario normal se registra se le añade una imagen por defecto
                 $modelo->updateFoto($nombreImagen, $id_user);
                 header('location: /accounts/login');
             } else {
@@ -110,7 +110,7 @@ class LoginController extends \Com\Daw2\Core\BaseController {
     }
 
     function fotoPorDefecto($userId) {
-        $defaultImages = glob('assets/img/FotosPerfil/Default/*.jpg'); // Obtiene todas las imágenes JPG en la carpeta default_pfp
+        $defaultImages = glob('assets/img/FotosPerfil/Default/*.jpg'); // Obtiene todas las imágenes default
         if (empty($defaultImages)) {
             return "default00.jpg";
         }

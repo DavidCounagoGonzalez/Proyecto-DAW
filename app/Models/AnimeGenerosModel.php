@@ -6,7 +6,7 @@ namespace Com\Daw2\Models;
 
 class AnimeGenerosModel extends \Com\Daw2\Core\BaseModel {
     
-    
+    //recoge los generos de un anime
     function getByAnime(int $id): ?array{
         $query = "SELECT * FROM genero_anime WHERE anime_id = ?";
         
@@ -20,6 +20,7 @@ class AnimeGenerosModel extends \Com\Daw2\Core\BaseModel {
         }
     }
     
+    //Añade los géneros a un anime
     function insertGenres($generos, $id_anime) {
         $query = "INSERT INTO `genero_anime`(`genero_id`, `anime_id`) VALUES (:genero_id, :id_anime)";
 

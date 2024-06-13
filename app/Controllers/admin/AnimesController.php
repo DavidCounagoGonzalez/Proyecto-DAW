@@ -13,7 +13,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             'seccion' => '/animes',
             'animes' => $model->getAll()
         );
-
+        // Comprueba que exista algún mensaje de acción para mostrarlo en la view
         if (isset($_SESSION['mensaje'])) {
             $data['mensaje'] = $_SESSION['mensaje'];
             unset($_SESSION['mensaje']);
@@ -41,6 +41,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         $modeloAnimeGeneros = new \Com\Daw2\Models\AnimeGenerosModel();
 
         $errores = $this->checkForm($_POST);
+        //Si se han generado errores en el check devuelve la vista con los datos que colocó el usuario
         if (count($errores) > 0) {
             $data = array(
                 'título' => 'Añadir Anime',
@@ -51,7 +52,8 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
             );
             $this->view->showViews(array('admin/add.animes.view.php'), $data);
         } else {
-
+            
+            //Genera un ID random pra los animes hasta que no exista en la BBDD
             do {
                 $id = $this->generateRandomId();
             } while ($modelo->loadById($id));
@@ -119,9 +121,14 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         if (empty($post['sinopsis'])) {
             $errores['sinopsis'] = 'No puede estar vacío';
         }
-
+        
+        //Si la imagen no está vacía la guarda en la carpeta correspondiente con el mismo nombre del anime
         if ($_FILES['imagenAnime']['name'] != '') {
             $guardar = new \Com\Daw2\Models\SubirArchivos();
+            
+            if (!empty($post['titulo'])){
+                $_FILES['imagenAnime']['name'] = $post['titulo'] . '.png';
+            }
 
             if (!$guardar->guardar('assets/img/animeImgs/', $_FILES['imagenAnime'])) {
                 $errores['imagen'] = 'Ha habido un error al subir la imagen';
@@ -142,7 +149,7 @@ class AnimesController extends \Com\Daw2\Core\BaseController {
         if (is_null($input)) {
             header('location: /admin/animes');
         } else {
-
+            //Si la imagen a cargar no es por link le pasa la ruta por defecto donde deberían estar las imágenes
             if (!preg_match('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $input['imagenes'])) {
                 $input['imagenes'] = '/assets/img/animeImgs/' . $input['imagenes'];
             }

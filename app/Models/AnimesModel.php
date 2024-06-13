@@ -12,6 +12,7 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
         return $this->pdo->query(self::SELECT_FROM)->fetchAll();
     }
     
+    //Recoge todos los animes con un campo que agrupa los ids de los generos, otro con los nombre de estos y un último con los ids de las listas.
     function getAllWithGenres($user_id): array{
         $query = "SELECT a.*, GROUP_CONCAT(DISTINCT ga.genero_id SEPARATOR ',') AS generos, GROUP_CONCAT(DISTINCT g.genero SEPARATOR ', ') AS generosStr, 
             GROUP_CONCAT(DISTINCT la.estado_id SEPARATOR ',') AS listas 
@@ -23,7 +24,7 @@ class AnimesModel extends \Com\Daw2\Core\BaseModel {
         return $stmt->fetchAll();
     }
     
-    
+    //Recoge 12 animes random para el inicio
     function get12Animes(): array{
         $query = "SELECT * FROM Animes ORDER BY RAND() LIMIT 12";
         

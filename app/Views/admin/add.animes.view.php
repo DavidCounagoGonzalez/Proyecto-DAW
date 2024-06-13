@@ -93,7 +93,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="puntuacion">Puntuación</label>
-                                                <input id="puntuacion" name='puntuacion' type="number" class="form-control" placeholder="Home Address" value="<?php echo $input['puntuacion'] ?? '0.00' ?>" step=".01">
+                                                <input id="puntuacion" name='puntuacion' type="number" class="form-control" placeholder="Puntuación" value="<?php echo $input['puntuacion'] ?? '0.00' ?>" step=".01">
                                                 <p class="text-danger"><?php echo isset($errores['puntuacion']) ? $errores['puntuacion'] : ''; ?></p>
                                             </div>
                                         </div>
